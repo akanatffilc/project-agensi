@@ -24,9 +24,9 @@ namespace Agensi.Web
             //    clientId: "",
             //    clientSecret: "");
 
-            //app.UseTwitterAuthentication(
-            //   consumerKey: "",
-            //   consumerSecret: "");
+            app.UseTwitterAuthentication(
+               consumerKey: "mDKFHlngDva9diVwrDO3g",
+               consumerSecret: "s0kus0IETQwJIIj257bR8wgi3vJUCJaJ89vZkMk2dc");
 
             app.UseFacebookAuthentication(
                appId: "469953176444061",

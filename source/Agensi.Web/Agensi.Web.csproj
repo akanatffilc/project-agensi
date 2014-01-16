@@ -178,6 +178,10 @@
     <Compile Include="Migrations\201401151827532_initial.Designer.cs">
       <DependentUpon>201401151827532_initial.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201401160424487_initial1.cs" />
+    <Compile Include="Migrations\201401160424487_initial1.Designer.cs">
+      <DependentUpon>201401160424487_initial1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Home\HomeModel.cs" />
@@ -248,6 +252,9 @@
     <EmbeddedResource Include="Migrations\201401151827532_initial.resx">
       <DependentUpon>201401151827532_initial.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201401160424487_initial1.resx">
+      <DependentUpon>201401160424487_initial1.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Agensi.Core\Agensi.Core.csproj">
@@ -277,7 +284,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>2196</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:2196/</IISUrl>
+          <IISUrl>http://localhost:21963/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

@@ -63,6 +63,21 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Agensi.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Core\AspNetRole.cs">
+      <DependentUpon>Agensi.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Core\AspNetUser.cs">
+      <DependentUpon>Agensi.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Core\AspNetUserClaim.cs">
+      <DependentUpon>Agensi.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Core\AspNetUserLogin.cs">
+      <DependentUpon>Agensi.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Core\C__MigrationHistory.cs">
+      <DependentUpon>Agensi.tt</DependentUpon>
+    </Compile>
     <Compile Include="Core\IRepositories\ILanguageMasterRepository.cs" />
     <Compile Include="Core\LanguageMaster.cs">
       <DependentUpon>Agensi.tt</DependentUpon>
