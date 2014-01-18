@@ -5,15 +5,19 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="474717f177af4e9aa0ee130bab6fabe7" Name="Diagram1">
-        <EntityTypeShape EntityType="AgensiDBModel.LanguageMaster" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="AgensiDBModel.C__MigrationHistory" Width="1.5" PointX="0.75" PointY="3.75" />
-        <EntityTypeShape EntityType="AgensiDBModel.AspNetRole" Width="1.5" PointX="3.75" PointY="2.5" />
-        <EntityTypeShape EntityType="AgensiDBModel.AspNetUserClaim" Width="1.5" PointX="8.25" PointY="3.5" />
-        <EntityTypeShape EntityType="AgensiDBModel.AspNetUserLogin" Width="1.5" PointX="8.25" PointY="1" />
-        <EntityTypeShape EntityType="AgensiDBModel.AspNetUser" Width="1.5" PointX="6" PointY="2" />
+        <EntityTypeShape EntityType="AgensiDBModel.LanguageMaster" Width="1.5" PointX="0.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AgensiDBModel.C__MigrationHistory" Width="1.5" PointX="2.75" PointY="6.75" />
+        <EntityTypeShape EntityType="AgensiDBModel.AspNetRole" Width="1.5" PointX="0.75" PointY="2.5" />
+        <EntityTypeShape EntityType="AgensiDBModel.AspNetUserClaim" Width="1.5" PointX="5.25" PointY="3.5" />
+        <EntityTypeShape EntityType="AgensiDBModel.AspNetUserLogin" Width="1.5" PointX="5.25" PointY="1" />
+        <EntityTypeShape EntityType="AgensiDBModel.AspNetUser" Width="1.5" PointX="3" PointY="2" />
         <AssociationConnector Association="AgensiDBModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_User_Id" />
         <AssociationConnector Association="AgensiDBModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" />
         <AssociationConnector Association="AgensiDBModel.AspNetUserRoles" />
+        <EntityTypeShape EntityType="AgensiDBModel.AgensiAnswer" Width="1.5" PointX="4.75" PointY="6.75" />
+        <EntityTypeShape EntityType="AgensiDBModel.AgensiQuery" Width="1.5" PointX="6.75" PointY="6.75" />
+        <EntityTypeShape EntityType="AgensiDBModel.AnswerVote" Width="1.5" PointX="7.75" PointY="0.75" />
+        <EntityTypeShape EntityType="AgensiDBModel.AnswerVoteDown" Width="1.5" PointX="7.75" PointY="3.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
