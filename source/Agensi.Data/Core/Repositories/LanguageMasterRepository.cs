@@ -48,5 +48,6 @@ namespace Agensi.Data.Core.Repositories
         {
             context.SaveChanges();
         }
+
     }
 }

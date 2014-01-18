@@ -63,10 +63,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Agensi.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Core\AgensiAnswer.cs">
-      <DependentUpon>Agensi.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Core\AgensiQuery.cs">
+    <Compile Include="Core\Answer.cs">
       <DependentUpon>Agensi.tt</DependentUpon>
     </Compile>
     <Compile Include="Core\AnswerVote.cs">
@@ -90,16 +87,19 @@
     <Compile Include="Core\C__MigrationHistory.cs">
       <DependentUpon>Agensi.tt</DependentUpon>
     </Compile>
-    <Compile Include="Core\IRepositories\IAgensiAnswerRepository.cs" />
-    <Compile Include="Core\IRepositories\IAgensiQueryRepository.cs" />
+    <Compile Include="Core\IRepositories\IAnswerRepository.cs" />
+    <Compile Include="Core\IRepositories\IQueryRepository.cs" />
     <Compile Include="Core\IRepositories\IAnswerVoteDownRepository.cs" />
     <Compile Include="Core\IRepositories\IAnswerVoteRepository.cs" />
     <Compile Include="Core\IRepositories\ILanguageMasterRepository.cs" />
     <Compile Include="Core\LanguageMaster.cs">
       <DependentUpon>Agensi.tt</DependentUpon>
     </Compile>
-    <Compile Include="Core\Repositories\AgensiAnswerRepository.cs" />
-    <Compile Include="Core\Repositories\AgensiQueryRepository.cs" />
+    <Compile Include="Core\Query.cs">
+      <DependentUpon>Agensi.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Core\Repositories\AnswerRepository.cs" />
+    <Compile Include="Core\Repositories\QueryRepository.cs" />
     <Compile Include="Core\Repositories\AnswerVoteDownRepository.cs" />
     <Compile Include="Core\Repositories\AnswerVoteRepository.cs" />
     <Compile Include="Core\Repositories\LanguageMasterRepository.cs" />

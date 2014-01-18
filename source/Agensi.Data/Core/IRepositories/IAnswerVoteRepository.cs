@@ -15,5 +15,7 @@ namespace Agensi.Data.Core.IRepositories
         Task AddAsync(AnswerVote vote);
 
         Task DeleteAsync(AnswerVote vote);
+
+        void Save();
     }
 }

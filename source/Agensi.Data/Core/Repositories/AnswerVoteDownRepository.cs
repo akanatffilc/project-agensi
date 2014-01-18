@@ -43,5 +43,10 @@ namespace Agensi.Data.Core.Repositories
                     context.Entry<AnswerVoteDown>(voteDown).State = EntityState.Modified;
                 });
         }
+
+        public void Save()
+        {
+            context.SaveChanges();
+        }
     }
 }

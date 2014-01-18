@@ -1,0 +1,27 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+@model Agensi.Web.Models.Board.BoardIndexModel
+
+<h2>Query一覧画面</h2>
+
+@Html.ActionLink("質問する", "Ask", null, new { @class = "btn btn-default" })
+
+@if (Model.AgensiQueries.Any())
+{
+    <h3>質問一覧</h3>
+    <table class="table">
+        <tr><th>タイトル</th><th>質問日時</th></tr>
+        @foreach (var query in Model.AgensiQueries)
+        {
+        <tr>
+            <td>@Html.ActionLink(@query.Title, "query", new { query.QueryId })</td>
+            <td>@query.QueryDate</td>
+        </tr>
+        }
+    </table>
+}
+else
+{
+    <div>Queryがまだありません。</div>
+}

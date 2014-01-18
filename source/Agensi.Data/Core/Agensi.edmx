@@ -15,31 +15,17 @@
           <Property Name="Model" Type="varbinary(max)" Nullable="false" />
           <Property Name="ProductVersion" Type="nvarchar" MaxLength="32" Nullable="false" />
         </EntityType>
-        <EntityType Name="AgensiAnswer">
+        <EntityType Name="Answer">
           <Key>
             <PropertyRef Name="AnswerId" />
           </Key>
-          <Property Name="AnswerId" Type="bigint" Nullable="false" />
+          <Property Name="AnswerId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="QueryId" Type="bigint" Nullable="false" />
           <Property Name="AnswerUid" Type="nvarchar" MaxLength="128" Nullable="false" />
           <Property Name="LanguageId" Type="int" Nullable="false" />
           <Property Name="Text" Type="nvarchar(max)" Nullable="false" />
           <Property Name="AnswerDate" Type="datetime" Nullable="false" />
           <Property Name="UpdateTime" Type="datetime" Nullable="false" />
-        </EntityType>
-        <EntityType Name="AgensiQuery">
-          <Key>
-            <PropertyRef Name="QueryId" />
-          </Key>
-          <Property Name="QueryId" Type="int" Nullable="false" />
-          <Property Name="OwnerUid" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="Title" Type="nvarchar" MaxLength="200" Nullable="false" />
-          <Property Name="TopicCategory" Type="int" Nullable="false" />
-          <Property Name="MediaCategory" Type="int" Nullable="false" />
-          <Property Name="LanguageId" Type="int" Nullable="false" />
-          <Property Name="Text" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="QueryDate" Type="datetime" Nullable="false" />
-          <Property Name="UpdateTime" Type="nchar" MaxLength="10" Nullable="false" />
         </EntityType>
         <EntityType Name="AnswerVote">
           <Key>
@@ -111,6 +97,20 @@
           <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="AddTime" Type="datetime" Nullable="false" />
         </EntityType>
+        <EntityType Name="Query">
+          <Key>
+            <PropertyRef Name="QueryId" />
+          </Key>
+          <Property Name="QueryId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OwnerUid" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="TopicCategory" Type="int" Nullable="false" />
+          <Property Name="MediaCategory" Type="int" Nullable="false" />
+          <Property Name="LanguageId" Type="int" Nullable="false" />
+          <Property Name="Text" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="QueryDate" Type="datetime" Nullable="false" />
+          <Property Name="UpdateTime" Type="datetime" Nullable="false" />
+        </EntityType>
         <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_User_Id">
           <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
             <OnDelete Action="Cascade" />
@@ -169,8 +169,7 @@
         </Association>
         <EntityContainer Name="AgensiDBModelStoreContainer">
           <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="AgensiAnswer" EntityType="Self.AgensiAnswer" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="AgensiQuery" EntityType="Self.AgensiQuery" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Answer" EntityType="Self.Answer" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AnswerVote" EntityType="Self.AnswerVote" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AnswerVoteDown" EntityType="Self.AnswerVoteDown" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
@@ -179,6 +178,7 @@
           <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="LanguageMaster" EntityType="Self.LanguageMaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Query" EntityType="Self.Query" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_User_Id" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_User_Id">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
@@ -227,10 +227,10 @@
             <End Role="AspNetRole" EntitySet="AspNetRoles" />
             <End Role="AspNetUser" EntitySet="AspNetUsers" />
           </AssociationSet>
-          <EntitySet Name="AgensiAnswers" EntityType="AgensiDBModel.AgensiAnswer" />
-          <EntitySet Name="AgensiQueries" EntityType="AgensiDBModel.AgensiQuery" />
           <EntitySet Name="AnswerVotes" EntityType="AgensiDBModel.AnswerVote" />
           <EntitySet Name="AnswerVoteDowns" EntityType="AgensiDBModel.AnswerVoteDown" />
+          <EntitySet Name="Answers" EntityType="AgensiDBModel.Answer" />
+          <EntitySet Name="Queries" EntityType="AgensiDBModel.Query" />
         </EntityContainer>
         <EntityType Name="C__MigrationHistory">
           <Key>
@@ -316,32 +316,6 @@
           <End Type="AgensiDBModel.AspNetRole" Role="AspNetRole" Multiplicity="*" />
           <End Type="AgensiDBModel.AspNetUser" Role="AspNetUser" Multiplicity="*" />
         </Association>
-        <EntityType Name="AgensiAnswer">
-          <Key>
-            <PropertyRef Name="AnswerId" />
-          </Key>
-          <Property Name="AnswerId" Type="Int64" Nullable="false" />
-          <Property Name="QueryId" Type="Int64" Nullable="false" />
-          <Property Name="AnswerUid" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="LanguageId" Type="Int32" Nullable="false" />
-          <Property Name="Text" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="AnswerDate" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="UpdateTime" Type="DateTime" Nullable="false" Precision="3" />
-        </EntityType>
-        <EntityType Name="AgensiQuery">
-          <Key>
-            <PropertyRef Name="QueryId" />
-          </Key>
-          <Property Name="QueryId" Type="Int32" Nullable="false" />
-          <Property Name="OwnerUid" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="Title" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="TopicCategory" Type="Int32" Nullable="false" />
-          <Property Name="MediaCategory" Type="Int32" Nullable="false" />
-          <Property Name="LanguageId" Type="Int32" Nullable="false" />
-          <Property Name="Text" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="QueryDate" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="UpdateTime" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
-        </EntityType>
         <EntityType Name="AnswerVote">
           <Key>
             <PropertyRef Name="AnswerId" />
@@ -359,6 +333,32 @@
           <Property Name="AnswerId" Type="Int64" Nullable="false" />
           <Property Name="Uid" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Name="AddTime" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="Answer">
+          <Key>
+            <PropertyRef Name="AnswerId" />
+          </Key>
+          <Property Name="AnswerId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="QueryId" Type="Int64" Nullable="false" />
+          <Property Name="AnswerUid" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="LanguageId" Type="Int32" Nullable="false" />
+          <Property Name="Text" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="AnswerDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UpdateTime" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="Query">
+          <Key>
+            <PropertyRef Name="QueryId" />
+          </Key>
+          <Property Name="QueryId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OwnerUid" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="TopicCategory" Type="Int32" Nullable="false" />
+          <Property Name="MediaCategory" Type="Int32" Nullable="false" />
+          <Property Name="LanguageId" Type="Int32" Nullable="false" />
+          <Property Name="Text" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="QueryDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UpdateTime" Type="DateTime" Nullable="false" Precision="3" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -431,34 +431,6 @@
               <ScalarProperty Name="Id" ColumnName="RoleId" />
             </EndProperty>
           </AssociationSetMapping>
-          <EntitySetMapping Name="AgensiAnswers">
-            <EntityTypeMapping TypeName="AgensiDBModel.AgensiAnswer">
-              <MappingFragment StoreEntitySet="AgensiAnswer">
-                <ScalarProperty Name="UpdateTime" ColumnName="UpdateTime" />
-                <ScalarProperty Name="AnswerDate" ColumnName="AnswerDate" />
-                <ScalarProperty Name="Text" ColumnName="Text" />
-                <ScalarProperty Name="LanguageId" ColumnName="LanguageId" />
-                <ScalarProperty Name="AnswerUid" ColumnName="AnswerUid" />
-                <ScalarProperty Name="QueryId" ColumnName="QueryId" />
-                <ScalarProperty Name="AnswerId" ColumnName="AnswerId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="AgensiQueries">
-            <EntityTypeMapping TypeName="AgensiDBModel.AgensiQuery">
-              <MappingFragment StoreEntitySet="AgensiQuery">
-                <ScalarProperty Name="UpdateTime" ColumnName="UpdateTime" />
-                <ScalarProperty Name="QueryDate" ColumnName="QueryDate" />
-                <ScalarProperty Name="Text" ColumnName="Text" />
-                <ScalarProperty Name="LanguageId" ColumnName="LanguageId" />
-                <ScalarProperty Name="MediaCategory" ColumnName="MediaCategory" />
-                <ScalarProperty Name="TopicCategory" ColumnName="TopicCategory" />
-                <ScalarProperty Name="Title" ColumnName="Title" />
-                <ScalarProperty Name="OwnerUid" ColumnName="OwnerUid" />
-                <ScalarProperty Name="QueryId" ColumnName="QueryId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="AnswerVotes">
             <EntityTypeMapping TypeName="AgensiDBModel.AnswerVote">
               <MappingFragment StoreEntitySet="AnswerVote">
@@ -474,6 +446,34 @@
                 <ScalarProperty Name="AddTime" ColumnName="AddTime" />
                 <ScalarProperty Name="Uid" ColumnName="Uid" />
                 <ScalarProperty Name="AnswerId" ColumnName="AnswerId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Answers">
+            <EntityTypeMapping TypeName="AgensiDBModel.Answer">
+              <MappingFragment StoreEntitySet="Answer">
+                <ScalarProperty Name="UpdateTime" ColumnName="UpdateTime" />
+                <ScalarProperty Name="AnswerDate" ColumnName="AnswerDate" />
+                <ScalarProperty Name="Text" ColumnName="Text" />
+                <ScalarProperty Name="LanguageId" ColumnName="LanguageId" />
+                <ScalarProperty Name="AnswerUid" ColumnName="AnswerUid" />
+                <ScalarProperty Name="QueryId" ColumnName="QueryId" />
+                <ScalarProperty Name="AnswerId" ColumnName="AnswerId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Queries">
+            <EntityTypeMapping TypeName="AgensiDBModel.Query">
+              <MappingFragment StoreEntitySet="Query">
+                <ScalarProperty Name="UpdateTime" ColumnName="UpdateTime" />
+                <ScalarProperty Name="QueryDate" ColumnName="QueryDate" />
+                <ScalarProperty Name="Text" ColumnName="Text" />
+                <ScalarProperty Name="LanguageId" ColumnName="LanguageId" />
+                <ScalarProperty Name="MediaCategory" ColumnName="MediaCategory" />
+                <ScalarProperty Name="TopicCategory" ColumnName="TopicCategory" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="OwnerUid" ColumnName="OwnerUid" />
+                <ScalarProperty Name="QueryId" ColumnName="QueryId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

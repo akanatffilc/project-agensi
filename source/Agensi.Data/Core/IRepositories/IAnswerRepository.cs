@@ -6,11 +6,15 @@ using System.Threading.Tasks;
 
 namespace Agensi.Data.Core.IRepositories
 {
-    public interface ILanguageMasterRepository
+    public interface IAnswerRepository
     {
-        LanguageMaster Find(int languageId);
+        Answer Find(long answerId);
 
-        LanguageMaster[] FindAll();
+        Answer[] FindByQueryId(long queryId);
+
+        void Add(Answer answer);
+
+        void Update(Answer answer);
 
         void Save();
     }

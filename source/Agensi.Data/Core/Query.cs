@@ -12,14 +12,16 @@ namespace Agensi.Data.Core
     using System;
     using System.Collections.Generic;
     
-    public partial class AgensiAnswer
+    public partial class Query
     {
-        public long AnswerId { get; set; }
         public long QueryId { get; set; }
-        public string AnswerUid { get; set; }
+        public string OwnerUid { get; set; }
+        public string Title { get; set; }
+        public int TopicCategory { get; set; }
+        public int MediaCategory { get; set; }
         public int LanguageId { get; set; }
         public string Text { get; set; }
-        public System.DateTime AnswerDate { get; set; }
+        public System.DateTime QueryDate { get; set; }
         public System.DateTime UpdateTime { get; set; }
     }
 }

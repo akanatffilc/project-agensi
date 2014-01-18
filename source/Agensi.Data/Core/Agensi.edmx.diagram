@@ -14,10 +14,10 @@
         <AssociationConnector Association="AgensiDBModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_User_Id" />
         <AssociationConnector Association="AgensiDBModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" />
         <AssociationConnector Association="AgensiDBModel.AspNetUserRoles" />
-        <EntityTypeShape EntityType="AgensiDBModel.AgensiAnswer" Width="1.5" PointX="4.75" PointY="6.75" />
-        <EntityTypeShape EntityType="AgensiDBModel.AgensiQuery" Width="1.5" PointX="6.75" PointY="6.75" />
-        <EntityTypeShape EntityType="AgensiDBModel.AnswerVote" Width="1.5" PointX="7.75" PointY="0.75" />
-        <EntityTypeShape EntityType="AgensiDBModel.AnswerVoteDown" Width="1.5" PointX="7.75" PointY="3.75" />
+        <EntityTypeShape EntityType="AgensiDBModel.AnswerVote" Width="1.5" PointX="4.75" PointY="6.75" />
+        <EntityTypeShape EntityType="AgensiDBModel.AnswerVoteDown" Width="1.5" PointX="6.75" PointY="6.75" />
+        <EntityTypeShape EntityType="AgensiDBModel.Answer" Width="1.5" PointX="7.75" PointY="0.75" />
+        <EntityTypeShape EntityType="AgensiDBModel.Query" Width="1.5" PointX="8.75" PointY="4.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

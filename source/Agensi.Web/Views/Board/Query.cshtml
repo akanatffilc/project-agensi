@@ -1,0 +1,37 @@
+﻿@{
+    ViewBag.Title = "Query";
+}
+@model Agensi.Web.Models.Board.QueryModel
+
+<h2>@Model.AgensiQuery.Query.Title</h2>
+
+質問<br />
+@Model.AgensiQuery.Query.Text;
+
+<br />
+
+@if (@Model.AgensiQuery.Answers.Any())
+{
+    <div>解答一覧</div><br />
+    <table class="table">
+        @foreach (var answer in @Model.AgensiQuery.Answers)
+        {
+            <tr>
+                <td>@answer.Text</td>
+            </tr>
+        }
+    </table>
+}
+else
+{
+    <div style="color:red;font-size:15px">※解答はまだありません。</div>
+}
+<br />
+回答する
+@using (@Html.BeginForm("AnswerExecute", "Board", FormMethod.Post))
+{
+    <span>言語コード:</span><input type="text" name="Language" value="1" /><br />
+    <span>解答：</span><input type="text" name="Text" value="" /><br />
+    <input type="hidden" name="QueryId" value="@Model.AgensiQuery.Query.QueryId" />
+    <button class="btn btn-default">回答</button>
+}
