@@ -37,9 +37,9 @@ namespace Agensi.Web.Controllers
             return RedirectToAction("Index");
         }
 
-        public ActionResult Query(long queryId)
+        public ActionResult Thread(long queryId)
         {
-            var model = new QueryModel(queryId);
+            var model = new ThreadModel(queryId);
             return View(model);
         }
 
@@ -51,7 +51,7 @@ namespace Agensi.Web.Controllers
             answer.UpdateTime = DateTime.Now;
 
             new AnswerDataLogic().Add(answer);
-            return RedirectToAction("Query", new { queryId = answer.QueryId });
+            return RedirectToAction("Thread", new { queryId = answer.QueryId });
         }
 	}
 }

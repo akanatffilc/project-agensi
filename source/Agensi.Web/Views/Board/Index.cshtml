@@ -15,7 +15,7 @@
         @foreach (var query in Model.AgensiQueries)
         {
         <tr>
-            <td>@Html.ActionLink(@query.Title, "query", new { query.QueryId })</td>
+            <td>@Html.ActionLink(@query.Title, "Thread", new { query.QueryId })</td>
             <td>@query.QueryDate</td>
         </tr>
         }

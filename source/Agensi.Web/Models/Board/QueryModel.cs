@@ -6,11 +6,11 @@ using System.Web;
 
 namespace Agensi.Web.Models.Board
 {
-    public class QueryModel
+    public class ThreadModel
     {
         public AgensiQuery AgensiQuery { get; private set; }
 
-        public QueryModel(long queryId)
+        public ThreadModel(long queryId)
         {
             AgensiQuery = new AgensiQuery(queryId);
         }
