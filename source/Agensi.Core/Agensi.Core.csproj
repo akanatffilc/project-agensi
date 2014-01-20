@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Core\AgensiEnums.cs" />
     <Compile Include="DataLogic\Core\AnswerDataLogic.cs" />
     <Compile Include="DataLogic\Core\AnswerVoteDownDataLogic.cs" />
     <Compile Include="DataLogic\Core\AnswerVoteDataLogic.cs" />
