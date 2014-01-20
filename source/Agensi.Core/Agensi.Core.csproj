@@ -46,14 +46,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Board\AgensiAnswer.cs" />
+    <Compile Include="Category\Genre.cs" />
+    <Compile Include="Category\MediaCategory.cs" />
     <Compile Include="Core\AgensiEnums.cs" />
     <Compile Include="DataLogic\Core\AnswerDataLogic.cs" />
     <Compile Include="DataLogic\Core\AnswerVoteDownDataLogic.cs" />
     <Compile Include="DataLogic\Core\AnswerVoteDataLogic.cs" />
     <Compile Include="DataLogic\Core\QueryDataLogic.cs" />
+    <Compile Include="Language\AgensiLanguage.cs" />
     <Compile Include="Logics\Core\LanguageMasterLogic.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Board\AgensiQuery.cs" />
+    <Compile Include="User\AgensiUser.cs" />
     <Compile Include="Util\ClassUtil.cs" />
     <Compile Include="Util\StringUtil.cs" />
   </ItemGroup>

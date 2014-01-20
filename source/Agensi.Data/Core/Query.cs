@@ -17,9 +17,9 @@ namespace Agensi.Data.Core
         public long QueryId { get; set; }
         public string OwnerUid { get; set; }
         public string Title { get; set; }
-        public int TopicCategory { get; set; }
+        public long Genre { get; set; }
         public int MediaCategory { get; set; }
-        public int LanguageId { get; set; }
+        public long LanguageId { get; set; }
         public string Text { get; set; }
         public System.DateTime QueryDate { get; set; }
         public System.DateTime UpdateTime { get; set; }

@@ -22,7 +22,7 @@
           <Property Name="AnswerId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="QueryId" Type="bigint" Nullable="false" />
           <Property Name="AnswerUid" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="LanguageId" Type="int" Nullable="false" />
+          <Property Name="LanguageId" Type="bigint" Nullable="false" />
           <Property Name="Text" Type="nvarchar(max)" Nullable="false" />
           <Property Name="AnswerDate" Type="datetime" Nullable="false" />
           <Property Name="UpdateTime" Type="datetime" Nullable="false" />
@@ -104,9 +104,9 @@
           <Property Name="QueryId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="OwnerUid" Type="nvarchar" MaxLength="128" Nullable="false" />
           <Property Name="Title" Type="nvarchar" MaxLength="200" Nullable="false" />
-          <Property Name="TopicCategory" Type="int" Nullable="false" />
+          <Property Name="Genre" Type="bigint" Nullable="false" />
           <Property Name="MediaCategory" Type="int" Nullable="false" />
-          <Property Name="LanguageId" Type="int" Nullable="false" />
+          <Property Name="LanguageId" Type="bigint" Nullable="false" />
           <Property Name="Text" Type="nvarchar(max)" Nullable="false" />
           <Property Name="QueryDate" Type="datetime" Nullable="false" />
           <Property Name="UpdateTime" Type="datetime" Nullable="false" />
@@ -341,7 +341,7 @@
           <Property Name="AnswerId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="QueryId" Type="Int64" Nullable="false" />
           <Property Name="AnswerUid" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="LanguageId" Type="Int32" Nullable="false" />
+          <Property Name="LanguageId" Type="Int64" Nullable="false" />
           <Property Name="Text" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="AnswerDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="UpdateTime" Type="DateTime" Nullable="false" Precision="3" />
@@ -353,9 +353,9 @@
           <Property Name="QueryId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="OwnerUid" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Name="Title" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="TopicCategory" Type="Int32" Nullable="false" />
+          <Property Name="Genre" Type="Int64" Nullable="false" />
           <Property Name="MediaCategory" Type="Int32" Nullable="false" />
-          <Property Name="LanguageId" Type="Int32" Nullable="false" />
+          <Property Name="LanguageId" Type="Int64" Nullable="false" />
           <Property Name="Text" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="QueryDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="UpdateTime" Type="DateTime" Nullable="false" Precision="3" />
@@ -470,7 +470,7 @@
                 <ScalarProperty Name="Text" ColumnName="Text" />
                 <ScalarProperty Name="LanguageId" ColumnName="LanguageId" />
                 <ScalarProperty Name="MediaCategory" ColumnName="MediaCategory" />
-                <ScalarProperty Name="TopicCategory" ColumnName="TopicCategory" />
+                <ScalarProperty Name="Genre" ColumnName="Genre" />
                 <ScalarProperty Name="Title" ColumnName="Title" />
                 <ScalarProperty Name="OwnerUid" ColumnName="OwnerUid" />
                 <ScalarProperty Name="QueryId" ColumnName="QueryId" />

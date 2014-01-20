@@ -9,23 +9,26 @@ namespace Agensi.Core.Core
     public class AgensiEnums
     {
         [Flags]
-        public enum LanguageCategory
+        public enum Language
         {
-            Japanese = 1,
-            English = 2,
-            Chinese = 4,
+            Unknown = 1,
+            Japanese = 2,
+            English = 4,
+            Chinese = 8,
         }
 
-        public enum TopicCategory
+        public enum Genre
         {
-            IT = 1,
-            Food = 2,
+            Unknown = 1,
+            IT = 2,
+            Food = 4,
         }
 
         public enum MediaCategory
         {
-            Text = 1,
-            Video = 2,
+            Unknown = 1,
+            Text = 2,
+            Video = 3,
         }
     }
 }

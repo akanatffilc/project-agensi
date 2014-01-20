@@ -17,7 +17,7 @@ namespace Agensi.Data.Core
         public long AnswerId { get; set; }
         public long QueryId { get; set; }
         public string AnswerUid { get; set; }
-        public int LanguageId { get; set; }
+        public long LanguageId { get; set; }
         public string Text { get; set; }
         public System.DateTime AnswerDate { get; set; }
         public System.DateTime UpdateTime { get; set; }
