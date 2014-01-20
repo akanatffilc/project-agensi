@@ -43,7 +43,6 @@ namespace Agensi.Web.Controllers
             return View(model);
         }
 
-        [HttpPost]
         public ActionResult AnswerExecute(Answer answer)
         {
             answer.AnswerUid = "1";
