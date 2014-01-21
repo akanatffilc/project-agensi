@@ -1,5 +1,6 @@
 ﻿using Agensi.Core.Core;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,7 +24,7 @@ namespace Agensi.Core.Language
             if (!Enum.TryParse<AgensiEnums.Language>(languageId.ToString(), out language))
                 language = AgensiEnums.Language.Unknown;
 
-            languageId = (long)language;
+            LanguageId = (long)language;
             Name = language.ToString();
         }
 
@@ -36,5 +37,6 @@ namespace Agensi.Core.Language
         public long LanguageId { get; private set; }
 
         public string Name { get; private set; }
+
     }
 }

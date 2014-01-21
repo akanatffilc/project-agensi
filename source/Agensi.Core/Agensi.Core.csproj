@@ -55,6 +55,7 @@
     <Compile Include="DataLogic\Core\AnswerVoteDataLogic.cs" />
     <Compile Include="DataLogic\Core\QueryDataLogic.cs" />
     <Compile Include="Language\AgensiLanguage.cs" />
+    <Compile Include="Language\AgensiLanguageManager.cs" />
     <Compile Include="Logics\Core\LanguageMasterLogic.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Board\AgensiQuery.cs" />

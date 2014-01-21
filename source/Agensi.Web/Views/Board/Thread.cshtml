@@ -1,6 +1,7 @@
 ﻿@{
     ViewBag.Title = "Query";
 }
+@using Agensi.Core.Language;
 @model Agensi.Web.Models.Board.ThreadModel
 
 <br/>
@@ -23,19 +24,23 @@
 {
     <div>AnswerList</div><br />
     <ul class="nav nav-tabs">
-        @foreach (var answers in @Model.AgensiQuery.Answers.GroupBy(x => x.Language))
+        @foreach (var answers in @Model.AgensiQuery.Answers.Select(x => x.Language).DistinctClass().ToArray())
         {
-            <li><a name="@answers.Key" href="#"></a>@answers.Key.Name</li>
+            <li><a name="@answers.LanguageId" href="#">@answers.Name</a></li>
         }
     </ul>
-    @*<table class="table">
-        @foreach (var answers in @Model.AgensiQuery.Answers.GroupBy(x => x.Language))
+    <table class="table">
+        @foreach (var answers in @Model.AgensiQuery.Answers.GroupBy(x => x.Language.LanguageId))
         {
+            <tr><td>ここから@(answers.First().Language.Name)</td></tr>
+            foreach(var answer in answers)
+            {
             <tr>
-                <td>@</td>
+                <td>@answer.Text</td>
             </tr>
+            }
         }
-    </table>*@
+    </table>
 }
 else
 {
