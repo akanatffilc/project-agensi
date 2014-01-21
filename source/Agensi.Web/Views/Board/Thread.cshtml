@@ -3,35 +3,69 @@
 }
 @model Agensi.Web.Models.Board.ThreadModel
 
-<h2>@Model.AgensiQuery.Query.Title</h2>
+<br/>
+<div class="panel panel-default">
+    <div class="panel-heading"><h4>Title: @Model.AgensiQuery.Title</h4></div>
+    <div class="panel-body">
+        @Model.AgensiQuery.Text
+    </div>
 
-質問<br />
-@Model.AgensiQuery.Query.Text;
+    <!-- List group -->
+    <ul class="list-group">
+        <li class="list-group-item" style="text-align:right"><span class="glyphicon glyphicon-user"></span>QueryOwner:@Model.AgensiQuery.OwnerUid</li>
+    </ul>
+</div>
+
 
 <br />
 
 @if (@Model.AgensiQuery.Answers.Any())
 {
-    <div>解答一覧</div><br />
-    <table class="table">
-        @foreach (var answer in @Model.AgensiQuery.Answers)
+    <div>AnswerList</div><br />
+    <ul class="nav nav-tabs">
+        @foreach (var answers in @Model.AgensiQuery.Answers.GroupBy(x => x.Language))
+        {
+            <li><a name="@answers.Key" href="#"></a>@answers.Key.Name</li>
+        }
+    </ul>
+    @*<table class="table">
+        @foreach (var answers in @Model.AgensiQuery.Answers.GroupBy(x => x.Language))
         {
             <tr>
-                <td>@answer.Text</td>
+                <td>@</td>
             </tr>
         }
-    </table>
+    </table>*@
 }
 else
 {
-    <div style="color:red;font-size:15px">※解答はまだありません。</div>
+    <div style="color:red;font-size:15px">※Answer is nothing...</div>
 }
 <br />
-回答する
-@using (@Html.BeginForm("AnswerExecute", "Board", FormMethod.Post))
+
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h3 class="panel-title">Answer</h3>
+    </div>
+    <div class="panel-body">
+    @using (@Html.BeginForm("AnswerExecute", "Board", FormMethod.Post))
 {
-    <span>言語コード:</span><input type="text" name="Language" value="1" /><br />
-    <span>解答：</span><input type="text" name="Text" value="" /><br />
-    <input type="hidden" name="QueryId" value="@Model.AgensiQuery.Query.QueryId" />
-    <button class="btn btn-default">回答</button>
+    <table class="table">
+        <tr>
+            <td>Language</td>
+            <td>
+            <select name="LanguageId">
+                @foreach(var language in @Model.Languages){<option value="@language.LanguageId">@language.Name</option>}
+            </select>
+            </td>
+        </tr>
+        <tr>
+            <td>AnswerText</td>
+            <td><input type="text" name="Text" value="" /></td>
+        </tr>
+    </table>
+    <input type="hidden" name="QueryId" value="@Model.AgensiQuery.QueryId" />
+    <button class="btn btn-default">Submit</button>
 }
+    </div>
+</div>

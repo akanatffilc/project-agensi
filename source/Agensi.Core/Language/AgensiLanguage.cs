@@ -9,6 +9,14 @@ namespace Agensi.Core.Language
 {
     public class AgensiLanguage
     {
+        public static AgensiLanguage[] AllCreate()
+        {
+            return Enum.GetValues(typeof(AgensiEnums.Language))
+                .Cast<AgensiEnums.Language>()
+                .Where(x => x != AgensiEnums.Language.Unknown)
+                .Select(x => new AgensiLanguage(x)).ToArray();
+        }
+
         public AgensiLanguage(long languageId)
         {
             AgensiEnums.Language language;

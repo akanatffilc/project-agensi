@@ -16,15 +16,36 @@
         </tr>
         <tr>
             <td>ジャンル</td>
-            <td><input type="text" name="@ClassUtil.GetName(() => Model.AskQuery.TopicCategory)" value="1" /></td>
+            <td>
+                <select name="@ClassUtil.GetName(() => Model.AskQuery.Genre)">
+                    @foreach(var genre in @Model.Genres)
+                    {
+                        <option value="@genre.GenreId">@genre.Name</option>
+                    }
+                </select>
+            </td>
         </tr>
         <tr>
             <td>データ形式</td>
-            <td><input type="text" name="@ClassUtil.GetName(() => Model.AskQuery.MediaCategory)" value="1" /></td>
+            <td>
+                <select name="@ClassUtil.GetName(() => Model.AskQuery.MediaCategory)">
+                    @foreach (var mediaCategory in @Model.MediaCategories)
+                    {
+                        <option value="@mediaCategory.MediaCategoryId">@mediaCategory.Name</option>
+                    }
+                </select>
+            </td>
         </tr>
         <tr>
             <td>言語</td>
-            <td><input type="text" name="@ClassUtil.GetName(() => Model.AskQuery.LanguageId)" value="1" /></td>
+            <td>
+                <select name="@ClassUtil.GetName(() => Model.AskQuery.LanguageId)">
+                    @foreach (var lanuguage in @Model.Languages)
+                    {
+                        <option value="@lanuguage.LanguageId">@lanuguage.Name</option>
+                    }
+                </select>
+            </td>
         </tr>
         <tr>
             <td>テキスト</td>

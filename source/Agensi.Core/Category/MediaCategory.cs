@@ -9,7 +9,15 @@ namespace Agensi.Core.Category
 {
     public class MediaCategory
     {
-                public MediaCategory(int mediaCategoryId)
+        public static MediaCategory[] AllCreate()
+        {
+            return Enum.GetValues(typeof(AgensiEnums.MediaCategory))
+                .Cast<AgensiEnums.MediaCategory>()
+                .Where(x => x != AgensiEnums.MediaCategory.Unknown)
+                .Select(x => new MediaCategory(x)).ToArray();
+        }
+
+        public MediaCategory(int mediaCategoryId)
         {
             AgensiEnums.MediaCategory mediaCategory;
             if (!Enum.TryParse<AgensiEnums.MediaCategory>(mediaCategoryId.ToString(), out mediaCategory))
@@ -19,7 +27,7 @@ namespace Agensi.Core.Category
             Name = mediaCategory.ToString();
         }
 
-                public MediaCategory(AgensiEnums.MediaCategory mediaCategory)
+        public MediaCategory(AgensiEnums.MediaCategory mediaCategory)
         {
             MediaCategoryId = (long)mediaCategory;
             Name = mediaCategory.ToString();

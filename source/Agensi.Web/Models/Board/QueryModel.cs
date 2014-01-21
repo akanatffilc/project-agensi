@@ -1,4 +1,5 @@
 ﻿using Agensi.Core.Board;
+using Agensi.Core.Language;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,5 +15,7 @@ namespace Agensi.Web.Models.Board
         {
             AgensiQuery = new AgensiQuery(queryId);
         }
+
+        public AgensiLanguage[] Languages { get { return AgensiLanguage.AllCreate(); } }
     }
 }
