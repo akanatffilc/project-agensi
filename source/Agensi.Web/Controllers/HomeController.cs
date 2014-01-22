@@ -1,4 +1,6 @@
-﻿using Agensi.Web.Models.Home;
+﻿using Agensi.Web.Core.Controllers;
+using Agensi.Web.Models;
+using Agensi.Web.Models.Home;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,10 +9,11 @@ using System.Web.Mvc;
 
 namespace Agensi.Web.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : AgensiController
     {
         public ActionResult Index()
         {
+            var a = HttpContext.GetOwinContext().Authentication.User.Claims;
             var model = new HomeModel();
             return View(model);
         }

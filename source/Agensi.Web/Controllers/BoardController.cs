@@ -1,5 +1,6 @@
 ﻿using Agensi.Core.DataLogic.Core;
 using Agensi.Data.Core;
+using Agensi.Web.Core.Controllers;
 using Agensi.Web.Models.Board;
 using System;
 using System.Collections.Generic;
@@ -9,7 +10,7 @@ using System.Web.Mvc;
 
 namespace Agensi.Web.Controllers
 {
-    public class BoardController : Controller
+    public class BoardController : AgensiController
     {
         //
         // GET: /Query/

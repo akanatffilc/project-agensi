@@ -9,11 +9,12 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin.Security;
 using Agensi.Web.Models;
+using Agensi.Web.Core.Controllers;
 
 namespace Agensi.Web.Controllers
 {
     [Authorize]
-    public class AccountController : Controller
+    public class AccountController : AgensiController
     {
         public AccountController()
             : this(new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext())))
