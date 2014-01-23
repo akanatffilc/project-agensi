@@ -24,5 +24,28 @@ namespace Agensi.Core.DataLogic.Core
         {
             return _repository.FindByAnswerId(answerId);
         }
+
+        public Task AddAsync(AnswerVote vote)
+        {
+            _repository.AddAsync(vote);
+            return _repository.SaveAsync();
+        }
+
+        public Task DeleteAsync(AnswerVote vote)
+        {
+            return _repository.DeleteAsync(vote);
+        }
+
+        public void Add(AnswerVote vote)
+        {
+            _repository.Add(vote);
+            _repository.Save();
+        }
+
+        public void Delete(AnswerVote vote)
+        {
+            _repository.Delete(vote);
+            _repository.Save();
+        }
     }
 }

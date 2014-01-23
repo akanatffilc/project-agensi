@@ -4,7 +4,7 @@
 @using Agensi.Core.Language;
 @model Agensi.Web.Models.Board.ThreadModel
 
-<br/>
+<br />
 <div class="panel panel-default">
     <div class="panel-heading"><h4>Title: @Model.AgensiQuery.Title</h4></div>
     <div class="panel-body">
@@ -13,16 +13,49 @@
 
     <!-- List group -->
     <ul class="list-group">
+        <li class="list-group-item" style="text-align:left">vote:@Model.AgensiQuery.Votes.Count() ---- voteDown:@Model.AgensiQuery.VoteDowns.Count()</li>
+        @if (User.Identity.IsAuthenticated)
+        {
+            <li class="list-group-item" style="text-align:left">
+                @if (!Model.AgensiQuery.Votes.Any(x => x.Uid == @Model.LoginUser.UserId))
+                {
+                    using (@Html.BeginForm("QueryVote", "Board", FormMethod.Post))
+                    {
+                        <button class="btn btn-default"><span class="glyphicon glyphicon-thumbs-up"></span>Vote</button><input type="hidden" name="queryId" value="@Model.AgensiQuery.QueryId" />
+                    }
+                }
+                else
+                {
+                    using (@Html.BeginForm("QueryVoteCancel", "Board", FormMethod.Post))
+                    {
+                        <button class="btn btn-default"><span class="glyphicon glyphicon-thumbs-down"></span>VoteCancel</button><input type="hidden" name="queryId" value="@Model.AgensiQuery.QueryId" />
+                    }
+                }
+                @if (!Model.AgensiQuery.VoteDowns.Any(x => x.Uid == @Model.LoginUser.UserId))
+                {
+                    using (@Html.BeginForm("QueryVoteDown", "Board", FormMethod.Post))
+                    {
+                        <button class="btn btn-default"><span class="glyphicon glyphicon-thumbs-down"></span>VoteDown</button><input type="hidden" name="queryId" value="@Model.AgensiQuery.QueryId" />
+                    }
+                }
+                else
+                {
+                    using (@Html.BeginForm("QueryVoteDownCancel", "Board", FormMethod.Post))
+                    {
+                        <button class="btn btn-default"><span class="glyphicon glyphicon-thumbs-up"></span>VoteDownCancel</button><input type="hidden" name="queryId" value="@Model.AgensiQuery.QueryId" />
+                    }
+                }
+            </li>
+        }
+        <li class="list-group-item" style="text-align:left"><span class="glyphicon glyphicon-font"></span>&nbsp;ToLanguage:@Model.AgensiQuery.ToLanguage.Name</li>
         <li class="list-group-item" style="text-align:right"><span class="glyphicon glyphicon-user"></span>QueryOwner:@Model.AgensiQuery.OwnerUid</li>
     </ul>
 </div>
-
-
 <br />
 
 @if (@Model.AgensiQuery.Answers.Any())
 {
-    <div>AnswerList</div><br />
+    <h2>AnswerList</h2><br />
     <ul class="nav nav-tabs">
         @foreach (var answers in @Model.AgensiQuery.Answers.Select(x => x.Language).DistinctClass().ToArray())
         {
@@ -33,11 +66,46 @@
         @foreach (var answers in @Model.AgensiQuery.Answers.GroupBy(x => x.Language.LanguageId))
         {
             <tr><td>ここから@(answers.First().Language.Name)</td></tr>
-            foreach(var answer in answers)
+            foreach (var answer in answers)
             {
-            <tr>
-                <td>@answer.Text</td>
-            </tr>
+                <tr>
+                    <td>answer:@answer.AnswerUid</td>
+                    <td>@answer.Text</td>
+                    <td>vote:@(answer.Votes.Count())</td>
+                    <td>voteDown:@(answer.VoteDowns.Count())</td>
+                    @if (@User.Identity.IsAuthenticated)
+                    {
+                        if (!answer.Votes.Any(x => x.Uid == @Model.LoginUser.UserId))
+                        {
+                            using (@Html.BeginForm("AnswerVote", "Board", FormMethod.Post))
+                            {
+                                <td><button class="btn btn-default"><span class="glyphicon glyphicon-thumbs-up"></span>Vote</button><input type="hidden" name="answerId" value="@answer.AnswerId"></td>
+                            }
+                        }
+                        else
+                        {
+                            using (@Html.BeginForm("AnswerVoteCancel", "Board", FormMethod.Post))
+                            {
+                                <td><button class="btn btn-default"><span class="glyphicon glyphicon-thumbs-down"></span>VoteCancel</button><input type="hidden" name="answerId" value="@answer.AnswerId"></td>
+                            }
+                        }
+                        if (!answer.VoteDowns.Any(x => x.Uid == @Model.LoginUser.UserId))
+                        {
+                            using (@Html.BeginForm("AnswerVoteDown", "Board", FormMethod.Post))
+                            {
+                                <td><button class="btn btn-default"><span class="glyphicon glyphicon-thumbs-down"></span>VoteDown</button><input type="hidden" name="answerId" value="@answer.AnswerId"></td>
+                            }
+                        }
+                        else
+                        {
+                            using (@Html.BeginForm("AnswerVoteDownCancel", "Board", FormMethod.Post))
+                            {
+                                <td><button class="btn btn-default"><span class="glyphicon glyphicon-thumbs-up"></span>VoteDownCancel</button><input type="hidden" name="answerId" value="@answer.AnswerId"></td>
+                            }
+                        }
+
+                    }
+                </tr>
             }
         }
     </table>
@@ -48,29 +116,34 @@ else
 }
 <br />
 
-<div class="panel panel-primary">
-    <div class="panel-heading">
-        <h3 class="panel-title">Answer</h3>
-    </div>
-    <div class="panel-body">
-    @using (@Html.BeginForm("AnswerExecute", "Board", FormMethod.Post))
+@if (@User.Identity.IsAuthenticated)
 {
-    <table class="table">
-        <tr>
-            <td>Language</td>
-            <td>
-            <select name="LanguageId">
-                @foreach(var language in @Model.Languages){<option value="@language.LanguageId">@language.Name</option>}
-            </select>
-            </td>
-        </tr>
-        <tr>
-            <td>AnswerText</td>
-            <td><input type="text" name="Text" value="" /></td>
-        </tr>
-    </table>
-    <input type="hidden" name="QueryId" value="@Model.AgensiQuery.QueryId" />
-    <button class="btn btn-default">Submit</button>
-}
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h3 class="panel-title">Answer</h3>
+        </div>
+        <div class="panel-body">
+            @using (@Html.BeginForm("AnswerExecute", "Board", FormMethod.Post))
+            {
+                <table class="table">
+                    <tr>
+                        <td>Language</td>
+                        <td>
+                            <select name="LanguageId">
+                                @foreach (var language in @Model.Languages)
+                                {
+                                    <option value="@language.LanguageId">@language.Name</option>}
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>AnswerText</td>
+                        <td><input type="text" name="Text" value="" /></td>
+                    </tr>
+                </table>
+                <input type="hidden" name="QueryId" value="@Model.AgensiQuery.QueryId" />
+                <button class="btn btn-default">Submit</button>
+            }
+        </div>
     </div>
-</div>
+}

@@ -48,6 +48,17 @@
             </td>
         </tr>
         <tr>
+            <td>翻訳してほしい言語</td>
+            <td>
+                <select name="@ClassUtil.GetName(() => Model.AskQuery.ToLanguage)">
+                @foreach (var lanuguage in @Model.Languages)
+                {
+                    <option value="@lanuguage.LanguageId">@lanuguage.Name</option>
+                }
+                </select>
+            </td>
+        </tr>
+        <tr>
             <td>テキスト</td>
             <td><input type="text" name="@ClassUtil.GetName(() => Model.AskQuery.Text)" value="1" /></td>
         </tr>

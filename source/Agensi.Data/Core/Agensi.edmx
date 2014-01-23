@@ -32,7 +32,7 @@
             <PropertyRef Name="AnswerId" />
             <PropertyRef Name="Uid" />
           </Key>
-          <Property Name="AnswerId" Type="int" Nullable="false" />
+          <Property Name="AnswerId" Type="bigint" Nullable="false" />
           <Property Name="Uid" Type="nvarchar" MaxLength="128" Nullable="false" />
           <Property Name="AddTime" Type="datetime" Nullable="false" />
         </EntityType>
@@ -107,9 +107,46 @@
           <Property Name="Genre" Type="bigint" Nullable="false" />
           <Property Name="MediaCategory" Type="int" Nullable="false" />
           <Property Name="LanguageId" Type="bigint" Nullable="false" />
+          <Property Name="ToLanguage" Type="bigint" Nullable="false" />
           <Property Name="Text" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="QueryDate" Type="datetime" Nullable="false" />
+          <Property Name="QueryDaTe" Type="datetime" Nullable="false" />
           <Property Name="UpdateTime" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="QueryVote">
+          <Key>
+            <PropertyRef Name="QueryId" />
+            <PropertyRef Name="Uid" />
+          </Key>
+          <Property Name="QueryId" Type="bigint" Nullable="false" />
+          <Property Name="Uid" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="AddTime" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="QueryVoteDown">
+          <Key>
+            <PropertyRef Name="QueryId" />
+            <PropertyRef Name="Uid" />
+          </Key>
+          <Property Name="QueryId" Type="bigint" Nullable="false" />
+          <Property Name="Uid" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="AddTime" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserVote">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="VoteUserId" />
+          </Key>
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="VoteUserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="AddTime" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserVoteDown">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="VoteDownUserId" />
+          </Key>
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="VoteDownUserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="AddTime" Type="datetime" Nullable="false" />
         </EntityType>
         <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_User_Id">
           <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
@@ -179,6 +216,10 @@
           <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="LanguageMaster" EntityType="Self.LanguageMaster" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Query" EntityType="Self.Query" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="QueryVote" EntityType="Self.QueryVote" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="QueryVoteDown" EntityType="Self.QueryVoteDown" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserVote" EntityType="Self.UserVote" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserVoteDown" EntityType="Self.UserVoteDown" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_User_Id" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_User_Id">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
@@ -227,9 +268,13 @@
             <End Role="AspNetRole" EntitySet="AspNetRoles" />
             <End Role="AspNetUser" EntitySet="AspNetUsers" />
           </AssociationSet>
-          <EntitySet Name="AnswerVotes" EntityType="AgensiDBModel.AnswerVote" />
-          <EntitySet Name="AnswerVoteDowns" EntityType="AgensiDBModel.AnswerVoteDown" />
           <EntitySet Name="Answers" EntityType="AgensiDBModel.Answer" />
+          <EntitySet Name="AnswerVotes" EntityType="AgensiDBModel.AnswerVote" />
+          <EntitySet Name="QueryVotes" EntityType="AgensiDBModel.QueryVote" />
+          <EntitySet Name="QueryVoteDowns" EntityType="AgensiDBModel.QueryVoteDown" />
+          <EntitySet Name="UserVotes" EntityType="AgensiDBModel.UserVote" />
+          <EntitySet Name="UserVoteDowns" EntityType="AgensiDBModel.UserVoteDown" />
+          <EntitySet Name="AnswerVoteDowns" EntityType="AgensiDBModel.AnswerVoteDown" />
           <EntitySet Name="Queries" EntityType="AgensiDBModel.Query" />
         </EntityContainer>
         <EntityType Name="C__MigrationHistory">
@@ -316,24 +361,6 @@
           <End Type="AgensiDBModel.AspNetRole" Role="AspNetRole" Multiplicity="*" />
           <End Type="AgensiDBModel.AspNetUser" Role="AspNetUser" Multiplicity="*" />
         </Association>
-        <EntityType Name="AnswerVote">
-          <Key>
-            <PropertyRef Name="AnswerId" />
-            <PropertyRef Name="Uid" />
-          </Key>
-          <Property Name="AnswerId" Type="Int32" Nullable="false" />
-          <Property Name="Uid" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="AddTime" Type="DateTime" Nullable="false" Precision="3" />
-        </EntityType>
-        <EntityType Name="AnswerVoteDown">
-          <Key>
-            <PropertyRef Name="AnswerId" />
-            <PropertyRef Name="Uid" />
-          </Key>
-          <Property Name="AnswerId" Type="Int64" Nullable="false" />
-          <Property Name="Uid" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="AddTime" Type="DateTime" Nullable="false" Precision="3" />
-        </EntityType>
         <EntityType Name="Answer">
           <Key>
             <PropertyRef Name="AnswerId" />
@@ -346,6 +373,60 @@
           <Property Name="AnswerDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="UpdateTime" Type="DateTime" Nullable="false" Precision="3" />
         </EntityType>
+        <EntityType Name="AnswerVote">
+          <Key>
+            <PropertyRef Name="AnswerId" />
+            <PropertyRef Name="Uid" />
+          </Key>
+          <Property Name="AnswerId" Type="Int64" Nullable="false" />
+          <Property Name="Uid" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="AddTime" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="QueryVote">
+          <Key>
+            <PropertyRef Name="QueryId" />
+            <PropertyRef Name="Uid" />
+          </Key>
+          <Property Name="QueryId" Type="Int64" Nullable="false" />
+          <Property Name="Uid" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="AddTime" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="QueryVoteDown">
+          <Key>
+            <PropertyRef Name="QueryId" />
+            <PropertyRef Name="Uid" />
+          </Key>
+          <Property Name="QueryId" Type="Int64" Nullable="false" />
+          <Property Name="Uid" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="AddTime" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="UserVote">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="VoteUserId" />
+          </Key>
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="VoteUserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="AddTime" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="UserVoteDown">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="VoteDownUserId" />
+          </Key>
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="VoteDownUserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="AddTime" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="AnswerVoteDown">
+          <Key>
+            <PropertyRef Name="AnswerId" />
+            <PropertyRef Name="Uid" />
+          </Key>
+          <Property Name="AnswerId" Type="Int64" Nullable="false" />
+          <Property Name="Uid" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="AddTime" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
         <EntityType Name="Query">
           <Key>
             <PropertyRef Name="QueryId" />
@@ -356,6 +437,7 @@
           <Property Name="Genre" Type="Int64" Nullable="false" />
           <Property Name="MediaCategory" Type="Int32" Nullable="false" />
           <Property Name="LanguageId" Type="Int64" Nullable="false" />
+          <Property Name="ToLanguage" Type="Int64" Nullable="false" />
           <Property Name="Text" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="QueryDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="UpdateTime" Type="DateTime" Nullable="false" Precision="3" />
@@ -431,24 +513,6 @@
               <ScalarProperty Name="Id" ColumnName="RoleId" />
             </EndProperty>
           </AssociationSetMapping>
-          <EntitySetMapping Name="AnswerVotes">
-            <EntityTypeMapping TypeName="AgensiDBModel.AnswerVote">
-              <MappingFragment StoreEntitySet="AnswerVote">
-                <ScalarProperty Name="AddTime" ColumnName="AddTime" />
-                <ScalarProperty Name="Uid" ColumnName="Uid" />
-                <ScalarProperty Name="AnswerId" ColumnName="AnswerId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="AnswerVoteDowns">
-            <EntityTypeMapping TypeName="AgensiDBModel.AnswerVoteDown">
-              <MappingFragment StoreEntitySet="AnswerVoteDown">
-                <ScalarProperty Name="AddTime" ColumnName="AddTime" />
-                <ScalarProperty Name="Uid" ColumnName="Uid" />
-                <ScalarProperty Name="AnswerId" ColumnName="AnswerId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Answers">
             <EntityTypeMapping TypeName="AgensiDBModel.Answer">
               <MappingFragment StoreEntitySet="Answer">
@@ -462,12 +526,67 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="AnswerVotes">
+            <EntityTypeMapping TypeName="AgensiDBModel.AnswerVote">
+              <MappingFragment StoreEntitySet="AnswerVote">
+                <ScalarProperty Name="AddTime" ColumnName="AddTime" />
+                <ScalarProperty Name="Uid" ColumnName="Uid" />
+                <ScalarProperty Name="AnswerId" ColumnName="AnswerId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="QueryVotes">
+            <EntityTypeMapping TypeName="AgensiDBModel.QueryVote">
+              <MappingFragment StoreEntitySet="QueryVote">
+                <ScalarProperty Name="AddTime" ColumnName="AddTime" />
+                <ScalarProperty Name="Uid" ColumnName="Uid" />
+                <ScalarProperty Name="QueryId" ColumnName="QueryId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="QueryVoteDowns">
+            <EntityTypeMapping TypeName="AgensiDBModel.QueryVoteDown">
+              <MappingFragment StoreEntitySet="QueryVoteDown">
+                <ScalarProperty Name="AddTime" ColumnName="AddTime" />
+                <ScalarProperty Name="Uid" ColumnName="Uid" />
+                <ScalarProperty Name="QueryId" ColumnName="QueryId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserVotes">
+            <EntityTypeMapping TypeName="AgensiDBModel.UserVote">
+              <MappingFragment StoreEntitySet="UserVote">
+                <ScalarProperty Name="AddTime" ColumnName="AddTime" />
+                <ScalarProperty Name="VoteUserId" ColumnName="VoteUserId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserVoteDowns">
+            <EntityTypeMapping TypeName="AgensiDBModel.UserVoteDown">
+              <MappingFragment StoreEntitySet="UserVoteDown">
+                <ScalarProperty Name="AddTime" ColumnName="AddTime" />
+                <ScalarProperty Name="VoteDownUserId" ColumnName="VoteDownUserId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AnswerVoteDowns">
+            <EntityTypeMapping TypeName="AgensiDBModel.AnswerVoteDown">
+              <MappingFragment StoreEntitySet="AnswerVoteDown">
+                <ScalarProperty Name="AddTime" ColumnName="AddTime" />
+                <ScalarProperty Name="Uid" ColumnName="Uid" />
+                <ScalarProperty Name="AnswerId" ColumnName="AnswerId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Queries">
             <EntityTypeMapping TypeName="AgensiDBModel.Query">
               <MappingFragment StoreEntitySet="Query">
                 <ScalarProperty Name="UpdateTime" ColumnName="UpdateTime" />
-                <ScalarProperty Name="QueryDate" ColumnName="QueryDate" />
+                <ScalarProperty Name="QueryDate" ColumnName="QueryDaTe" />
                 <ScalarProperty Name="Text" ColumnName="Text" />
+                <ScalarProperty Name="ToLanguage" ColumnName="ToLanguage" />
                 <ScalarProperty Name="LanguageId" ColumnName="LanguageId" />
                 <ScalarProperty Name="MediaCategory" ColumnName="MediaCategory" />
                 <ScalarProperty Name="Genre" ColumnName="Genre" />

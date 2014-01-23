@@ -14,7 +14,7 @@ namespace Agensi.Data.Core
     
     public partial class AnswerVote
     {
-        public int AnswerId { get; set; }
+        public long AnswerId { get; set; }
         public string Uid { get; set; }
         public System.DateTime AddTime { get; set; }
     }

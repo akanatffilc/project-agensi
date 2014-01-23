@@ -47,6 +47,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Board\AgensiAnswer.cs" />
+    <Compile Include="Board\AgensiAnswerCommands.cs" />
+    <Compile Include="Board\AgensiQueryCommands.cs" />
     <Compile Include="Category\Genre.cs" />
     <Compile Include="Category\MediaCategory.cs" />
     <Compile Include="Core\AgensiEnums.cs" />
@@ -54,6 +56,8 @@
     <Compile Include="DataLogic\Core\AnswerVoteDownDataLogic.cs" />
     <Compile Include="DataLogic\Core\AnswerVoteDataLogic.cs" />
     <Compile Include="DataLogic\Core\QueryDataLogic.cs" />
+    <Compile Include="DataLogic\Core\QueryVoteDataLogic.cs" />
+    <Compile Include="DataLogic\Core\QueryVoteDownDataLogic.cs" />
     <Compile Include="Language\AgensiLanguage.cs" />
     <Compile Include="Language\AgensiLanguageManager.cs" />
     <Compile Include="Logics\Core\LanguageMasterLogic.cs" />

@@ -5,7 +5,10 @@
 
 <h2>Query一覧画面</h2>
 
-@Html.ActionLink("質問する", "Ask", null, new { @class = "btn btn-default" })
+@if(@User.Identity.IsAuthenticated)
+{
+    @Html.ActionLink("質問する", "Ask", null, new { @class = "btn btn-default" })
+}
 
 @if (Model.AgensiQueries.Any())
 {

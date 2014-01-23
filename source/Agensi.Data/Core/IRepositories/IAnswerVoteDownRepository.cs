@@ -12,10 +12,16 @@ namespace Agensi.Data.Core.IRepositories
 
         AnswerVoteDown[] FindByUid(string uid);
 
+        void Add(AnswerVoteDown voteDown);
+
+        void Delete(AnswerVoteDown voteDown);
+
         Task AddAsync(AnswerVoteDown voteDown);
 
         Task DeleteAsync(AnswerVoteDown voteDown);
 
         void Save();
+
+        Task SaveAsync();
     }
 }

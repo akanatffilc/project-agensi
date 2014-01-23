@@ -27,6 +27,18 @@ namespace Agensi.Data.Core.Repositories
             return context.AnswerVotes.Where(x => x.Uid == uid).ToArray();
         }
 
+        public void Add(AnswerVote vote)
+        {
+            context.AnswerVotes.Add(vote);
+        }
+
+        public void Delete(AnswerVote vote)
+        {
+            var row = context.AnswerVotes.Single(x => x.AnswerId == vote.AnswerId && x.Uid == vote.Uid);
+            context.AnswerVotes.Remove(row);
+        }
+
+
         public async Task AddAsync(AnswerVote vote)
         {
             await Task.Run(() =>
@@ -39,14 +51,19 @@ namespace Agensi.Data.Core.Repositories
         {
             await Task.Run(() =>
                 {
-                    context.AnswerVotes.Attach(vote);
-                    context.Entry<AnswerVote>(vote).State = EntityState.Modified;
+                    var row = context.AnswerVotes.Single(x => x.AnswerId == vote.AnswerId && x.Uid == vote.Uid);
+                    context.AnswerVotes.Remove(row);
                 });
         }
 
         public void Save()
         {
             context.SaveChanges();
+        }
+
+        public Task SaveAsync()
+        {
+            return context.SaveChangesAsync();
         }
 
     }

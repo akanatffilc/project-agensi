@@ -14,6 +14,11 @@ namespace Agensi.Core.Board
 {
     public class AgensiQuery
     {
+        public static AgensiQuery Create(long queryId)
+        {
+            return new AgensiQuery(queryId);
+        }
+
         #region Constructor
         public AgensiQuery(long queryId)
         {
@@ -22,6 +27,9 @@ namespace Agensi.Core.Board
         #endregion 
 
         private Lazy<QueryDataLogic> QueryDataLogic = new Lazy<QueryDataLogic>(() => { return new QueryDataLogic(); });
+        private static Lazy<QueryVoteDataLogic> QueryVoteDataLogic = new Lazy<QueryVoteDataLogic>(() => { return new QueryVoteDataLogic(); });
+        private static Lazy<QueryVoteDownDataLogic> QueryVoteDownDataLogic = new Lazy<QueryVoteDownDataLogic>(() => { return new QueryVoteDownDataLogic(); });
+
         private readonly Query Query;
 
         private AgensiAnswer[] _answers;
@@ -42,7 +50,15 @@ namespace Agensi.Core.Board
         public MediaCategory MediaCategory { get { return _mediaCategory ?? (_mediaCategory = new MediaCategory(Query.MediaCategory)); } }
         private AgensiLanguage _agensiLanguage;
         public AgensiLanguage Language { get { return _agensiLanguage ?? (_agensiLanguage = new AgensiLanguage(Query.LanguageId)); } }
+        private AgensiLanguage _toAgensiLanguage;
+        public AgensiLanguage ToLanguage { get { return _toAgensiLanguage ?? (_toAgensiLanguage = new AgensiLanguage(Query.ToLanguage)); } }
         public string Text { get { return Query.Text; } }
         public DateTime QueryDate { get { return Query.QueryDate; } }
+
+        private QueryVote[] _votes;
+        public QueryVote[] Votes { get { return _votes ?? (_votes = QueryVoteDataLogic.Value.FindByQueryId(Query.QueryId)); } }
+
+        private QueryVoteDown[] _voteDowns;
+        public QueryVoteDown[] VoteDowns { get { return _voteDowns ?? (_voteDowns = QueryVoteDownDataLogic.Value.FindByQueryId(Query.QueryId)); } }
     }
 }

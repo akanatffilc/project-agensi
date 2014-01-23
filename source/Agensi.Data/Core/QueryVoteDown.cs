@@ -12,17 +12,10 @@ namespace Agensi.Data.Core
     using System;
     using System.Collections.Generic;
     
-    public partial class Query
+    public partial class QueryVoteDown
     {
         public long QueryId { get; set; }
-        public string OwnerUid { get; set; }
-        public string Title { get; set; }
-        public long Genre { get; set; }
-        public int MediaCategory { get; set; }
-        public long LanguageId { get; set; }
-        public long ToLanguage { get; set; }
-        public string Text { get; set; }
-        public System.DateTime QueryDate { get; set; }
-        public System.DateTime UpdateTime { get; set; }
+        public string Uid { get; set; }
+        public System.DateTime AddTime { get; set; }
     }
 }

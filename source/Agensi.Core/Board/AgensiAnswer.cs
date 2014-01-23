@@ -39,6 +39,8 @@ namespace Agensi.Core.Board
         #endregion
 
         private static Lazy<AnswerDataLogic> AnswerDataLogic = new Lazy<AnswerDataLogic>(() => { return new AnswerDataLogic(); });
+        private static Lazy<AnswerVoteDataLogic> AnswerVoteDataLogic = new Lazy<AnswerVoteDataLogic>(() => { return new AnswerVoteDataLogic(); });
+        private static Lazy<AnswerVoteDownDataLogic> AnswerVoteDownDataLogic = new Lazy<AnswerVoteDownDataLogic>(() => { return new AnswerVoteDownDataLogic(); });
         private readonly Answer Answer;
 
         public long AnswerId { get { return Answer.AnswerId; } }
@@ -48,5 +50,11 @@ namespace Agensi.Core.Board
         public AgensiLanguage Language { get { return _agensiLanguage ?? (_agensiLanguage = new AgensiLanguage(Answer.LanguageId)); } }
         public string Text { get { return Answer.Text; } }
         public DateTime AnswerDate { get { return Answer.AnswerDate; } }
+
+        private AnswerVote[] _votes;
+        public AnswerVote[] Votes { get { return _votes ?? (_votes = AnswerVoteDataLogic.Value.FindByAnswerId(Answer.AnswerId)); } }
+
+        private AnswerVoteDown[] _voteDowns;
+        public AnswerVoteDown[] VoteDowns { get { return _voteDowns ?? (_voteDowns = AnswerVoteDownDataLogic.Value.FindByAnswerId(Answer.AnswerId)); } }
     }
 }
