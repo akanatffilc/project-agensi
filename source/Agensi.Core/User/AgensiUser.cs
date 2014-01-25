@@ -1,4 +1,5 @@
 ﻿using Agensi.Core.DataLogic.Core;
+using Agensi.Data.Core;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,12 +8,14 @@ using System.Threading.Tasks;
 
 namespace Agensi.Core.User
 {
-    public class AgensiUser
+    public partial class AgensiUser
     {
         #region repository
         private Lazy<QueryDataLogic> QueryDataLogic = new Lazy<QueryDataLogic>(() => { return new QueryDataLogic(); });
         private Lazy<AnswerDataLogic> AnswerDataLogic = new Lazy<AnswerDataLogic>(() => { return new AnswerDataLogic(); });
-
+        private Lazy<AspNetUserDataLogic> AspNetUserDataLogic = new Lazy<AspNetUserDataLogic>(() => { return new AspNetUserDataLogic(); });
+        private Lazy<UserStateDataLogic> UserStateDataLogic = new Lazy<UserStateDataLogic>(() => { return new UserStateDataLogic(); });
+        
         #endregion
 
         public static AgensiUser Create(string userId)
@@ -25,15 +28,17 @@ namespace Agensi.Core.User
             UserId = userId;
         }
 
+        //TODO:キャッシュにした方がいい
+        public string UserName
+        {
+            get
+            {
+                var result = AspNetUserDataLogic.Value.Find(UserId);
+                return result.UserName;
+            }
+        }
+
         public string UserId { get; private set; }
-
-        public long MainLanguageId { get { throw new NotImplementedException(); } }
-
-        public long LikeLanguage { get { throw new NotImplementedException(); } }
-
-        public string ProfileComment { get { throw new NotImplementedException(); } }
-
-        public string ProfileImage { get { throw new NotImplementedException(); } }
 
         //TODO: キャッシュにした方がいい
         public int QueryNum 

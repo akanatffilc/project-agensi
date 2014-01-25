@@ -1,0 +1,37 @@
+﻿@{
+    ViewBag.Title = "Edit";
+}
+@using Agensi.Core.Util
+@model Agensi.Web.Models.User.EditModel
+
+<h2>Profile Edit</h2>
+
+<br />
+
+@using (@Html.BeginForm("EditConfirm", "User",FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <table class="table">
+        <tr>
+            <td>UserName</td>
+            <td><input type="text" name="name" value="@Model.LoginUser.UserName"/></td>
+        </tr>
+        <tr>
+            <td>ProfileImage</td>
+            <td><input type="file" name="@ClassUtil.GetName(()=>   Model.LoginUser.ProfileImage)" value="@ImageUtil.ToImageBase64(Model.LoginUser.ProfileImage)" />
+                <img src="@ImageUtil.ToImageSrc(@Model.LoginUser.ProfileImage)" /></td>
+        </tr>
+        <tr>
+            <td>Comment</td>
+            <td><input type="text" name="@ClassUtil.GetName(() =>  Model.LoginUser.Comment)" value="@Model.LoginUser.Comment"/></td>
+        </tr>
+        <tr>
+            <td>LikeLanguage</td>
+            <td><input type="text" name="@ClassUtil.GetName(() => Model.LoginUser.LikeLanguage)" value="@Model.LoginUser.LikeLanguage"/></td>
+        </tr>
+        <tr>
+            <td>LikeGenre</td>
+            <td><input type="text" name="@ClassUtil.GetName(() => Model.LoginUser.LikeGenre)" value="@Model.LoginUser.LikeGenre"/></td>
+        </tr>
+    </table>
+    <button type="submit" class="btn btn-default" >Submit</button>    
+}

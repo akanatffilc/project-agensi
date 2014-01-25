@@ -88,12 +88,15 @@
       <DependentUpon>Agensi.tt</DependentUpon>
     </Compile>
     <Compile Include="Core\IRepositories\IAnswerRepository.cs" />
+    <Compile Include="Core\IRepositories\IAspNetUserRepository.cs" />
     <Compile Include="Core\IRepositories\IQueryRepository.cs" />
     <Compile Include="Core\IRepositories\IAnswerVoteDownRepository.cs" />
     <Compile Include="Core\IRepositories\IAnswerVoteRepository.cs" />
     <Compile Include="Core\IRepositories\ILanguageMasterRepository.cs" />
     <Compile Include="Core\IRepositories\IQueryVoteDownRepository.cs" />
     <Compile Include="Core\IRepositories\IQueryVoteRepository.cs" />
+    <Compile Include="Core\IRepositories\IUserProfileRepository.cs" />
+    <Compile Include="Core\IRepositories\IUserStateRepository.cs" />
     <Compile Include="Core\IRepositories\IUserVoteDownRepository.cs" />
     <Compile Include="Core\IRepositories\IUserVoteRepository.cs" />
     <Compile Include="Core\LanguageMaster.cs">
@@ -109,16 +112,19 @@
       <DependentUpon>Agensi.tt</DependentUpon>
     </Compile>
     <Compile Include="Core\Repositories\AnswerRepository.cs" />
+    <Compile Include="Core\Repositories\AspNetUserRepository.cs" />
     <Compile Include="Core\Repositories\QueryRepository.cs" />
     <Compile Include="Core\Repositories\AnswerVoteDownRepository.cs" />
     <Compile Include="Core\Repositories\AnswerVoteRepository.cs" />
     <Compile Include="Core\Repositories\LanguageMasterRepository.cs" />
     <Compile Include="Core\Repositories\QueryVoteDownRepository.cs" />
     <Compile Include="Core\Repositories\QueryVoteRepository.cs" />
+    <Compile Include="Core\Repositories\UserProfileRepository.cs" />
+    <Compile Include="Core\Repositories\UserStateRepository.cs" />
     <Compile Include="Core\UserProfile.cs">
       <DependentUpon>Agensi.tt</DependentUpon>
     </Compile>
-    <Compile Include="Core\UserStatu.cs">
+    <Compile Include="Core\UserState.cs">
       <DependentUpon>Agensi.tt</DependentUpon>
     </Compile>
     <Compile Include="Core\UserVote.cs">

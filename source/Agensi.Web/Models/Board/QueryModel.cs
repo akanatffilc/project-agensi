@@ -1,6 +1,7 @@
 ﻿using Agensi.Core.Board;
 using Agensi.Core.Language;
 using Agensi.Core.User;
+using Agensi.Web.Core.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,18 +9,17 @@ using System.Web;
 
 namespace Agensi.Web.Models.Board
 {
-    public class ThreadModel
+    public class ThreadModel: AgensiModel
     {
-        public AgensiUser LoginUser { get; private set; }
-
         public AgensiQuery AgensiQuery { get; private set; }
 
-        public ThreadModel(AgensiUser user,long queryId)
+        public ThreadModel(AgensiUser loginUser,long queryId)
+            : base(loginUser)
         {
-            LoginUser = user;
             AgensiQuery = new AgensiQuery(queryId);
         }
 
         public AgensiLanguage[] Languages { get { return AgensiLanguage.AllCreate(); } }
+        
     }
 }

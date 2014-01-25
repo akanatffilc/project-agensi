@@ -17,13 +17,13 @@ namespace Agensi.Web.Controllers
         // GET: /Query/
         public ActionResult Index()
         {
-            var model = new BoardIndexModel();
+            var model = new BoardIndexModel(LoginUser);
             return View(model);
         }
 
         public ActionResult Ask()
         {
-            var model = new AskModel();
+            var model = new AskModel(LoginUser);
             return View(model);
         }
 

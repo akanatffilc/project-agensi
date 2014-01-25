@@ -36,10 +36,10 @@ namespace Agensi.Data.Core
         public virtual DbSet<LanguageMaster> LanguageMasters { get; set; }
         public virtual DbSet<QueryVote> QueryVotes { get; set; }
         public virtual DbSet<QueryVoteDown> QueryVoteDowns { get; set; }
-        public virtual DbSet<UserProfile> UserProfiles { get; set; }
-        public virtual DbSet<UserStatu> UserStatus { get; set; }
         public virtual DbSet<UserVote> UserVotes { get; set; }
         public virtual DbSet<UserVoteDown> UserVoteDowns { get; set; }
         public virtual DbSet<Query> Queries { get; set; }
+        public virtual DbSet<UserState> UserStates { get; set; }
+        public virtual DbSet<UserProfile> UserProfiles { get; set; }
     }
 }

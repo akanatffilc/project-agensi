@@ -1,6 +1,7 @@
 ﻿using Agensi.Core.Core;
 using Agensi.Core.DataLogic.Core;
 using Agensi.Core.Language;
+using Agensi.Core.User;
 using Agensi.Data.Core;
 using System;
 using System.Collections.Generic;
@@ -33,9 +34,10 @@ namespace Agensi.Core.Board
         private Lazy<AnswerVoteDownDataLogic> AnswerVoteDownDataLogic = new Lazy<AnswerVoteDownDataLogic>(() => { return new AnswerVoteDownDataLogic(); });
         private readonly Answer Answer;
 
-        public long AnswerId { get { return Answer.AnswerId; } }
+        private AgensiUser _answerUser;
+        public AgensiUser AnswerUser { get { return _answerUser ?? (_answerUser = AgensiUser.Create(Answer.AnswerUserId)); } }
         public long QueryId { get { return Answer.QueryId; } }
-        public string AnswerUserId { get { return Answer.AnswerUserId; } }
+        public long AnswerId { get { return Answer.AnswerId; } }
         private AgensiLanguage _agensiLanguage;
         public AgensiLanguage Language { get { return _agensiLanguage ?? (_agensiLanguage = new AgensiLanguage(Answer.LanguageId)); } }
         public string Text { get { return Answer.Text; } }

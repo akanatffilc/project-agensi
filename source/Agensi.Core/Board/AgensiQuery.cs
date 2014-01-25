@@ -1,6 +1,7 @@
 ﻿using Agensi.Core.Category;
 using Agensi.Core.DataLogic.Core;
 using Agensi.Core.Language;
+using Agensi.Core.User;
 using Agensi.Data.Core;
 using Agensi.Data.Core.IRepositories;
 using Agensi.Data.Core.Repositories;
@@ -45,7 +46,10 @@ namespace Agensi.Core.Board
         }
 
         public long QueryId { get { return Query.QueryId; } }
-        public string OwnerUserId { get { return Query.OwnerUserId; } }
+
+        private AgensiUser _ownerUser;
+        public AgensiUser OwnerUser { get { return _ownerUser ?? (_ownerUser = AgensiUser.Create(Query.OwnerUserId)); } }
+
         public string Title { get { return Query.Title; } }
         private Genre _genre;
         public Genre Genre { get { return _genre ?? (_genre = new Genre(Query.Genre)); } }

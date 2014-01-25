@@ -12,7 +12,7 @@ namespace Agensi.Data.Core
     using System;
     using System.Collections.Generic;
     
-    public partial class UserStatu
+    public partial class UserState
     {
         public string UserId { get; set; }
         public int Reputation { get; set; }

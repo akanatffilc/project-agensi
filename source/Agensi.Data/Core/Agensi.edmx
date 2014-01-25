@@ -135,13 +135,14 @@
             <PropertyRef Name="UserId" />
           </Key>
           <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="LikeLanguage" Type="bigint" Nullable="false" />
           <Property Name="LikeGenre" Type="bigint" Nullable="false" />
           <Property Name="ProfileImage" Type="varbinary(max)" />
+          <Property Name="Comment" Type="nvarchar" MaxLength="2000" Nullable="false" />
+          <Property Name="LikeLanguage" Type="bigint" Nullable="false" />
           <Property Name="AddTime" Type="datetime" Nullable="false" />
           <Property Name="UpdateTime" Type="datetime" Nullable="false" />
         </EntityType>
-        <EntityType Name="UserStatus">
+        <EntityType Name="UserState">
           <Key>
             <PropertyRef Name="UserId" />
           </Key>
@@ -238,7 +239,7 @@
           <EntitySet Name="QueryVote" EntityType="Self.QueryVote" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="QueryVoteDown" EntityType="Self.QueryVoteDown" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserProfile" EntityType="Self.UserProfile" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="UserStatus" EntityType="Self.UserStatus" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserState" EntityType="Self.UserState" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserVote" EntityType="Self.UserVote" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserVoteDown" EntityType="Self.UserVoteDown" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_User_Id" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_User_Id">
@@ -286,11 +287,11 @@
           <EntitySet Name="LanguageMasters" EntityType="AgensiDBModel.LanguageMaster" />
           <EntitySet Name="QueryVotes" EntityType="AgensiDBModel.QueryVote" />
           <EntitySet Name="QueryVoteDowns" EntityType="AgensiDBModel.QueryVoteDown" />
-          <EntitySet Name="UserProfiles" EntityType="AgensiDBModel.UserProfile" />
-          <EntitySet Name="UserStatus" EntityType="AgensiDBModel.UserStatu" />
           <EntitySet Name="UserVotes" EntityType="AgensiDBModel.UserVote" />
           <EntitySet Name="UserVoteDowns" EntityType="AgensiDBModel.UserVoteDown" />
           <EntitySet Name="Queries" EntityType="AgensiDBModel.Query" />
+          <EntitySet Name="UserStates" EntityType="AgensiDBModel.UserState" />
+          <EntitySet Name="UserProfiles" EntityType="AgensiDBModel.UserProfile" />
           </EntityContainer>
         <EntityType Name="AspNetRole">
           <Key>
@@ -432,25 +433,6 @@
           <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Name="AddTime" Type="DateTime" Nullable="false" Precision="3" />
         </EntityType>
-        <EntityType Name="UserProfile">
-          <Key>
-            <PropertyRef Name="UserId" />
-          </Key>
-          <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="LikeLanguage" Type="Int64" Nullable="false" />
-          <Property Name="LikeGenre" Type="Int64" Nullable="false" />
-          <Property Name="ProfileImage" Type="Binary" MaxLength="Max" FixedLength="false" />
-          <Property Name="AddTime" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="UpdateTime" Type="DateTime" Nullable="false" Precision="3" />
-        </EntityType>
-        <EntityType Name="UserStatu">
-          <Key>
-            <PropertyRef Name="UserId" />
-          </Key>
-          <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="Reputation" Type="Int32" Nullable="false" />
-          <Property Name="UpdateTime" Type="DateTime" Nullable="false" Precision="3" />
-        </EntityType>
         <EntityType Name="UserVote">
           <Key>
             <PropertyRef Name="UserId" />
@@ -482,6 +464,26 @@
           <Property Name="ToLanguage" Type="Int64" Nullable="false" />
           <Property Name="Text" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="QueryDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UpdateTime" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="UserState">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Reputation" Type="Int32" Nullable="false" />
+          <Property Name="UpdateTime" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="UserProfile">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="LikeGenre" Type="Int64" Nullable="false" />
+          <Property Name="ProfileImage" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="Comment" Type="String" Nullable="false" MaxLength="2000" FixedLength="false" Unicode="true" />
+          <Property Name="LikeLanguage" Type="Int64" Nullable="false" />
+          <Property Name="AddTime" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="UpdateTime" Type="DateTime" Nullable="false" Precision="3" />
         </EntityType>
         </Schema>
@@ -604,27 +606,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="UserProfiles">
-            <EntityTypeMapping TypeName="AgensiDBModel.UserProfile">
-              <MappingFragment StoreEntitySet="UserProfile">
-                <ScalarProperty Name="UpdateTime" ColumnName="UpdateTime" />
-                <ScalarProperty Name="AddTime" ColumnName="AddTime" />
-                <ScalarProperty Name="ProfileImage" ColumnName="ProfileImage" />
-                <ScalarProperty Name="LikeGenre" ColumnName="LikeGenre" />
-                <ScalarProperty Name="LikeLanguage" ColumnName="LikeLanguage" />
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="UserStatus">
-            <EntityTypeMapping TypeName="AgensiDBModel.UserStatu">
-              <MappingFragment StoreEntitySet="UserStatus">
-                <ScalarProperty Name="UpdateTime" ColumnName="UpdateTime" />
-                <ScalarProperty Name="Reputation" ColumnName="Reputation" />
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="UserVotes">
             <EntityTypeMapping TypeName="AgensiDBModel.UserVote">
               <MappingFragment StoreEntitySet="UserVote">
@@ -656,6 +637,28 @@
                 <ScalarProperty Name="Title" ColumnName="Title" />
                 <ScalarProperty Name="OwnerUserId" ColumnName="OwnerUserId" />
                 <ScalarProperty Name="QueryId" ColumnName="QueryId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserStates">
+            <EntityTypeMapping TypeName="AgensiDBModel.UserState">
+              <MappingFragment StoreEntitySet="UserState">
+                <ScalarProperty Name="UpdateTime" ColumnName="UpdateTime" />
+                <ScalarProperty Name="Reputation" ColumnName="Reputation" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserProfiles">
+            <EntityTypeMapping TypeName="AgensiDBModel.UserProfile">
+              <MappingFragment StoreEntitySet="UserProfile">
+                <ScalarProperty Name="UpdateTime" ColumnName="UpdateTime" />
+                <ScalarProperty Name="AddTime" ColumnName="AddTime" />
+                <ScalarProperty Name="LikeLanguage" ColumnName="LikeLanguage" />
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+                <ScalarProperty Name="ProfileImage" ColumnName="ProfileImage" />
+                <ScalarProperty Name="LikeGenre" ColumnName="LikeGenre" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

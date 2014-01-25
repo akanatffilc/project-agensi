@@ -14,7 +14,7 @@ namespace Agensi.Web.Controllers
         public ActionResult Index()
         {
             var a = HttpContext.GetOwinContext().Authentication.User.Claims;
-            var model = new HomeModel();
+            var model = new HomeModel(LoginUser);
             return View(model);
         }
 

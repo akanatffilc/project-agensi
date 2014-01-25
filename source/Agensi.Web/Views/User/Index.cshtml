@@ -1,8 +1,49 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "Profile";
 }
+@using Agensi.Core.Util;
 @model Agensi.Web.Models.User.UserIndexModel
 
-<h2>@Model.ViewUserのProfile</h2>
+<h2>@Model.ViewUser.UserName's Profile</h2>
+
+@if (@Model.IsMypage)
+{
+    @Html.ActionLink("Edit", "Edit", "User", new { @class = "btn btn-default" });
+    <br/><br/>
+}
+
+<table class="table">
+    <tr>
+        <td>Image</td>
+        <td><img src="@ImageUtil.ToImageSrc(Model.ViewUser.ProfileImage)" /></td>
+    </tr>
+    <tr>
+        <td>UserId</td>
+        <td>@Model.ViewUser.UserId</td>
+    </tr>
+    <tr>
+        <td>UserName</td>
+        <td>@Model.ViewUser.UserName</td>
+    </tr>
+    <tr>
+        <td>Comment</td>
+        <td>@Model.ViewUser.Comment</td>
+    </tr>
+    <tr>
+        <td>LikeLanguage</td>
+        <td>@Model.ViewUser.LikeLanguage</td>
+    </tr>
+    <tr>
+        <td>LikeGenre</td>
+        <td>@Model.ViewUser.LikeGenre</td>
+    </tr>
+    <tr>
+        <td>QueryNum</td>
+        <td>@Model.ViewUser.QueryNum</td>
+    </tr>
+    <tr>
+        <td>AnswerNum</td>
+        <td>@Model.ViewUser.AnswerNum</td>
+    </tr>
+</table>
 
