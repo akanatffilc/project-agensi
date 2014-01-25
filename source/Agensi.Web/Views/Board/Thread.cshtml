@@ -2,6 +2,7 @@
     ViewBag.Title = "Query";
 }
 @using Agensi.Core.Language;
+@using Agensi.Core.Util;
 @model Agensi.Web.Models.Board.ThreadModel
 
 <br />
@@ -48,7 +49,7 @@
             </li>
         }
         <li class="list-group-item" style="text-align:left"><span class="glyphicon glyphicon-font"></span>&nbsp;ToLanguage:@Model.AgensiQuery.ToLanguage.Name</li>
-        <li class="list-group-item" style="text-align:right"><span class="glyphicon glyphicon-user"></span>QueryOwner:@Model.AgensiQuery.OwnerUser.UserName</li>
+        <li class="list-group-item" style="text-align:right"><img style="width:50px;height:50px" src="@ImageUtil.ToImageSrc(@Model.AgensiQuery.OwnerUser.ProfileImage)" />QueryOwner:@Model.AgensiQuery.OwnerUser.UserName</li>
     </ul>
 </div>
 <br />
@@ -69,7 +70,7 @@
             foreach (var answer in answers)
             {
                 <tr>
-                    <td>answer:@answer.AnswerUser.UserName</td>
+                    <td>answer:<img style="width:30px;height:30px" src="@ImageUtil.ToImageSrc(@answer.AnswerUser.ProfileImage)" />@answer.AnswerUser.UserName</td>
                     <td>@answer.Text</td>
                     <td>vote:@(answer.Votes.Count())</td>
                     <td>voteDown:@(answer.VoteDowns.Count())</td>

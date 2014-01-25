@@ -29,6 +29,6 @@ namespace Agensi.Core.User
 
         public string Comment { get { return Profile != null ? Profile.Comment : ""; } }
 
-        public byte[] ProfileImage { get { return Profile != null && Profile.ProfileImage != null ? Profile.ProfileImage : new byte[0]; } }
+        public byte[] ProfileImage { get { return Profile != null && Profile.ProfileImage != null ? Profile.ProfileImage : null; } }
     }
 }
