@@ -21,9 +21,9 @@ namespace Agensi.Data.Core.Repositories
             return context.QueryVoteDowns.Where(x => x.QueryId == queryId).ToArray();
         }
 
-        public QueryVoteDown[] FindByUid(string uid)
+        public QueryVoteDown[] FindByUid(string userId)
         {
-            return context.QueryVoteDowns.Where(x => x.Uid == uid).ToArray();
+            return context.QueryVoteDowns.Where(x => x.UserId == userId).ToArray();
         }
 
         public void Add(QueryVoteDown voteDown)
@@ -33,7 +33,7 @@ namespace Agensi.Data.Core.Repositories
 
         public void Delete(QueryVoteDown voteDown)
         {
-            var row = context.QueryVoteDowns.Single(x => x.QueryId == voteDown.QueryId && x.Uid == voteDown.Uid);
+            var row = context.QueryVoteDowns.Single(x => x.QueryId == voteDown.QueryId && x.UserId == voteDown.UserId);
             context.QueryVoteDowns.Remove(row);
         }
 

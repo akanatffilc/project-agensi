@@ -27,8 +27,10 @@ namespace Agensi.Core.Board
         #endregion 
 
         private Lazy<QueryDataLogic> QueryDataLogic = new Lazy<QueryDataLogic>(() => { return new QueryDataLogic(); });
-        private static Lazy<QueryVoteDataLogic> QueryVoteDataLogic = new Lazy<QueryVoteDataLogic>(() => { return new QueryVoteDataLogic(); });
-        private static Lazy<QueryVoteDownDataLogic> QueryVoteDownDataLogic = new Lazy<QueryVoteDownDataLogic>(() => { return new QueryVoteDownDataLogic(); });
+        private Lazy<QueryVoteDataLogic> QueryVoteDataLogic = new Lazy<QueryVoteDataLogic>(() => { return new QueryVoteDataLogic(); });
+        private Lazy<QueryVoteDownDataLogic> QueryVoteDownDataLogic = new Lazy<QueryVoteDownDataLogic>(() => { return new QueryVoteDownDataLogic(); });
+        private Lazy<AnswerDataLogic> AnswerDataLogic = new Lazy<AnswerDataLogic>(() => { return new AnswerDataLogic(); });
+
 
         private readonly Query Query;
 
@@ -37,12 +39,13 @@ namespace Agensi.Core.Board
             get
             {
                 return _answers ??
-                    (_answers = AgensiAnswer.Create(this)).ToArray();
+                    (_answers = AnswerDataLogic.Value.FindByQueryId(Query.QueryId).ToArray()
+                .Select(x => AgensiAnswer.Create(x.AnswerId)).ToArray());
             }
         }
 
         public long QueryId { get { return Query.QueryId; } }
-        public string OwnerUid { get { return Query.OwnerUid; } }
+        public string OwnerUserId { get { return Query.OwnerUserId; } }
         public string Title { get { return Query.Title; } }
         private Genre _genre;
         public Genre Genre { get { return _genre ?? (_genre = new Genre(Query.Genre)); } }

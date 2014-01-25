@@ -25,19 +25,21 @@ namespace Agensi.Data.Core
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<LanguageMaster> LanguageMasters { get; set; }
-        public virtual DbSet<C__MigrationHistory> C__MigrationHistory { get; set; }
         public virtual DbSet<AspNetRole> AspNetRoles { get; set; }
         public virtual DbSet<AspNetUserClaim> AspNetUserClaims { get; set; }
         public virtual DbSet<AspNetUserLogin> AspNetUserLogins { get; set; }
         public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
+        public virtual DbSet<C__MigrationHistory> C__MigrationHistory { get; set; }
         public virtual DbSet<Answer> Answers { get; set; }
         public virtual DbSet<AnswerVote> AnswerVotes { get; set; }
+        public virtual DbSet<AnswerVoteDown> AnswerVoteDowns { get; set; }
+        public virtual DbSet<LanguageMaster> LanguageMasters { get; set; }
         public virtual DbSet<QueryVote> QueryVotes { get; set; }
         public virtual DbSet<QueryVoteDown> QueryVoteDowns { get; set; }
+        public virtual DbSet<UserProfile> UserProfiles { get; set; }
+        public virtual DbSet<UserStatu> UserStatus { get; set; }
         public virtual DbSet<UserVote> UserVotes { get; set; }
         public virtual DbSet<UserVoteDown> UserVoteDowns { get; set; }
-        public virtual DbSet<AnswerVoteDown> AnswerVoteDowns { get; set; }
         public virtual DbSet<Query> Queries { get; set; }
     }
 }

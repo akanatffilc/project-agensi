@@ -30,6 +30,11 @@ namespace Agensi.Core.DataLogic.Core
             return _repository.FindAll();
         }
 
+        public Query[] FindByOwnerId(string uid)
+        {
+            return _repository.FindByOwnerUid(uid);
+        }
+
         public void Add(Query query)
         {
             _repository.Add(query);

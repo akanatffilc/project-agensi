@@ -8,11 +8,16 @@ namespace Agensi.Web.Models.User
 {
     public class UserIndexModel
     {
-        public UserIndexModel(AgensiUser user)
+        public UserIndexModel(AgensiUser loginUser,string viewUserId)
         {
-            AgensiUser = user;
+            LoginUser = loginUser;
+            ViewUser = AgensiUser.Create(viewUserId);
         }
 
-        public AgensiUser AgensiUser { get; private set; }
+        public AgensiUser LoginUser { get; private set; }
+
+        public AgensiUser ViewUser { get; private set; }
+
+
     }
 }

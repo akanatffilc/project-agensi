@@ -5,8 +5,6 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="474717f177af4e9aa0ee130bab6fabe7" Name="Diagram1">
-        <EntityTypeShape EntityType="AgensiDBModel.LanguageMaster" Width="1.5" PointX="0.75" PointY="5.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="AgensiDBModel.C__MigrationHistory" Width="1.5" PointX="2.75" PointY="6.75" />
         <EntityTypeShape EntityType="AgensiDBModel.AspNetRole" Width="1.5" PointX="0.75" PointY="2.5" />
         <EntityTypeShape EntityType="AgensiDBModel.AspNetUserClaim" Width="1.5" PointX="5.25" PointY="3.5" />
         <EntityTypeShape EntityType="AgensiDBModel.AspNetUserLogin" Width="1.5" PointX="5.25" PointY="1" />
@@ -14,14 +12,18 @@
         <AssociationConnector Association="AgensiDBModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_User_Id" />
         <AssociationConnector Association="AgensiDBModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" />
         <AssociationConnector Association="AgensiDBModel.AspNetUserRoles" />
-        <EntityTypeShape EntityType="AgensiDBModel.Answer" Width="1.5" PointX="4.75" PointY="6.75" />
-        <EntityTypeShape EntityType="AgensiDBModel.AnswerVote" Width="1.5" PointX="6.75" PointY="6.75" />
-        <EntityTypeShape EntityType="AgensiDBModel.QueryVote" Width="1.5" PointX="7.75" PointY="0.75" />
-        <EntityTypeShape EntityType="AgensiDBModel.QueryVoteDown" Width="1.5" PointX="7.75" PointY="3.75" />
-        <EntityTypeShape EntityType="AgensiDBModel.UserVote" Width="1.5" PointX="8.75" PointY="6.75" />
-        <EntityTypeShape EntityType="AgensiDBModel.UserVoteDown" Width="1.5" PointX="9.75" PointY="0.75" />
-        <EntityTypeShape EntityType="AgensiDBModel.AnswerVoteDown" Width="1.5" PointX="0.75" PointY="9.75" />
-        <EntityTypeShape EntityType="AgensiDBModel.Query" Width="1.5" PointX="6.75" PointY="9.75" />
+        <EntityTypeShape EntityType="AgensiDBModel.C__MigrationHistory" Width="1.5" PointX="0.75" PointY="5.75" />
+        <EntityTypeShape EntityType="AgensiDBModel.Answer" Width="1.5" PointX="2.75" PointY="6.75" />
+        <EntityTypeShape EntityType="AgensiDBModel.AnswerVote" Width="1.5" PointX="4.75" PointY="6.75" />
+        <EntityTypeShape EntityType="AgensiDBModel.AnswerVoteDown" Width="1.5" PointX="6.75" PointY="6.75" />
+        <EntityTypeShape EntityType="AgensiDBModel.LanguageMaster" Width="1.5" PointX="7.75" PointY="0.75" />
+        <EntityTypeShape EntityType="AgensiDBModel.QueryVote" Width="1.5" PointX="7.75" PointY="3.75" />
+        <EntityTypeShape EntityType="AgensiDBModel.QueryVoteDown" Width="1.5" PointX="8.75" PointY="6.75" />
+        <EntityTypeShape EntityType="AgensiDBModel.UserProfile" Width="1.5" PointX="9.75" PointY="0.75" />
+        <EntityTypeShape EntityType="AgensiDBModel.UserStatu" Width="1.5" PointX="9.75" PointY="3.75" />
+        <EntityTypeShape EntityType="AgensiDBModel.UserVote" Width="1.5" PointX="4.75" PointY="9.75" />
+        <EntityTypeShape EntityType="AgensiDBModel.UserVoteDown" Width="1.5" PointX="6.75" PointY="9.75" />
+        <EntityTypeShape EntityType="AgensiDBModel.Query" Width="1.5" PointX="8.75" PointY="9.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

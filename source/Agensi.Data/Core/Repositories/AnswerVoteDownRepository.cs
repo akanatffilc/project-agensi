@@ -22,9 +22,9 @@ namespace Agensi.Data.Core.Repositories
             return context.AnswerVoteDowns.Where(x => x.AnswerId == answerId).ToArray();
         }
 
-        public AnswerVoteDown[] FindByUid(string uid)
+        public AnswerVoteDown[] FindByUid(string userId)
         {
-            return context.AnswerVoteDowns.Where(x => x.Uid == uid).ToArray();
+            return context.AnswerVoteDowns.Where(x => x.UserId == userId).ToArray();
         }
 
         public void Add(AnswerVoteDown voteDown)
@@ -34,7 +34,7 @@ namespace Agensi.Data.Core.Repositories
 
         public void Delete(AnswerVoteDown voteDown)
         {
-            var row = context.AnswerVoteDowns.Single(x => x.AnswerId == voteDown.AnswerId && x.Uid == voteDown.Uid);
+            var row = context.AnswerVoteDowns.Single(x => x.AnswerId == voteDown.AnswerId && x.UserId == voteDown.UserId);
             context.AnswerVoteDowns.Remove(row);
         }
 
@@ -50,7 +50,7 @@ namespace Agensi.Data.Core.Repositories
         {
             await Task.Run(() =>
                 {
-                    var row = context.AnswerVotes.Single(x => x.AnswerId == voteDown.AnswerId && x.Uid == voteDown.Uid);
+                    var row = context.AnswerVotes.Single(x => x.AnswerId == voteDown.AnswerId && x.UserId == voteDown.UserId);
                     context.AnswerVoteDowns.Remove(voteDown);
                 });
         }

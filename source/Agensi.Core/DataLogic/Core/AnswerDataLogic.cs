@@ -30,6 +30,11 @@ namespace Agensi.Core.DataLogic.Core
             return _repository.FindByQueryId(queryId);
         }
 
+        public Answer[] FindByAnswerUid(string uid)
+        {
+            return _repository.FindByAnswerUid(uid);
+        }
+
         public void Add(Answer answer)
         {
             _repository.Add(answer);

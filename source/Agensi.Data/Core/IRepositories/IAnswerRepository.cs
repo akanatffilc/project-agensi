@@ -12,6 +12,8 @@ namespace Agensi.Data.Core.IRepositories
 
         Answer[] FindByQueryId(long queryId);
 
+        Answer[] FindByAnswerUid(string uid);
+
         void Add(Answer answer);
 
         void Update(Answer answer);

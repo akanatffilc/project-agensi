@@ -84,7 +84,7 @@ namespace Agensi.Web.Controllers
                 if (result.Succeeded)
                 {
                     await SignInAsync(user, isPersistent: false);
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Index", "Board");
                 }
                 else
                 {
@@ -291,7 +291,7 @@ namespace Agensi.Web.Controllers
         public ActionResult LogOff()
         {
             AuthenticationManager.SignOut();
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "Board");
         }
 
         //
@@ -373,7 +373,7 @@ namespace Agensi.Web.Controllers
             }
             else
             {
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Index", "Board");
             }
         }
 

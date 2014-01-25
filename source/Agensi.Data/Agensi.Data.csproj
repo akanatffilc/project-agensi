@@ -115,6 +115,12 @@
     <Compile Include="Core\Repositories\LanguageMasterRepository.cs" />
     <Compile Include="Core\Repositories\QueryVoteDownRepository.cs" />
     <Compile Include="Core\Repositories\QueryVoteRepository.cs" />
+    <Compile Include="Core\UserProfile.cs">
+      <DependentUpon>Agensi.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Core\UserStatu.cs">
+      <DependentUpon>Agensi.tt</DependentUpon>
+    </Compile>
     <Compile Include="Core\UserVote.cs">
       <DependentUpon>Agensi.tt</DependentUpon>
     </Compile>

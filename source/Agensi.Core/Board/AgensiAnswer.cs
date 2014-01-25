@@ -12,19 +12,9 @@ namespace Agensi.Core.Board
 {
     public class AgensiAnswer
     {
-        public static AgensiAnswer[] Create(AgensiQuery query)
-        {
-            return AnswerDataLogic.Value.FindByQueryId(query.QueryId).ToArray()
-                .Select(x => new AgensiAnswer(x)).ToArray();
-        }
-
         public static AgensiAnswer Create(long answerId)
         {
-            var answer = AnswerDataLogic.Value.Find(answerId);
-            if (answer != null)
-                return new AgensiAnswer(answer);
-            else
-                return new AgensiAnswer(0);
+            return new AgensiAnswer(answerId);
         }
 
         #region Constructor
@@ -38,14 +28,14 @@ namespace Agensi.Core.Board
         }
         #endregion
 
-        private static Lazy<AnswerDataLogic> AnswerDataLogic = new Lazy<AnswerDataLogic>(() => { return new AnswerDataLogic(); });
-        private static Lazy<AnswerVoteDataLogic> AnswerVoteDataLogic = new Lazy<AnswerVoteDataLogic>(() => { return new AnswerVoteDataLogic(); });
-        private static Lazy<AnswerVoteDownDataLogic> AnswerVoteDownDataLogic = new Lazy<AnswerVoteDownDataLogic>(() => { return new AnswerVoteDownDataLogic(); });
+        private Lazy<AnswerDataLogic> AnswerDataLogic = new Lazy<AnswerDataLogic>(() => { return new AnswerDataLogic(); });
+        private Lazy<AnswerVoteDataLogic> AnswerVoteDataLogic = new Lazy<AnswerVoteDataLogic>(() => { return new AnswerVoteDataLogic(); });
+        private Lazy<AnswerVoteDownDataLogic> AnswerVoteDownDataLogic = new Lazy<AnswerVoteDownDataLogic>(() => { return new AnswerVoteDownDataLogic(); });
         private readonly Answer Answer;
 
         public long AnswerId { get { return Answer.AnswerId; } }
         public long QueryId { get { return Answer.QueryId; } }
-        public string AnswerUid { get { return Answer.AnswerUid; } }
+        public string AnswerUserId { get { return Answer.AnswerUserId; } }
         private AgensiLanguage _agensiLanguage;
         public AgensiLanguage Language { get { return _agensiLanguage ?? (_agensiLanguage = new AgensiLanguage(Answer.LanguageId)); } }
         public string Text { get { return Answer.Text; } }

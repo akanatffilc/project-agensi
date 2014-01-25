@@ -15,7 +15,7 @@ namespace Agensi.Data.Core
     public partial class QueryVote
     {
         public long QueryId { get; set; }
-        public string Uid { get; set; }
+        public string UserId { get; set; }
         public System.DateTime AddTime { get; set; }
     }
 }

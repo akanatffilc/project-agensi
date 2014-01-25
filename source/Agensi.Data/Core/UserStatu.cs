@@ -12,10 +12,10 @@ namespace Agensi.Data.Core
     using System;
     using System.Collections.Generic;
     
-    public partial class AnswerVote
+    public partial class UserStatu
     {
-        public long AnswerId { get; set; }
         public string UserId { get; set; }
-        public System.DateTime AddTime { get; set; }
+        public int Reputation { get; set; }
+        public System.DateTime UpdateTime { get; set; }
     }
 }

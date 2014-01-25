@@ -7,7 +7,7 @@
 
     <ul class="nav navbar-nav navbar-right">
         <li>
-            @Html.ActionLink("ハロー  " + User.Identity.GetUserName() + "!", "Manage", "Account", routeValues: null, htmlAttributes: new { title = "管理" })
+            @Html.ActionLink("ハロー  " + User.Identity.GetUserName() + "!", "Index", "User", routeValues: null, htmlAttributes: new { title = "管理" })
         </li>
         <li><a href="javascript:document.getElementById('logoutForm').submit()">ログオフ</a></li>
     </ul>

@@ -15,7 +15,7 @@ namespace Agensi.Data.Core
     public partial class Query
     {
         public long QueryId { get; set; }
-        public string OwnerUid { get; set; }
+        public string OwnerUserId { get; set; }
         public string Title { get; set; }
         public long Genre { get; set; }
         public int MediaCategory { get; set; }

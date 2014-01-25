@@ -18,7 +18,7 @@ namespace Agensi.Core.Board
             AnswerVoteDataLogic.Value.Add(new AnswerVote
             {
                 AnswerId = answerId,
-                Uid = voteUid,
+                UserId = voteUid,
                 AddTime = DateTime.Now
             });
             //return AnswerVoteDataLogic.Value.AddAsync(new AnswerVote
@@ -34,7 +34,7 @@ namespace Agensi.Core.Board
             AnswerVoteDataLogic.Value.Delete(new AnswerVote
             {
                 AnswerId = answerId,
-                Uid = voteUid,
+                UserId = voteUid,
                 AddTime = DateTime.Now
             });
             //return AnswerVoteDataLogic.Value.DeleteAsync(new AnswerVote
@@ -50,7 +50,7 @@ namespace Agensi.Core.Board
             AnswerVoteDownDataLogic.Value.Add(new AnswerVoteDown
             {
                 AnswerId = answerId,
-                Uid = voteDownUid,
+                UserId = voteDownUid,
                 AddTime = DateTime.Now
             });
             //return AnswerVoteDownDataLogic.Value.AddAsync(new AnswerVoteDown
@@ -66,7 +66,7 @@ namespace Agensi.Core.Board
             AnswerVoteDownDataLogic.Value.Delete(new AnswerVoteDown
             {
                 AnswerId = answerId,
-                Uid = voteDownUid,
+                UserId = voteDownUid,
                 AddTime = DateTime.Now
             });
             //return AnswerVoteDownDataLogic.Value.DeleteAsync(new AnswerVoteDown

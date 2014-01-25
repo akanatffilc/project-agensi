@@ -27,9 +27,9 @@ namespace Agensi.Data.Core.Repositories
             return context.Queries.ToArray();
         }
 
-        public Query[] FindByOwnerUid(string uid)
+        public Query[] FindByOwnerUid(string userId)
         {
-            return context.Queries.Where(x => x.OwnerUid == uid).ToArray();
+            return context.Queries.Where(x => x.OwnerUserId == userId).ToArray();
         }
 
         public void Add(Query query)

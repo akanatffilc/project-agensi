@@ -22,9 +22,9 @@ namespace Agensi.Data.Core.Repositories
             return context.AnswerVotes.Where(x => x.AnswerId == answerId).ToArray();
         }
 
-        public AnswerVote[] FindByUid(string uid)
+        public AnswerVote[] FindByUid(string userId)
         {
-            return context.AnswerVotes.Where(x => x.Uid == uid).ToArray();
+            return context.AnswerVotes.Where(x => x.UserId == userId).ToArray();
         }
 
         public void Add(AnswerVote vote)
@@ -34,7 +34,7 @@ namespace Agensi.Data.Core.Repositories
 
         public void Delete(AnswerVote vote)
         {
-            var row = context.AnswerVotes.Single(x => x.AnswerId == vote.AnswerId && x.Uid == vote.Uid);
+            var row = context.AnswerVotes.Single(x => x.AnswerId == vote.AnswerId && x.UserId == vote.UserId);
             context.AnswerVotes.Remove(row);
         }
 
@@ -51,7 +51,7 @@ namespace Agensi.Data.Core.Repositories
         {
             await Task.Run(() =>
                 {
-                    var row = context.AnswerVotes.Single(x => x.AnswerId == vote.AnswerId && x.Uid == vote.Uid);
+                    var row = context.AnswerVotes.Single(x => x.AnswerId == vote.AnswerId && x.UserId == vote.UserId);
                     context.AnswerVotes.Remove(row);
                 });
         }

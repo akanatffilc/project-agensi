@@ -28,6 +28,12 @@ namespace Agensi.Data.Core.Repositories
                 .Where(x => x.QueryId == queryId).ToArray();
         }
 
+        public Answer[] FindByAnswerUid(string userId)
+        {
+            return context.Answers
+                .Where(x => x.AnswerUserId == userId).ToArray();
+        }
+
         public void Add(Answer answer)
         {
             context.Answers.Add(answer);

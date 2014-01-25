@@ -18,7 +18,7 @@ namespace Agensi.Core.Board
             QueryVoteDataLogic.Value.Add(new QueryVote
             {
                 QueryId = queryId,
-                Uid = voteUid,
+                UserId = voteUid,
                 AddTime = DateTime.Now
             });
             //return QueryVoteDataLogic.Value.AddAsync(new QueryVote
@@ -34,7 +34,7 @@ namespace Agensi.Core.Board
             QueryVoteDataLogic.Value.Delete(new QueryVote
             {
                 QueryId = queryId,
-                Uid = voteUid,
+                UserId = voteUid,
                 AddTime = DateTime.Now
             });
             //return QueryVoteDataLogic.Value.DeleteAsync(new QueryVote
@@ -50,7 +50,7 @@ namespace Agensi.Core.Board
             QueryVoteDownDataLogic.Value.Add(new QueryVoteDown
             {
                 QueryId = queryId,
-                Uid = voteDownUid,
+                UserId = voteDownUid,
                 AddTime = DateTime.Now
             });
             //return QueryVoteDownDataLogic.Value.AddAsync(new QueryVoteDown
@@ -66,7 +66,7 @@ namespace Agensi.Core.Board
             QueryVoteDownDataLogic.Value.Delete(new QueryVoteDown
             {
                 QueryId = queryId,
-                Uid = voteDownUid,
+                UserId = voteDownUid,
                 AddTime = DateTime.Now
             });
             //return QueryVoteDownDataLogic.Value.DeleteAsync(new QueryVoteDown

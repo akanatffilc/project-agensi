@@ -30,7 +30,7 @@ namespace Agensi.Web.Controllers
         [HttpPost]
         public ActionResult AskExecute(Query query)
         {
-            query.OwnerUid = LoginUser.UserId;
+            query.OwnerUserId = LoginUser.UserId;
             query.QueryDate = DateTime.Now;
             query.UpdateTime = DateTime.Now;
 
@@ -46,7 +46,7 @@ namespace Agensi.Web.Controllers
 
         public ActionResult AnswerExecute(Answer answer)
         {
-            answer.AnswerUid = LoginUser.UserId;
+            answer.AnswerUserId = LoginUser.UserId;
             answer.AnswerDate = DateTime.Now;
             answer.UpdateTime = DateTime.Now;
 
