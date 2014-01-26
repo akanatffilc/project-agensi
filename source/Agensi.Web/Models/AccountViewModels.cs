@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Agensi.Web.Core.Models;
+using System.ComponentModel.DataAnnotations;
 
 namespace Agensi.Web.Models
 {

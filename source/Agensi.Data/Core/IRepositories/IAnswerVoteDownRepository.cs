@@ -10,7 +10,7 @@ namespace Agensi.Data.Core.IRepositories
     {
         AnswerVoteDown[] FindByAnswerId(long answerId);
 
-        AnswerVoteDown[] FindByUid(string uid);
+        AnswerVoteDown[] FindByUserId(string userId);
 
         void Add(AnswerVoteDown voteDown);
 

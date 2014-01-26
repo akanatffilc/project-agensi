@@ -10,7 +10,7 @@ namespace Agensi.Data.Core.IRepositories
     {
         QueryVote[] FindByQueryId(long queryId);
 
-        QueryVote[] FindByUid(string uid);
+        QueryVote[] FindByUserId(string userId);
 
         void Add(QueryVote vote);
 

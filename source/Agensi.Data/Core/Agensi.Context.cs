@@ -41,5 +41,6 @@ namespace Agensi.Data.Core
         public virtual DbSet<Query> Queries { get; set; }
         public virtual DbSet<UserState> UserStates { get; set; }
         public virtual DbSet<UserProfile> UserProfiles { get; set; }
+        public virtual DbSet<UserFollow> UserFollows { get; set; }
     }
 }

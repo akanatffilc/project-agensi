@@ -45,11 +45,31 @@ namespace Agensi.Web.Controllers
                 }
             }
             profile.UserId = LoginUser.UserId;
+            if (profile.Comment == null)
+                profile.Comment = "";
 
             var manager = LoginUser.CreateProfileManager();
             manager.UpdateProfile(profile, name);
 
             return RedirectToAction("Index", "User");
+        }
+
+        [HttpPost]
+        public ActionResult AddFollowUser(string followUserId)
+        {
+            var manager = LoginUser.CreateFollowManager();
+            manager.AddFollowUser(followUserId);
+
+            return RedirectToAction("Index", "User", new { viewUserId = followUserId });
+        }
+
+        [HttpPost]
+        public ActionResult DeleteFollowUser(string followUserId)
+        {
+            var manager = LoginUser.CreateFollowManager();
+            manager.DeleteFollowUser(followUserId);
+
+            return RedirectToAction("Index", "User", new { viewUserId = followUserId });
         }
 	}
 }

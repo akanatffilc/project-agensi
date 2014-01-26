@@ -22,7 +22,7 @@ namespace Agensi.Data.Core.Repositories
             return context.AnswerVoteDowns.Where(x => x.AnswerId == answerId).ToArray();
         }
 
-        public AnswerVoteDown[] FindByUid(string userId)
+        public AnswerVoteDown[] FindByUserId(string userId)
         {
             return context.AnswerVoteDowns.Where(x => x.UserId == userId).ToArray();
         }

@@ -12,7 +12,7 @@ namespace Agensi.Data.Core.IRepositories
 
         Answer[] FindByQueryId(long queryId);
 
-        Answer[] FindByAnswerUid(string uid);
+        Answer[] FindByAnswerUserId(string userId);
 
         void Add(Answer answer);
 

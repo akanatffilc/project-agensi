@@ -32,7 +32,7 @@ namespace Agensi.Core.DataLogic.Core
 
         public Query[] FindByOwnerId(string uid)
         {
-            return _repository.FindByOwnerUid(uid);
+            return _repository.FindByOwnerUserId(uid);
         }
 
         public void Add(Query query)

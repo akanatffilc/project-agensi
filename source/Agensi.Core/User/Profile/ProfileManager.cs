@@ -12,13 +12,13 @@ namespace Agensi.Core.User.Profile
     {
         internal ProfileManager(AgensiUser user)
         {
-            User = user;
+            _user = user;
         }
         
         private Lazy<UserProfileDataLogic> UserProfileDataLogic = new Lazy<UserProfileDataLogic>(() => { return new UserProfileDataLogic(); });
         private Lazy<AspNetUserDataLogic> AspNetUserDataLogic = new Lazy<AspNetUserDataLogic>(() => { return new AspNetUserDataLogic(); });
 
-        public AgensiUser User { get; private set; }
+        private readonly AgensiUser _user;
 
         public void UpdateProfile(UserProfile userProfile,string name)
         {

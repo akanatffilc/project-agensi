@@ -16,11 +16,12 @@ namespace Agensi.Web.Models.Board
             : base(loginUser)
         {
             LoginUser = loginUser;
-            AgensiQueries = new QueryDataLogic().FindAll();
+            AgensiQueries = new QueryDataLogic().FindAll()
+                .Select(x => new AgensiQuery(x)).ToArray();
         }
 
         public AgensiUser LoginUser { get; private set; }
 
-        public Query[] AgensiQueries { get; private set; }
+        public AgensiQuery[] AgensiQueries { get; private set; }
     }
 }

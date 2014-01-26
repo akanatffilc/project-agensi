@@ -8,9 +8,9 @@ namespace Agensi.Data.Core.IRepositories
 {
     public interface IUserVoteDownRepository
     {
-        UserVoteDown[] FindByUid(long uid);
+        UserVoteDown[] FindByUserId(long userId);
 
-        UserVoteDown[] FindByVoteDownUid(string voteDownUid);
+        UserVoteDown[] FindByVoteDownUserId(string voteDownUserId);
 
         Task AddAsync(UserVoteDown voteDown);
 

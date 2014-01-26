@@ -14,12 +14,14 @@
 {
     <h3>質問一覧</h3>
     <table class="table">
-        <tr><th>タイトル</th><th>質問日時</th></tr>
+        <tr><th>タイトル</th><th>質問日時</th><th>質問者</th></tr>
         @foreach (var query in Model.AgensiQueries)
         {
         <tr>
             <td>@Html.ActionLink(@query.Title, "Thread", new { query.QueryId })</td>
             <td>@query.QueryDate</td>
+            @*<td>@Html.RouteLink(query.OwnerUser.UserName,"/User/Index",new{viewUserId = query.OwnerUser.UserId})</td>*@
+            <td><a href="/user/index?viewUserId=@query.OwnerUser.UserId">@query.OwnerUser.UserName</a></td>
         </tr>
         }
     </table>

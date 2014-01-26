@@ -25,6 +25,11 @@ namespace Agensi.Core.Board
         {
             Query = QueryDataLogic.Value.Find(queryId);
         }
+
+        public AgensiQuery(Query query)
+        {
+            Query = query;
+        }
         #endregion 
 
         private Lazy<QueryDataLogic> QueryDataLogic = new Lazy<QueryDataLogic>(() => { return new QueryDataLogic(); });

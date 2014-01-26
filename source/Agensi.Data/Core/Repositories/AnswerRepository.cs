@@ -28,7 +28,7 @@ namespace Agensi.Data.Core.Repositories
                 .Where(x => x.QueryId == queryId).ToArray();
         }
 
-        public Answer[] FindByAnswerUid(string userId)
+        public Answer[] FindByAnswerUserId(string userId)
         {
             return context.Answers
                 .Where(x => x.AnswerUserId == userId).ToArray();

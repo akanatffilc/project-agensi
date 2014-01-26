@@ -12,7 +12,7 @@ namespace Agensi.Data.Core.IRepositories
 
         Query[] FindAll();
 
-        Query[] FindByOwnerUid(string uid);
+        Query[] FindByOwnerUserId(string userId);
 
         void Add(Query query);
 

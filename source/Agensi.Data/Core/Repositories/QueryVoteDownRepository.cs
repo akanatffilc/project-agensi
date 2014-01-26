@@ -21,7 +21,7 @@ namespace Agensi.Data.Core.Repositories
             return context.QueryVoteDowns.Where(x => x.QueryId == queryId).ToArray();
         }
 
-        public QueryVoteDown[] FindByUid(string userId)
+        public QueryVoteDown[] FindByUserId(string userId)
         {
             return context.QueryVoteDowns.Where(x => x.UserId == userId).ToArray();
         }

@@ -1,4 +1,5 @@
-﻿using Agensi.Core.User.Profile;
+﻿using Agensi.Core.User.Follow;
+using Agensi.Core.User.Profile;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,6 +15,13 @@ namespace Agensi.Core.User
         {
             return _profileManager ??
                 (_profileManager = new ProfileManager(this));
+        }
+
+        private FollowManager _followManager;
+        public FollowManager CreateFollowManager()
+        {
+            return _followManager ??
+                (_followManager = new FollowManager(this));
         }
     }
 }

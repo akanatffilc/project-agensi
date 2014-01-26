@@ -32,7 +32,7 @@ namespace Agensi.Core.DataLogic.Core
 
         public Answer[] FindByAnswerUid(string uid)
         {
-            return _repository.FindByAnswerUid(uid);
+            return _repository.FindByAnswerUserId(uid);
         }
 
         public void Add(Answer answer)

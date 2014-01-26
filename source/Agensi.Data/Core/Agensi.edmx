@@ -130,6 +130,15 @@
           <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
           <Property Name="AddTime" Type="datetime" Nullable="false" />
         </EntityType>
+        <EntityType Name="UserFollow">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="FollowUserId" />
+          </Key>
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="FollowUserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="AddTime" Type="datetime" Nullable="false" />
+        </EntityType>
         <EntityType Name="UserProfile">
           <Key>
             <PropertyRef Name="UserId" />
@@ -238,6 +247,7 @@
           <EntitySet Name="Query" EntityType="Self.Query" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="QueryVote" EntityType="Self.QueryVote" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="QueryVoteDown" EntityType="Self.QueryVoteDown" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserFollow" EntityType="Self.UserFollow" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserProfile" EntityType="Self.UserProfile" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserState" EntityType="Self.UserState" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserVote" EntityType="Self.UserVote" Schema="dbo" store:Type="Tables" />
@@ -292,6 +302,7 @@
           <EntitySet Name="Queries" EntityType="AgensiDBModel.Query" />
           <EntitySet Name="UserStates" EntityType="AgensiDBModel.UserState" />
           <EntitySet Name="UserProfiles" EntityType="AgensiDBModel.UserProfile" />
+          <EntitySet Name="UserFollows" EntityType="AgensiDBModel.UserFollow" />
           </EntityContainer>
         <EntityType Name="AspNetRole">
           <Key>
@@ -486,6 +497,15 @@
           <Property Name="AddTime" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="UpdateTime" Type="DateTime" Nullable="false" Precision="3" />
         </EntityType>
+        <EntityType Name="UserFollow">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="FollowUserId" />
+          </Key>
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="FollowUserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="AddTime" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -658,6 +678,15 @@
                 <ScalarProperty Name="Comment" ColumnName="Comment" />
                 <ScalarProperty Name="ProfileImage" ColumnName="ProfileImage" />
                 <ScalarProperty Name="LikeGenre" ColumnName="LikeGenre" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserFollows">
+            <EntityTypeMapping TypeName="AgensiDBModel.UserFollow">
+              <MappingFragment StoreEntitySet="UserFollow">
+                <ScalarProperty Name="AddTime" ColumnName="AddTime" />
+                <ScalarProperty Name="FollowUserId" ColumnName="FollowUserId" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
               </MappingFragment>
             </EntityTypeMapping>

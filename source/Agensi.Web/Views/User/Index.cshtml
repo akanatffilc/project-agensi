@@ -12,6 +12,7 @@
     <br/><br/>
 }
 
+<h2>Base Data</h2>
 <table class="table">
     <tr>
         <td>Image</td>
@@ -47,3 +48,31 @@
     </tr>
 </table>
 
+<h2>Follow Data</h2>
+@if (!Model.LoginUser.IsFollowUser(Model.ViewUser.UserId))
+{
+    using (@Html.BeginForm("AddFollowUser", "User"))
+    {
+        <input type="hidden" name="followUserId" value="@Model.ViewUser.UserId" />
+        <button type="submit" class="btn btn-default">Follow</button>
+    }
+}
+else
+{
+    using (@Html.BeginForm("DeleteFollowUser", "User"))
+    {
+        <input type="hidden" name="followUserId" value="@Model.ViewUser.UserId" />
+        <button type="submit" class="btn btn-default">Followed</button>
+    }
+}
+<h4>FollowList</h4>
+@foreach(var followUser in Model.ViewUser.FollowUsers)
+{
+    <div>・@followUser.UserName</div><br/>
+}
+<br/>
+<h4>FollowerList</h4>
+@foreach (var followerUser in Model.ViewUser.FollowerUsers)
+{
+    <div>・@followerUser.UserName</div><br/>
+}
