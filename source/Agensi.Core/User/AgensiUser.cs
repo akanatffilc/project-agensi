@@ -29,7 +29,7 @@ namespace Agensi.Core.User
             UserId = userId;
         }
 
-        //TODO:キャッシュにした方がいい
+        //TODO:絶対キャッシュにした方がいい
         public string UserName
         {
             get

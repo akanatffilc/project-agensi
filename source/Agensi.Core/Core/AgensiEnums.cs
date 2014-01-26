@@ -30,5 +30,11 @@ namespace Agensi.Core.Core
             Text = 2,
             Video = 3,
         }
+
+        public enum CommentViewFlug
+        {
+            NonDisplay = 0,
+            Display = 1,
+        }
     }
 }

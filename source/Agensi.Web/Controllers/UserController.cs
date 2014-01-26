@@ -71,5 +71,14 @@ namespace Agensi.Web.Controllers
 
             return RedirectToAction("Index", "User", new { viewUserId = followUserId });
         }
+
+        [HttpPost]
+        public ActionResult AddComment(string toUserId,string comment)
+        {
+            var manager = LoginUser.CreateCommentManager();
+            manager.AddComment(toUserId,comment);
+
+            return RedirectToAction("Index", "User", new { viewUserId = toUserId });
+        }
 	}
 }

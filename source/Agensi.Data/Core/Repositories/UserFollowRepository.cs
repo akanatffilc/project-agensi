@@ -19,7 +19,7 @@ namespace Agensi.Data.Core.Repositories
 
         public UserFollow[] FindByUserId(string userId)
         {
-            return context.UserFollows.ToArray();
+            return context.UserFollows.Where(x => x.UserId == userId).ToArray();
         }
 
         public UserFollow[] FindByFollowUserId(string userId)

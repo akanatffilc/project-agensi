@@ -1,4 +1,5 @@
-﻿using Agensi.Core.User.Follow;
+﻿using Agensi.Core.User.Comment;
+using Agensi.Core.User.Follow;
 using Agensi.Core.User.Profile;
 using System;
 using System.Collections.Generic;
@@ -22,6 +23,13 @@ namespace Agensi.Core.User
         {
             return _followManager ??
                 (_followManager = new FollowManager(this));
+        }
+
+        private CommentManager _commentManager;
+        public CommentManager CreateCommentManager()
+        {
+            return _commentManager ??
+                (_commentManager = new CommentManager(this));
         }
     }
 }

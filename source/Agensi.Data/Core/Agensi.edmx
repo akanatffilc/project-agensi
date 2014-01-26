@@ -130,6 +130,18 @@
           <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
           <Property Name="AddTime" Type="datetime" Nullable="false" />
         </EntityType>
+        <EntityType Name="UserComment">
+          <Key>
+            <PropertyRef Name="CommentId" />
+          </Key>
+          <Property Name="CommentId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FromUserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ToUserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Comment" Type="nvarchar" MaxLength="2000" Nullable="false" />
+          <Property Name="ViewFlag" Type="int" Nullable="false" />
+          <Property Name="AddTime" Type="datetime" Nullable="false" />
+          <Property Name="UpdateTime" Type="datetime" Nullable="false" />
+        </EntityType>
         <EntityType Name="UserFollow">
           <Key>
             <PropertyRef Name="UserId" />
@@ -247,6 +259,7 @@
           <EntitySet Name="Query" EntityType="Self.Query" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="QueryVote" EntityType="Self.QueryVote" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="QueryVoteDown" EntityType="Self.QueryVoteDown" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserComment" EntityType="Self.UserComment" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserFollow" EntityType="Self.UserFollow" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserProfile" EntityType="Self.UserProfile" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserState" EntityType="Self.UserState" Schema="dbo" store:Type="Tables" />
@@ -303,6 +316,7 @@
           <EntitySet Name="UserStates" EntityType="AgensiDBModel.UserState" />
           <EntitySet Name="UserProfiles" EntityType="AgensiDBModel.UserProfile" />
           <EntitySet Name="UserFollows" EntityType="AgensiDBModel.UserFollow" />
+          <EntitySet Name="UserComments" EntityType="AgensiDBModel.UserComment" />
           </EntityContainer>
         <EntityType Name="AspNetRole">
           <Key>
@@ -506,6 +520,18 @@
           <Property Name="FollowUserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Name="AddTime" Type="DateTime" Nullable="false" Precision="3" />
         </EntityType>
+        <EntityType Name="UserComment">
+          <Key>
+            <PropertyRef Name="CommentId" />
+          </Key>
+          <Property Name="CommentId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FromUserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ToUserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Comment" Type="String" Nullable="false" MaxLength="2000" FixedLength="false" Unicode="true" />
+          <Property Name="ViewFlag" Type="Int32" Nullable="false" />
+          <Property Name="AddTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UpdateTime" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -688,6 +714,19 @@
                 <ScalarProperty Name="AddTime" ColumnName="AddTime" />
                 <ScalarProperty Name="FollowUserId" ColumnName="FollowUserId" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserComments">
+            <EntityTypeMapping TypeName="AgensiDBModel.UserComment">
+              <MappingFragment StoreEntitySet="UserComment">
+                <ScalarProperty Name="UpdateTime" ColumnName="UpdateTime" />
+                <ScalarProperty Name="AddTime" ColumnName="AddTime" />
+                <ScalarProperty Name="ViewFlag" ColumnName="ViewFlag" />
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+                <ScalarProperty Name="ToUserId" ColumnName="ToUserId" />
+                <ScalarProperty Name="FromUserId" ColumnName="FromUserId" />
+                <ScalarProperty Name="CommentId" ColumnName="CommentId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

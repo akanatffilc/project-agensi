@@ -60,6 +60,7 @@
     <Compile Include="DataLogic\Core\QueryDataLogic.cs" />
     <Compile Include="DataLogic\Core\QueryVoteDataLogic.cs" />
     <Compile Include="DataLogic\Core\QueryVoteDownDataLogic.cs" />
+    <Compile Include="DataLogic\Core\UserCommentDataLogic.cs" />
     <Compile Include="DataLogic\Core\UserFollowDataLogic.cs" />
     <Compile Include="DataLogic\Core\UserProfileDataLogic.cs" />
     <Compile Include="DataLogic\Core\UserStateDataLogic.cs" />
@@ -71,6 +72,7 @@
     <Compile Include="User\AgensiUser.cs" />
     <Compile Include="User\AgensiUser_Manager.cs" />
     <Compile Include="User\AgensiUser_Profile.cs" />
+    <Compile Include="User\Comment\CommentManager.cs" />
     <Compile Include="User\Follow\FollowManager.cs" />
     <Compile Include="User\Profile\ProfileManager.cs" />
     <Compile Include="Util\ClassUtil.cs" />

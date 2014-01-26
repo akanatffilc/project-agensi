@@ -1,4 +1,5 @@
 ﻿using Agensi.Core.User;
+using Agensi.Data.Core;
 using Agensi.Web.Core.Models;
 using System;
 using System.Collections.Generic;
@@ -18,6 +19,21 @@ namespace Agensi.Web.Models.User
         public AgensiUser ViewUser { get; private set; }
 
         public bool IsMypage { get { return LoginUser.UserId == ViewUser.UserId; } }
+
+        private UserComment[] _userComments;
+        public UserComment[] UserComments
+        {
+            get
+            {
+                if (_userComments != null)
+                    return _userComments;
+
+                var manager = ViewUser.CreateCommentManager();
+                _userComments = manager.ToComments;
+
+                return _userComments;
+            }
+        }
 
     }
 }
