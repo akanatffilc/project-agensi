@@ -99,12 +99,16 @@
     <Compile Include="Core\IRepositories\IUserFollowRepository.cs" />
     <Compile Include="Core\IRepositories\IUserProfileRepository.cs" />
     <Compile Include="Core\IRepositories\IUserStateRepository.cs" />
+    <Compile Include="Core\IRepositories\IQueryViewRepository.cs" />
     <Compile Include="Core\IRepositories\IUserVoteDownRepository.cs" />
     <Compile Include="Core\IRepositories\IUserVoteRepository.cs" />
     <Compile Include="Core\LanguageMaster.cs">
       <DependentUpon>Agensi.tt</DependentUpon>
     </Compile>
     <Compile Include="Core\Query.cs">
+      <DependentUpon>Agensi.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Core\QueryView.cs">
       <DependentUpon>Agensi.tt</DependentUpon>
     </Compile>
     <Compile Include="Core\QueryVote.cs">
@@ -119,6 +123,7 @@
     <Compile Include="Core\Repositories\AnswerVoteDownRepository.cs" />
     <Compile Include="Core\Repositories\AnswerVoteRepository.cs" />
     <Compile Include="Core\Repositories\LanguageMasterRepository.cs" />
+    <Compile Include="Core\Repositories\QueryViewRepository.cs" />
     <Compile Include="Core\Repositories\QueryVoteDownRepository.cs" />
     <Compile Include="Core\Repositories\QueryVoteRepository.cs" />
     <Compile Include="Core\Repositories\UserCommentRepository.cs" />

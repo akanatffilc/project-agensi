@@ -1,4 +1,4 @@
-﻿// T4 コード生成がモデル 'C:\Users\翔平\Documents\GitHub\project-agensi\source\Agensi.Data\Core\Agensi.edmx' に対して有効です。 
+﻿// T4 コード生成がモデル 'C:\Users\agensi\Documents\GitHub\project-agensi\source\Agensi.Data\Core\Agensi.edmx' に対して有効です。 
 // レガシ コード生成を有効にするには、'コード生成方法' デザイナー
 // プロパティの値を 'レガシ ObjectContext' に変更します。このプロパティは、デザイナーでモデルが開かれている場合に [プロパティ] ウィンドウ
 // で使用できます。

@@ -26,6 +26,7 @@
         <EntityTypeShape EntityType="AgensiDBModel.UserProfile" Width="1.5" PointX="8.75" PointY="9.75" />
         <EntityTypeShape EntityType="AgensiDBModel.UserFollow" Width="1.5" PointX="0.75" PointY="10.75" />
         <EntityTypeShape EntityType="AgensiDBModel.UserComment" Width="1.5" PointX="10.75" PointY="6.75" />
+        <EntityTypeShape EntityType="AgensiDBModel.QueryView" Width="1.5" PointX="11.375" PointY="10.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
