@@ -60,6 +60,7 @@
     <Compile Include="DataLogic\Core\AnswerVoteDataLogic.cs" />
     <Compile Include="DataLogic\Core\AspNetUserDataLogic.cs" />
     <Compile Include="DataLogic\Core\QueryDataLogic.cs" />
+    <Compile Include="DataLogic\Core\QueryViewDataLogic.cs" />
     <Compile Include="DataLogic\Core\QueryVoteDataLogic.cs" />
     <Compile Include="DataLogic\Core\QueryVoteDownDataLogic.cs" />
     <Compile Include="DataLogic\Core\UserCommentDataLogic.cs" />

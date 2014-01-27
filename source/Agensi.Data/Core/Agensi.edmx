@@ -112,6 +112,15 @@
           <Property Name="QueryDate" Type="datetime" Nullable="false" />
           <Property Name="UpdateTime" Type="datetime" Nullable="false" />
         </EntityType>
+        <EntityType Name="QueryView">
+          <Key>
+            <PropertyRef Name="QueryId" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="QueryId" Type="bigint" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="AddTime" Type="datetime" Nullable="false" />
+        </EntityType>
         <EntityType Name="QueryVote">
           <Key>
             <PropertyRef Name="QueryId" />
@@ -257,6 +266,7 @@
           <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="LanguageMaster" EntityType="Self.LanguageMaster" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Query" EntityType="Self.Query" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="QueryView" EntityType="Self.QueryView" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="QueryVote" EntityType="Self.QueryVote" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="QueryVoteDown" EntityType="Self.QueryVoteDown" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserComment" EntityType="Self.UserComment" Schema="dbo" store:Type="Tables" />
@@ -317,6 +327,7 @@
           <EntitySet Name="UserProfiles" EntityType="AgensiDBModel.UserProfile" />
           <EntitySet Name="UserFollows" EntityType="AgensiDBModel.UserFollow" />
           <EntitySet Name="UserComments" EntityType="AgensiDBModel.UserComment" />
+          <EntitySet Name="QueryViews" EntityType="AgensiDBModel.QueryView" />
           </EntityContainer>
         <EntityType Name="AspNetRole">
           <Key>
@@ -532,6 +543,15 @@
           <Property Name="AddTime" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="UpdateTime" Type="DateTime" Nullable="false" Precision="3" />
         </EntityType>
+        <EntityType Name="QueryView">
+          <Key>
+            <PropertyRef Name="QueryId" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="QueryId" Type="Int64" Nullable="false" />
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="AddTime" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -727,6 +747,15 @@
                 <ScalarProperty Name="ToUserId" ColumnName="ToUserId" />
                 <ScalarProperty Name="FromUserId" ColumnName="FromUserId" />
                 <ScalarProperty Name="CommentId" ColumnName="CommentId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="QueryViews">
+            <EntityTypeMapping TypeName="AgensiDBModel.QueryView">
+              <MappingFragment StoreEntitySet="QueryView">
+                <ScalarProperty Name="AddTime" ColumnName="AddTime" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="QueryId" ColumnName="QueryId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

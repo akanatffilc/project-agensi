@@ -36,6 +36,7 @@ namespace Agensi.Core.Board
         private Lazy<QueryVoteDataLogic> QueryVoteDataLogic = new Lazy<QueryVoteDataLogic>(() => { return new QueryVoteDataLogic(); });
         private Lazy<QueryVoteDownDataLogic> QueryVoteDownDataLogic = new Lazy<QueryVoteDownDataLogic>(() => { return new QueryVoteDownDataLogic(); });
         private Lazy<AnswerDataLogic> AnswerDataLogic = new Lazy<AnswerDataLogic>(() => { return new AnswerDataLogic(); });
+        private Lazy<QueryViewDataLogic> QueryViewDataLogic = new Lazy<QueryViewDataLogic>(() => { return new QueryViewDataLogic(); });
 
 
         private readonly Query Query;
@@ -72,5 +73,21 @@ namespace Agensi.Core.Board
 
         private QueryVoteDown[] _voteDowns;
         public QueryVoteDown[] VoteDowns { get { return _voteDowns ?? (_voteDowns = QueryVoteDownDataLogic.Value.FindByQueryId(Query.QueryId)); } }
+
+        private QueryView[] _queryViews;
+        private QueryView[] QueryViews
+        {
+            get
+            {
+                if (_queryViews != null)
+                    return _queryViews;
+
+                _queryViews = QueryViewDataLogic.Value.FindByQueryId(QueryId);
+
+                return _queryViews;
+            }
+        }
+
+        public long Views { get { return QueryViews.Count(); } }
     }
 }

@@ -19,6 +19,8 @@ namespace Agensi.Web.Controllers
         {
             var model = new BoardIndexModel(LoginUser);
             return View(model);
+
+            
         }
 
         public ActionResult Ask()
@@ -46,6 +48,14 @@ namespace Agensi.Web.Controllers
         public ActionResult Thread(long queryId)
         {
             var model = new ThreadModel(LoginUser, queryId);
+
+            if(User.Identity.IsAuthenticated)
+            {
+                //TODO: Refactor suru hituyou ari
+                AgensiQueryCommands.ViewCountUp(queryId, LoginUser.UserId);
+
+            }
+            
             return View(model);
         }
 
