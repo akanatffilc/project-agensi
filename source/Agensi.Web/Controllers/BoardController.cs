@@ -27,6 +27,11 @@ namespace Agensi.Web.Controllers
             return View(model);
         }
 
+        /// <summary>
+        /// TODO: JavascriptからToLanguageをまとめて送りたい
+        /// </summary>
+        /// <param name="query"></param>
+        /// <returns></returns>
         [HttpPost]
         public ActionResult AskExecute(Query query)
         {

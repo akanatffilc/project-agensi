@@ -17,10 +17,10 @@ namespace Agensi.Web.Models.Board
 
         public Query AskQuery { get { return new Query(); } }
 
-        public AgensiLanguage[] Languages { get { return AgensiLanguage.AllCreate(); } }
+        public AgensiLanguage[] AllLanguage { get { return AgensiLanguageManager.AllLanguage; } }
 
-        public MediaCategory[] MediaCategories { get { return MediaCategory.AllCreate(); } }
+        public MediaCategory[] MediaCategories { get { return MediaCategoryManager.AllMediaCategory; } }
 
-        public Genre[] Genres { get { return Genre.AllCreate(); } }
+        public Genre[] AllGenre { get { return GenreManager.AllGenre; } }
     }
 }

@@ -32,11 +32,11 @@
     </tr>
     <tr>
         <td>LikeLanguage</td>
-        <td>@Model.ViewUser.LikeLanguage</td>
+        <td>@string.Join(",",Model.ViewUser.LikeLanguage.Select(x => x.Name))</td>
     </tr>
     <tr>
         <td>LikeGenre</td>
-        <td>@Model.ViewUser.LikeGenre</td>
+        <td>@string.Join(",", Model.ViewUser.LikeGenre.Select(x => x.Name))</td>
     </tr>
     <tr>
         <td>QueryNum</td>

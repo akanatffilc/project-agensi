@@ -18,7 +18,7 @@
             <td>ジャンル</td>
             <td>
                 <select name="@ClassUtil.GetName(() => Model.AskQuery.Genre)">
-                    @foreach(var genre in @Model.Genres)
+                    @foreach (var genre in @Model.AllGenre)
                     {
                         <option value="@genre.GenreId">@genre.Name</option>
                     }
@@ -40,7 +40,7 @@
             <td>言語</td>
             <td>
                 <select name="@ClassUtil.GetName(() => Model.AskQuery.LanguageId)">
-                    @foreach (var lanuguage in @Model.Languages)
+                    @foreach (var lanuguage in @Model.AllLanguage)
                     {
                         <option value="@lanuguage.LanguageId">@lanuguage.Name</option>
                     }
@@ -50,12 +50,10 @@
         <tr>
             <td>翻訳してほしい言語</td>
             <td>
-                <select name="@ClassUtil.GetName(() => Model.AskQuery.ToLanguage)">
-                @foreach (var lanuguage in @Model.Languages)
+                @foreach (var lanuguage in @Model.AllLanguage)
                 {
-                    <option value="@lanuguage.LanguageId">@lanuguage.Name</option>
+                    <input type="checkbox" name="@ClassUtil.GetName(() => Model.AskQuery.ToLanguage)" value="@lanuguage.LanguageId">@lanuguage.Name
                 }
-                </select>
             </td>
         </tr>
         <tr>

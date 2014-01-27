@@ -31,6 +31,13 @@ namespace Agensi.Web.Controllers
             return View(model);
         }
 
+        /// <summary>
+        /// TODO: JavaSciprtからlikeLanguage,likeGenreをまとめて送りたい
+        /// </summary>
+        /// <param name="profile"></param>
+        /// <param name="ProfileImage"></param>
+        /// <param name="name"></param>
+        /// <returns></returns>
         [HttpPost]
         public ActionResult EditConfirm([Bind(Exclude = "ProfileImage")] UserProfile profile,
             HttpPostedFileBase ProfileImage,

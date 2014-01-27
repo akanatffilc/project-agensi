@@ -15,12 +15,10 @@ namespace Agensi.Web.Models.Board
         public BoardIndexModel(AgensiUser loginUser)
             : base(loginUser)
         {
-            LoginUser = loginUser;
             AgensiQueries = new QueryDataLogic().FindAll()
                 .Select(x => new AgensiQuery(x)).ToArray();
         }
 
-        public AgensiUser LoginUser { get; private set; }
 
         public AgensiQuery[] AgensiQueries { get; private set; }
     }

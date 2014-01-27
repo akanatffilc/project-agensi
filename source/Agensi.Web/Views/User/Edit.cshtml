@@ -26,11 +26,13 @@
         </tr>
         <tr>
             <td>LikeLanguage</td>
-            <td><input type="text" name="@ClassUtil.GetName(() => Model.LoginUser.LikeLanguage)" value="@Model.LoginUser.LikeLanguage"/></td>
+            <td>@foreach (var language in @Model.AllLanguage) 
+                { <input type="checkbox" name="@ClassUtil.GetName(() => Model.LoginUser.LikeLanguage)" value="@language.LanguageId" />@(language.Name)}</td>
         </tr>
         <tr>
             <td>LikeGenre</td>
-            <td><input type="text" name="@ClassUtil.GetName(() => Model.LoginUser.LikeGenre)" value="@Model.LoginUser.LikeGenre"/></td>
+            <td>@foreach (var genre in @Model.AllGenre)
+            { <input type="checkbox" name="@ClassUtil.GetName(() => Model.LoginUser.LikeGenre)" value="@genre.GenreId" />@(genre.Name)}</td>
         </tr>
     </table>
     <button type="submit" class="btn btn-default" >Submit</button>    

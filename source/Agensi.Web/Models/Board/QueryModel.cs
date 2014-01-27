@@ -19,7 +19,7 @@ namespace Agensi.Web.Models.Board
             AgensiQuery = new AgensiQuery(queryId);
         }
 
-        public AgensiLanguage[] Languages { get { return AgensiLanguage.AllCreate(); } }
+        public AgensiLanguage[] Languages { get { return AgensiLanguageManager.AllLanguage; } }
         
     }
 }

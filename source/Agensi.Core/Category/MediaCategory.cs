@@ -9,13 +9,6 @@ namespace Agensi.Core.Category
 {
     public class MediaCategory
     {
-        public static MediaCategory[] AllCreate()
-        {
-            return Enum.GetValues(typeof(AgensiEnums.MediaCategory))
-                .Cast<AgensiEnums.MediaCategory>()
-                .Where(x => x != AgensiEnums.MediaCategory.Unknown)
-                .Select(x => new MediaCategory(x)).ToArray();
-        }
 
         public MediaCategory(int mediaCategoryId)
         {

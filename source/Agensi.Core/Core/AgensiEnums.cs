@@ -9,26 +9,28 @@ namespace Agensi.Core.Core
     public class AgensiEnums
     {
         [Flags]
-        public enum Language
+        public enum Language : long
         {
-            Unknown = 1,
-            Japanese = 2,
-            English = 4,
-            Chinese = 8,
+            Unknown = 0x0000000000000000,
+            Japanese = 0x0000000000000001,
+            English = 0x0000000000000002,
+            Chinese = 0x0000000000000004,
         }
 
-        public enum Genre
+        [Flags]
+        public enum Genre : long
         {
-            Unknown = 1,
-            IT = 2,
-            Food = 4,
+            Unknown = 0x0000000000000000,
+            IT = 0x0000000000000001,
+            Food = 0x0000000000000002,
         }
 
-        public enum MediaCategory
+        [Flags]
+        public enum MediaCategory : long
         {
-            Unknown = 1,
-            Text = 2,
-            Video = 3,
+            Unknown = 0x0000000000000000,
+            Text = 0x0000000000000001,
+            Video = 0x0000000000000002,
         }
 
         public enum CommentViewFlug

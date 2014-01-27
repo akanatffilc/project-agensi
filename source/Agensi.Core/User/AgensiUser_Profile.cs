@@ -1,4 +1,7 @@
-﻿using Agensi.Core.DataLogic.Core;
+﻿using Agensi.Core.Category;
+using Agensi.Core.Core;
+using Agensi.Core.DataLogic.Core;
+using Agensi.Core.Language;
 using Agensi.Core.Util;
 using Agensi.Data.Core;
 using System;
@@ -23,9 +26,25 @@ namespace Agensi.Core.User
             }
         }
 
-        public long LikeLanguage { get { return Profile != null ? Profile.LikeLanguage : 0; } }
+        public AgensiLanguage[] LikeLanguage
+        {
+            get
+            {
+                return Profile != null
+                    ? AgensiLanguageManager.ConvertToLanguage(Profile.LikeLanguage)
+                    : new AgensiLanguage[1] { new AgensiLanguage(AgensiEnums.Language.Unknown) };
+            }
+        }
 
-        public long LikeGenre { get { return Profile != null ? Profile.LikeGenre : 0; } }
+        public Genre[] LikeGenre 
+        {
+            get
+            {
+                return Profile != null
+                    ? GenreManager.ConvertToGenre(Profile.LikeGenre)
+                    : new Genre[1] { new Genre(AgensiEnums.Genre.Unknown) };
+            }
+        }
 
         public string Comment { get { return Profile != null ? Profile.Comment : ""; } }
 
