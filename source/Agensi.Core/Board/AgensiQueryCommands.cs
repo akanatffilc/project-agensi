@@ -14,7 +14,7 @@ namespace Agensi.Core.Board
         private static Lazy<QueryVoteDownDataLogic> QueryVoteDownDataLogic = new Lazy<QueryVoteDownDataLogic>(() => { return new QueryVoteDownDataLogic(); });
         private static Lazy<QueryViewDataLogic> QueryViewDataLogic = new Lazy<QueryViewDataLogic>(() => { return new QueryViewDataLogic(); });
 
-        public static void Vote(long queryId, string voteUid)
+        public static Task Vote(long queryId, string voteUid)
         {
             QueryVoteDataLogic.Value.Add(new QueryVote
             {
@@ -24,8 +24,8 @@ namespace Agensi.Core.Board
             });
             //return QueryVoteDataLogic.Value.AddAsync(new QueryVote
             //{
-            //    QueryId = QueryId,
-            //    Uid = voteUid,
+            //    QueryId = queryId,
+            //    UserId = voteUid,
             //    AddTime = DateTime.Now
             //});
         }

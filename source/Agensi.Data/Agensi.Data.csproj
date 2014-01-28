@@ -93,8 +93,10 @@
     <Compile Include="Core\IRepositories\IAnswerVoteDownRepository.cs" />
     <Compile Include="Core\IRepositories\IAnswerVoteRepository.cs" />
     <Compile Include="Core\IRepositories\ILanguageMasterRepository.cs" />
+    <Compile Include="Core\IRepositories\IQueryTagRepository.cs" />
     <Compile Include="Core\IRepositories\IQueryVoteDownRepository.cs" />
     <Compile Include="Core\IRepositories\IQueryVoteRepository.cs" />
+    <Compile Include="Core\IRepositories\ITagRepository.cs" />
     <Compile Include="Core\IRepositories\IUserCommentRepository.cs" />
     <Compile Include="Core\IRepositories\IUserFollowRepository.cs" />
     <Compile Include="Core\IRepositories\IUserProfileRepository.cs" />
@@ -106,6 +108,9 @@
       <DependentUpon>Agensi.tt</DependentUpon>
     </Compile>
     <Compile Include="Core\Query.cs">
+      <DependentUpon>Agensi.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Core\QueryTag.cs">
       <DependentUpon>Agensi.tt</DependentUpon>
     </Compile>
     <Compile Include="Core\QueryView.cs">
@@ -123,13 +128,18 @@
     <Compile Include="Core\Repositories\AnswerVoteDownRepository.cs" />
     <Compile Include="Core\Repositories\AnswerVoteRepository.cs" />
     <Compile Include="Core\Repositories\LanguageMasterRepository.cs" />
+    <Compile Include="Core\Repositories\QueryTagRepository.cs" />
     <Compile Include="Core\Repositories\QueryViewRepository.cs" />
     <Compile Include="Core\Repositories\QueryVoteDownRepository.cs" />
     <Compile Include="Core\Repositories\QueryVoteRepository.cs" />
+    <Compile Include="Core\Repositories\TagRepository.cs" />
     <Compile Include="Core\Repositories\UserCommentRepository.cs" />
     <Compile Include="Core\Repositories\UserFollowRepository.cs" />
     <Compile Include="Core\Repositories\UserProfileRepository.cs" />
     <Compile Include="Core\Repositories\UserStateRepository.cs" />
+    <Compile Include="Core\Tag.cs">
+      <DependentUpon>Agensi.tt</DependentUpon>
+    </Compile>
     <Compile Include="Core\UserComment.cs">
       <DependentUpon>Agensi.tt</DependentUpon>
     </Compile>

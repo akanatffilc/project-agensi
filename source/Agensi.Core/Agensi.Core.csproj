@@ -50,6 +50,7 @@
     <Compile Include="Board\AgensiAnswer.cs" />
     <Compile Include="Board\AgensiAnswerCommands.cs" />
     <Compile Include="Board\AgensiQueryCommands.cs" />
+    <Compile Include="Board\AgensiQueryTag\AgensiQueryTagManager.cs" />
     <Compile Include="Category\Genre.cs" />
     <Compile Include="Category\GenreManager.cs" />
     <Compile Include="Category\MediaCategory.cs" />
@@ -60,9 +61,11 @@
     <Compile Include="DataLogic\Core\AnswerVoteDataLogic.cs" />
     <Compile Include="DataLogic\Core\AspNetUserDataLogic.cs" />
     <Compile Include="DataLogic\Core\QueryDataLogic.cs" />
+    <Compile Include="DataLogic\Core\QueryTagDataLogic.cs" />
     <Compile Include="DataLogic\Core\QueryViewDataLogic.cs" />
     <Compile Include="DataLogic\Core\QueryVoteDataLogic.cs" />
     <Compile Include="DataLogic\Core\QueryVoteDownDataLogic.cs" />
+    <Compile Include="DataLogic\Core\TagDataLogic.cs" />
     <Compile Include="DataLogic\Core\UserCommentDataLogic.cs" />
     <Compile Include="DataLogic\Core\UserFollowDataLogic.cs" />
     <Compile Include="DataLogic\Core\UserProfileDataLogic.cs" />

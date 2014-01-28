@@ -37,9 +37,13 @@ namespace Agensi.Data.Core.Repositories
             context.QueryVotes.Remove(row);
         }
 
-        public Task AddAsync(QueryVote vote)
+        public async Task AddAsync(QueryVote vote)
         {
-            throw new NotImplementedException();
+            await Task.Run(() =>
+            {
+                context.QueryVotes.Add(vote);
+                context.SaveChangesAsync();
+            });
         }
 
         public Task DeleteAsync(QueryVote vote)
