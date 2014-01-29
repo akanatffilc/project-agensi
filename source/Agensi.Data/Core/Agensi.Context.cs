@@ -44,5 +44,7 @@ namespace Agensi.Data.Core
         public virtual DbSet<UserFollow> UserFollows { get; set; }
         public virtual DbSet<UserComment> UserComments { get; set; }
         public virtual DbSet<QueryView> QueryViews { get; set; }
+        public virtual DbSet<QueryTag> QueryTags { get; set; }
+        public virtual DbSet<Tag> Tags { get; set; }
     }
 }
