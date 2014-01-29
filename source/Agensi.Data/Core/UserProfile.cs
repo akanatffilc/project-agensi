@@ -15,7 +15,7 @@ namespace Agensi.Data.Core
     public partial class UserProfile
     {
         public string UserId { get; set; }
-        public long LikeGenre { get; set; }
+        public Nullable<long> LikeGenre { get; set; }
         public byte[] ProfileImage { get; set; }
         public string Comment { get; set; }
         public long LikeLanguage { get; set; }

@@ -15,11 +15,8 @@ namespace Agensi.Web.Models.User
             :base(loginUser)
         {
             AllLanguage = AgensiLanguageManager.AllLanguage;
-            AllGenre = GenreManager.AllGenre;
         }
 
         public AgensiLanguage[] AllLanguage { get; private set; }
-
-        public Genre[] AllGenre { get; private set; }
     }
 }

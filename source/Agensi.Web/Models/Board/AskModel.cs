@@ -16,11 +16,10 @@ namespace Agensi.Web.Models.Board
             :base(loginUser) { }
 
         public Query AskQuery { get { return new Query(); } }
+        public Tag[] Tag { get { return new Tag[0]; } }
 
         public AgensiLanguage[] AllLanguage { get { return AgensiLanguageManager.AllLanguage; } }
 
         public MediaCategory[] MediaCategories { get { return MediaCategoryManager.AllMediaCategory; } }
-
-        public Genre[] AllGenre { get { return GenreManager.AllGenre; } }
     }
 }

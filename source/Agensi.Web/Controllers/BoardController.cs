@@ -1,4 +1,5 @@
 ﻿using Agensi.Core.Board;
+using Agensi.Core.Board.AgensiQueryTag;
 using Agensi.Core.DataLogic.Core;
 using Agensi.Data.Core;
 using Agensi.Web.Core.Controllers;
@@ -35,13 +36,16 @@ namespace Agensi.Web.Controllers
         /// <param name="query"></param>
         /// <returns></returns>
         [HttpPost]
-        public ActionResult AskExecute(Query query)
+        public ActionResult AskExecute(Query query,string Tag = "")
         {
             query.OwnerUserId = LoginUser.UserId;
             query.QueryDate = DateTime.Now;
             query.UpdateTime = DateTime.Now;
 
             new QueryDataLogic().Add(query);
+            if (Tag != string.Empty)
+                AgensiQueryTagManager.AddQueryTag(query.QueryId, Tag);
+
             return RedirectToAction("Index");
         }
 

@@ -36,15 +36,15 @@ namespace Agensi.Core.User
             }
         }
 
-        public Genre[] LikeGenre 
-        {
-            get
-            {
-                return Profile != null
-                    ? GenreManager.ConvertToGenre(Profile.LikeGenre)
-                    : new Genre[1] { new Genre(AgensiEnums.Genre.Unknown) };
-            }
-        }
+        //public Genre[] LikeGenre 
+        //{
+        //    get
+        //    {
+        //        return Profile != null
+        //            ? GenreManager.ConvertToGenre(Profile.LikeGenre)
+        //            : new Genre[1] { new Genre(AgensiEnums.Genre.Unknown) };
+        //    }
+        //}
 
         public string Comment { get { return Profile != null ? Profile.Comment : ""; } }
 

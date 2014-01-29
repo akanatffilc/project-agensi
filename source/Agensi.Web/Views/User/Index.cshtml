@@ -44,7 +44,6 @@
         <div id="profile-query-num"><label>Questions</label>&nbsp;<span>@Model.ViewUser.QueryNum</span></div>
         <div id="profile-answer-num"><label>Answers</label>&nbsp;<span>@Model.ViewUser.AnswerNum</span></div>
         <div id="profile-like-language"><label>Prefered Language</label><br /><span>@string.Join(",", Model.ViewUser.LikeLanguage.Select(x => x.Name))</span></div>
-        <div id="profile-like-genre"><label>Prefered Genre</label><br /><span>@string.Join(",", Model.ViewUser.LikeGenre.Select(x => x.Name))</span></div>
     </div>
     <div id="profile-right">
         <h1>Comment</h1>

@@ -39,12 +39,19 @@ namespace Agensi.Data.Core.Repositories
 
         public Task AddAsync(QueryVoteDown voteDown)
         {
-            throw new NotImplementedException();
+            return Task.Run(() =>
+                {
+                    context.QueryVoteDowns.Add(voteDown);
+                });
         }
 
         public Task DeleteAsync(QueryVoteDown voteDown)
         {
-            throw new NotImplementedException();
+            return Task.Run(() =>
+            {
+                var row = context.QueryVoteDowns.Single(x => x.QueryId == voteDown.QueryId && x.UserId == voteDown.UserId);
+                context.QueryVoteDowns.Remove(row);
+            });
         }
 
         public void Save()

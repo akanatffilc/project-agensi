@@ -59,8 +59,7 @@ namespace Agensi.Core.Board
         public AgensiUser OwnerUser { get { return _ownerUser ?? (_ownerUser = AgensiUser.Create(Query.OwnerUserId)); } }
 
         public string Title { get { return Query.Title; } }
-        private Genre _genre;
-        public Genre Genre { get { return _genre ?? (_genre = new Genre(Query.Genre)); } }
+
         private MediaCategory _mediaCategory;
         public MediaCategory MediaCategory { get { return _mediaCategory ?? (_mediaCategory = new MediaCategory(Query.MediaCategory)); } }
         private AgensiLanguage _agensiLanguage;

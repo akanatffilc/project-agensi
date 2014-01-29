@@ -49,6 +49,7 @@
             </li>
         }
         <li class="list-group-item" style="text-align:left"><span class="glyphicon glyphicon-font"></span>&nbsp;ToLanguage:@Model.AgensiQuery.ToLanguage.Name</li>
+        <li class="list-group-item" style="text-align:left">Tags:&nbsp;@string.Join(",",@Model.AgensiQuery.QueryTags.Select(_ => _.TagName).ToArray())</li>
         <li class="list-group-item" style="text-align:right"><img style="width:50px;height:50px" src="@ImageUtil.ToImageSrc(@Model.AgensiQuery.OwnerUser.ProfileImage)" />QueryOwner:@Model.AgensiQuery.OwnerUser.UserName</li>
     </ul>
 </div>

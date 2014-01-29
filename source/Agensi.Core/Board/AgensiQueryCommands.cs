@@ -14,7 +14,7 @@ namespace Agensi.Core.Board
         private static Lazy<QueryVoteDownDataLogic> QueryVoteDownDataLogic = new Lazy<QueryVoteDownDataLogic>(() => { return new QueryVoteDownDataLogic(); });
         private static Lazy<QueryViewDataLogic> QueryViewDataLogic = new Lazy<QueryViewDataLogic>(() => { return new QueryViewDataLogic(); });
 
-        public static Task Vote(long queryId, string voteUid)
+        public static void Vote(long queryId, string voteUid)
         {
             QueryVoteDataLogic.Value.Add(new QueryVote
             {

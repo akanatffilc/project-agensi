@@ -37,18 +37,21 @@ namespace Agensi.Data.Core.Repositories
             context.QueryVotes.Remove(row);
         }
 
-        public async Task AddAsync(QueryVote vote)
+        public  Task AddAsync(QueryVote vote)
         {
-            await Task.Run(() =>
+            return Task.Run(() =>
             {
                 context.QueryVotes.Add(vote);
-                context.SaveChangesAsync();
             });
         }
 
         public Task DeleteAsync(QueryVote vote)
         {
-            throw new NotImplementedException();
+            return Task.Run(() =>
+            {
+                var row = context.QueryVotes.Single(x => x.QueryId == vote.QueryId && x.UserId == vote.UserId);
+                context.QueryVotes.Remove(row);
+            });
         }
 
         public void Save()

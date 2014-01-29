@@ -12,17 +12,6 @@
             <td><input type="text" name="@ClassUtil.GetName(() => Model.AskQuery.Title)" value="" /></td>
         </tr>
         <tr>
-            <td>ジャンル</td>
-            <td>
-                <select name="@ClassUtil.GetName(() => Model.AskQuery.Genre)">
-                    @foreach (var genre in @Model.AllGenre)
-                    {
-                        <option value="@genre.GenreId">@genre.Name</option>
-                    }
-                </select>
-            </td>
-        </tr>
-        <tr>
             <td>データ形式</td>
             <td>
                 <select name="@ClassUtil.GetName(() => Model.AskQuery.MediaCategory)">
@@ -52,6 +41,10 @@
                     <input type="checkbox" name="@ClassUtil.GetName(() => Model.AskQuery.ToLanguage)" value="@lanuguage.LanguageId">@lanuguage.Name
                 }
             </td>
+        </tr>
+        <tr>
+            <td>タグ</td>
+            <td><input type="text" name="@ClassUtil.GetName(() => Model.Tag)" value="" /></td>
         </tr>
         <tr>
             <td>テキスト</td>

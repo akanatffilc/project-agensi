@@ -39,17 +39,17 @@ namespace Agensi.Data.Core.Repositories
         }
 
 
-        public async Task AddAsync(AnswerVote vote)
+        public Task AddAsync(AnswerVote vote)
         {
-            await Task.Run(() =>
+            return Task.Run(() =>
                 {
                     context.AnswerVotes.Add(vote);
                 });
         }
 
-        public async Task DeleteAsync(AnswerVote vote)
+        public Task DeleteAsync(AnswerVote vote)
         {
-            await Task.Run(() =>
+            return Task.Run(() =>
                 {
                     var row = context.AnswerVotes.Single(x => x.AnswerId == vote.AnswerId && x.UserId == vote.UserId);
                     context.AnswerVotes.Remove(row);

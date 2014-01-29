@@ -35,6 +35,7 @@ namespace Agensi.Core.DataLogic.Core
             return _repository.FindByOwnerUserId(uid);
         }
 
+
         public void Add(Query query)
         {
             _repository.Add(query);
