@@ -3,8 +3,6 @@
 }
 @model Agensi.Web.Models.Board.BoardIndexModel
 
-<h2>Query一覧画面</h2>
-
 @if(@User.Identity.IsAuthenticated)
 {
     @Html.ActionLink("質問する", "Ask", null, new { @class = "btn btn-default" })
@@ -12,9 +10,9 @@
 
 @if (Model.AgensiQueries.Any())
 {
-    <h3>質問一覧</h3>
     <div class="query-table">
-        @foreach (var query in Model.AgensiQueries)
+        @{var now = DateTime.Now;}
+        @foreach (var query in Model.AgensiQueries.OrderByDescending(x => x.QueryDate))
         {
         <div class="query-row">
             <div class="query-row-vav">
@@ -26,11 +24,33 @@
                 <div class="query-row-title">@Html.ActionLink(@query.Title, "Thread", new { query.QueryId })</div>
                 <div class="query-row-details">
                     <div class="query-row-language">
-                        <span class="query-row-language-from">@query.Language.Name</span> >
-                        <span class="query-row-language-to">@query.ToLanguage.Name</span>
+                        <span class="query-row-language-from">@query.Language.Name</span> > <span class="query-row-language-to">@query.ToLanguage.Name</span>
                     </div>
-                    <div class="query-row-date">@query.QueryDate</div>
                     <div class="query-row-user"><a href="/user/index?viewUserId=@query.OwnerUser.UserId">@query.OwnerUser.UserName</a></div>
+                    <div class="query-row-date">
+                    @{
+                        var timeDiffString = "";
+                        var timeDiff = now - query.QueryDate;
+                        var seconds = (int)timeDiff.TotalSeconds;
+                        if (seconds < 60)
+                        {
+                            timeDiffString = string.Format("{0}秒前", seconds);
+                        }
+                        else if (seconds < 60 * 60)
+                        {
+                            timeDiffString = string.Format("{0}分前", (int)Math.Ceiling(seconds / 60.0));
+                        }
+                        else if (seconds < 60 * 60 * 24 * 7)
+                        {
+                            timeDiffString = string.Format("{0}日前", (int)Math.Ceiling(seconds / (60.0 * 60.0 * 24)));
+                        }
+                        else
+                        {
+                            timeDiffString = timeDiff.ToString();
+                        }
+                    } @timeDiffString
+                    </div>
+
                 </div>
             </div>
         </div>

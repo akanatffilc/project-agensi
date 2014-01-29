@@ -1,9 +1,11 @@
 ﻿body {
     padding-top: 50px;
     padding-bottom: 20px;
-    font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
-
+h4 {
+    color:grey;
+}
 /* Set padding to keep content from hitting the edges */
 .body-content {
     padding-left: 15px;
@@ -41,27 +43,61 @@ input[type="checkbox"].input-validation-error {
 .validation-summary-valid {
     display: none;
 }
-
+/* nav-bar */
+.navbar {
+    text-shadow: -1px -1px 0px grey;
+    border-bottom: 2px solid #DB623D;
+    min-height:30px;
+    background: #dd3700; /* Old browsers */
+    background: -moz-linear-gradient(top,  #dd3700 0%, #d13000 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#dd3700), color-stop(100%,#d13000)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,  #dd3700 0%,#d13000 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,  #dd3700 0%,#d13000 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top,  #dd3700 0%,#d13000 100%); /* IE10+ */
+    background: linear-gradient(to bottom,  #dd3700 0%,#d13000 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#dd3700', endColorstr='#d13000',GradientType=0 ); /* IE6-9 */
+}
+.navbar a {
+    color:white;
+}
+.navbar a:hover {
+    background: #ca3200; /* Old browsers */
+    background: -moz-linear-gradient(top,  #ca3200 0%, #c02d00 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ca3200), color-stop(100%,#c02d00)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,  #ca3200 0%,#c02d00 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,  #ca3200 0%,#c02d00 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top,  #ca3200 0%,#c02d00 100%); /* IE10+ */
+    background: linear-gradient(to bottom,  #ca3200 0%,#c02d00 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ca3200', endColorstr='#c02d00',GradientType=0 ); /* IE6-9 */
+}
+.navbar-brand,
+.navbar-nav > li > a {
+    padding:10px 15px;
+}
+.navbar-brand {
+    font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
 /* query-table css*/
 .query-table {
-
+    max-width:760px;
+    font-size:12px;
 }
 .query-row {
-    height:100px;
-    padding: 20px 0px;
+    padding: 10px 0px;
 }
 .query-row:not(:last-child){
     border-bottom: 1px solid lightgrey;
 }
 .query-row > div {
-    float:left;
+    display:inline-block;
+    vertical-align:top;
 }
 .query-row-vav {
-    width:200px;
+    font-size:10px;
 }
 .query-row-vav > div{
     float:left;
-    width: 64px;
+    width: 50px;
     text-align:center;
 }
 .query-row-vav > div span{
@@ -77,7 +113,7 @@ input[type="checkbox"].input-validation-error {
 
 }
 .query-row-right {
-    width: 520px;
+    width: 600px;
 }
 .query-row-title {
     font-size:18px;
@@ -91,15 +127,129 @@ input[type="checkbox"].input-validation-error {
 }
 .query-row-language {
     float:left;
-    width:130px;
+    padding: 1px 5px;
     background: lightblue;
     color: darkblue;
     text-align:center;
 }
 .query-row-date {
     float:right;
-    width:140px;
+    margin-right: 5px;
+    color:grey;
 }
 .query-row-user {
     float:right;
+}
+
+/* footer */
+footer div {
+    text-align:center;
+}
+
+/* Login */
+.login {
+    color:#7C7C7C;
+    width: 240px;
+    margin: auto;
+}
+.login > div {
+    text-align:center;
+}
+#socialLoginForm,
+#loginForm {
+    
+}
+#socialLoginForm button {
+    width: 240px;
+    height: 52px;
+    border:none;
+}
+#socialLoginForm button:hover {
+    box-shadow: 0px 0px 3px 3px #DBDBDB;
+}
+#socialLoginForm button.Facebook {
+    background: url('/image/login/fb_signin.png') no-repeat;
+    background-size: 240px 52px;
+}
+#socialLoginForm button.Google {
+    background: url('/image/login/gp_signin.png') no-repeat;
+    background-size: 240px 52px;
+}
+#socialLoginForm button.Twitter {
+    background: url('/image/login/tw_signin.png') no-repeat;
+    background-size: 240px 52px;
+}
+#loginForm label{
+    padding-top:0px;
+}
+#loginForm .form-group{
+    margin-bottom: 5px;
+}
+#loginForm .form-control {
+    padding: 0px 4px;
+    width: 240px;
+    margin: auto;
+}
+#loginForm p {
+    margin-top: 20px;
+    font-size:12px;
+}
+#loginForm input[type="submit"] {
+    width: 100px;
+}
+
+/* profile */
+#profile {
+    width:940px;
+    margin:auto;
+    min-height:500px;
+}
+#profile-top {
+    
+}
+#profile-top-catch,
+#profile-top-follow {
+    display:inline-block;
+    vertical-align: top;
+}
+#profile-top-catch {
+    width:790px;
+}
+#profile-top-name {
+    font-size: 20px;
+    font-weight: bold;
+}
+#profile-top-comment {
+    
+}
+#profile-top-follow {
+    max-width: 150px;
+}
+#profile-top-follow button {
+    max-width: 150px;
+    overflow:hidden;
+}
+#profile-left,
+#profile-right {
+    float:left;
+}
+#profile-left {
+    width: 160px;
+    margin-right: 10px;
+}
+#profile-image {
+    margin-bottom: 10px;
+}
+#profile-left label {
+    color: #006699;
+}
+#profile-left span {
+    color: grey;
+}
+#profile-like-language,
+#profile-like-genre {
+    line-height: 1em;
+}
+#profile-right {
+
 }

@@ -1,100 +1,68 @@
-﻿@{
-    ViewBag.Title = "Profile";
-}
-@using Agensi.Core.Util;
+﻿@using Agensi.Core.Util;
 @model Agensi.Web.Models.User.UserIndexModel
-
-<h2>@Model.ViewUser.UserName's Profile</h2>
 
 @if (@Model.IsMypage)
 {
     @Html.ActionLink("Edit", "Edit", "User", new { @class = "btn btn-default" });
-    <br /><br />
 }
-
-<h2>Base Data</h2>
-<table class="table">
-    <tr>
-        <td>Image</td>
-        <td><img src="@ImageUtil.ToImageSrc(Model.ViewUser.ProfileImage)" /></td>
-    </tr>
-    <tr>
-        <td>UserId</td>
-        <td>@Model.ViewUser.UserId</td>
-    </tr>
-    <tr>
-        <td>UserName</td>
-        <td>@Model.ViewUser.UserName</td>
-    </tr>
-    <tr>
-        <td>Comment</td>
-        <td>@Model.ViewUser.Comment</td>
-    </tr>
-    <tr>
-        <td>LikeLanguage</td>
-        <td>@string.Join(",",Model.ViewUser.LikeLanguage.Select(x => x.Name))</td>
-    </tr>
-    <tr>
-        <td>LikeGenre</td>
-        <td>@string.Join(",", Model.ViewUser.LikeGenre.Select(x => x.Name))</td>
-    </tr>
-    <tr>
-        <td>QueryNum</td>
-        <td>@Model.ViewUser.QueryNum</td>
-    </tr>
-    <tr>
-        <td>AnswerNum</td>
-        <td>@Model.ViewUser.AnswerNum</td>
-    </tr>
-</table>
-
-<h2>Follow Data</h2>
-@if (User.Identity.IsAuthenticated)
-{
-    if (!Model.LoginUser.IsFollowUser(Model.ViewUser.UserId))
-    {
-        using (@Html.BeginForm("AddFollowUser", "User"))
+<div id="profile">
+    <div id="profile-top">
+        <div id="profile-top-catch">
+            <p id="profile-top-name">@Model.ViewUser.UserName - @Model.ViewUser.UserId</p>
+            <p id="profile-top-comment">@Model.ViewUser.Comment</p>
+            </div>
+        <div id="profile-top-follow">
+            @if (User.Identity.IsAuthenticated)
+            {
+                if (!Model.LoginUser.IsFollowUser(Model.ViewUser.UserId))
+                {
+                    using (@Html.BeginForm("AddFollowUser", "User"))
+                    {
+                        <input type="hidden" name="followUserId" value="@Model.ViewUser.UserId" />
+                        <button type="submit" class="btn btn-success">Follow @Model.ViewUser.UserName</button>
+                    }
+                }
+                else
+                {
+                    using (@Html.BeginForm("DeleteFollowUser", "User"))
+                    {
+                        <input type="hidden" name="followUserId" value="@Model.ViewUser.UserId" />
+                        <button type="submit" class="btn btn-success">Following @Model.ViewUser.UserName</button>
+                    }
+                }
+            }
+            else
+            {
+                <button type="submit" class="btn btn-success">Follow @Model.ViewUser.UserName</button>
+            }
+        </div>
+    </div>
+    <div id="profile-left">
+        <div id="profile-image"><img src="@ImageUtil.ToImageSrc(Model.ViewUser.ProfileImage)" /></div>       
+        <div id="profile-followers"><label>Followers</label>&nbsp;<span>@Model.ViewUser.FollowerUsers.Count()</span></div>
+        <div id="profile-following"><label>Following</label>&nbsp;<span>@Model.ViewUser.FollowUsers.Count()</span></div>
+        <div id="profile-query-num"><label>Questions</label>&nbsp;<span>@Model.ViewUser.QueryNum</span></div>
+        <div id="profile-answer-num"><label>Answers</label>&nbsp;<span>@Model.ViewUser.AnswerNum</span></div>
+        <div id="profile-like-language"><label>Prefered Language</label><br /><span>@string.Join(",", Model.ViewUser.LikeLanguage.Select(x => x.Name))</span></div>
+        <div id="profile-like-genre"><label>Prefered Genre</label><br /><span>@string.Join(",", Model.ViewUser.LikeGenre.Select(x => x.Name))</span></div>
+    </div>
+    <div id="profile-right">
+        <h1>Comment</h1>
+        @foreach (var comment in @Model.UserComments)
         {
-            <input type="hidden" name="followUserId" value="@Model.ViewUser.UserId" />
-            <button type="submit" class="btn btn-default">Follow</button>
+            <div>From @comment.FromUserId</div>
+            <div>@comment.Comment</div>
         }
-    }
-    else
-    {
-        using (@Html.BeginForm("DeleteFollowUser", "User"))
+
+        @if (@User.Identity.IsAuthenticated)
         {
-            <input type="hidden" name="followUserId" value="@Model.ViewUser.UserId" />
-            <button type="submit" class="btn btn-default">Followed</button>
+            <h5>SendComment</h5>
+            using (@Html.BeginForm("AddComment", "User", FormMethod.Post))
+            {
+                <input type="text" name="comment" />
+                <input type="hidden" name="toUserId" value="@Model.ViewUser.UserId" />
+                <button type="submit" class="btn btn-default">Send</button>
+            }
         }
-    }
-}
-<h4>FollowList</h4>
-@foreach (var followUser in Model.ViewUser.FollowUsers)
-{
-    <div>・@followUser.UserName</div>
-}
-<br />
-<h4>FollowerList</h4>
-@foreach (var followerUser in Model.ViewUser.FollowerUsers)
-{
-    <div>・@followerUser.UserName</div>
-}
-
-<br />
-<h1>Comment</h1>
-@foreach (var comment in @Model.UserComments)
-{
-    <div>From @comment.FromUserId</div>
-    <div>@comment.Comment</div>
-}
-
-@if (@User.Identity.IsAuthenticated)
-{
-    <h5>SendComment</h5>
-    using (@Html.BeginForm("AddComment", "User", FormMethod.Post))
-    {
-        <input type="text" name="comment" />
-        <input type="hidden" name="toUserId" value="@Model.ViewUser.UserId" />
-        <button type="submit" class="btn btn-default">Send</button>
-    }
-}
+    </div>
+</div>

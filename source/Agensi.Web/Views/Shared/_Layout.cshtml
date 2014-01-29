@@ -11,22 +11,13 @@
     @Scripts.Render("~/bundles/googleanalytics")
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("AgensiHome"
+                @Html.ActionLink("agensi"
                 , "Index", "Board", null, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                </ul>
                 @Html.Partial("_LoginPartial")
             </div>
         </div>
@@ -35,7 +26,8 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - agensi</p>
+            <div>@Html.ActionLink("About", "About", "Home")&nbsp;&nbsp;@Html.ActionLink("Contact", "Contact", "Home")</div>
+            <p>&copy; @DateTime.Now.Year - agensi alpha 1.0</p>
         </footer>
     </div>
 
