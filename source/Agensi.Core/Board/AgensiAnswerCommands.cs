@@ -47,34 +47,34 @@ namespace Agensi.Core.Board
 
         public static void VoteDown(long answerId, string voteDownUid)
         {
-            AnswerVoteDownDataLogic.Value.Add(new AnswerVoteDown
+            //AnswerVoteDownDataLogic.Value.Add(new AnswerVoteDown
+            //{
+            //    AnswerId = answerId,
+            //    UserId = voteDownUid,
+            //    AddTime = DateTime.Now
+            //});
+            AnswerVoteDownDataLogic.Value.AddAsync(new AnswerVoteDown
             {
                 AnswerId = answerId,
                 UserId = voteDownUid,
                 AddTime = DateTime.Now
             });
-            //return AnswerVoteDownDataLogic.Value.AddAsync(new AnswerVoteDown
-            //{
-            //    AnswerId = answerId,
-            //    Uid = voteDownUid,
-            //    AddTime = DateTime.Now
-            //});
         }
 
         public static void VoteDownCancel(long answerId, string voteDownUid)
         {
-            AnswerVoteDownDataLogic.Value.Delete(new AnswerVoteDown
+            //AnswerVoteDownDataLogic.Value.Delete(new AnswerVoteDown
+            //{
+            //    AnswerId = answerId,
+            //    UserId = voteDownUid,
+            //    AddTime = DateTime.Now
+            //});
+            AnswerVoteDownDataLogic.Value.DeleteAsync(new AnswerVoteDown
             {
                 AnswerId = answerId,
                 UserId = voteDownUid,
                 AddTime = DateTime.Now
             });
-            //return AnswerVoteDownDataLogic.Value.DeleteAsync(new AnswerVoteDown
-            //{
-            //    AnswerId = answerId,
-            //    Uid = voteDownUid,
-            //    AddTime = DateTime.Now
-            //});
         }
     }
 }

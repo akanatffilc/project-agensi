@@ -27,12 +27,20 @@ namespace Agensi.Core.DataLogic.Core
 
         public Task AddAsync(AnswerVoteDown voteDown)
         {
-            return _repository.AddAsync(voteDown);
+            return _repository.AddAsync(voteDown)
+                .ContinueWith((prevTask) =>
+                {
+                    _repository.Save();
+                });
         }
 
         public Task DeleteAsync(AnswerVoteDown voteDown)
         {
-            return _repository.DeleteAsync(voteDown);
+            return _repository.DeleteAsync(voteDown)
+                .ContinueWith((prevTask) =>
+                {
+                    _repository.Save();
+                });
         }
 
         public void Add(AnswerVoteDown voteDown)
