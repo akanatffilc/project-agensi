@@ -1,4 +1,5 @@
 ﻿using Agensi.Core.Board;
+using Agensi.Core.Core;
 using Agensi.Web.api.Board.Models;
 using Agensi.Web.Core.Controllers;
 using System;
@@ -14,34 +15,37 @@ namespace Agensi.Web.api.Board
     public class BoardApiController : AgensiApiController
     {
         [HttpPost]
-        public VoteResult QueryVote(long queryId)
+        public VoteResult QueryVoteUp(long queryId)
         {
             var query = AgensiQuery.Create(queryId);
             if (!query.IsExists)
                 return new VoteResult { IsSuccess = false };
             var manager = LoginUser.CreateBoardManager();
             var commands = manager.CreateQueryCommands(query);
-
-            if(!query.IsVoted(LoginUser.UserId))
+            return new VoteResult
             {
-                return new VoteResult
-                {
-                    IsSuccess = true,
-                    VoteStatus = commands.VoteUp()
-                };
-            }
-            else
-            {
-                return new VoteResult
-                {
-                    IsSuccess = true,
-                    VoteStatus = commands.VoteDown()
-                };
-            }
+                IsSuccess = true,
+                VoteStatus = commands.VoteUp()
+            };
         }
 
         [HttpPost]
-        public VoteResult AnswerVote(long answerId)
+        public VoteResult QueryVoteDown(long queryId)
+        {
+            var query = AgensiQuery.Create(queryId);
+            if (!query.IsExists)
+                return new VoteResult { IsSuccess = false };
+            var manager = LoginUser.CreateBoardManager();
+            var commands = manager.CreateQueryCommands(query);
+            return new VoteResult
+            {
+                IsSuccess = true,
+                VoteStatus = commands.VoteDown()
+            };
+        }
+
+        [HttpPost]
+        public VoteResult AnswerVoteUp(long answerId)
         {
             var answer = AgensiAnswer.Create(answerId);
             if (!answer.IsExists)
@@ -49,22 +53,27 @@ namespace Agensi.Web.api.Board
             var manager = LoginUser.CreateBoardManager();
             var commands = manager.CreateAnswerCommands(answer);
 
-            if (!answer.IsVoted(LoginUser.UserId))
+            return new VoteResult
             {
-                return new VoteResult
-                {
-                    IsSuccess = true,
-                    VoteStatus = commands.VoteUp()
-                };
-            }
-            else
+                IsSuccess = true,
+                VoteStatus = commands.VoteUp()
+            };
+        }
+
+        [HttpPost]
+        public VoteResult AnswerVoteDown(long answerId)
+        {
+            var answer = AgensiAnswer.Create(answerId);
+            if (!answer.IsExists)
+                return new VoteResult { IsSuccess = false };
+            var manager = LoginUser.CreateBoardManager();
+            var commands = manager.CreateAnswerCommands(answer);
+
+            return new VoteResult
             {
-                return new VoteResult
-                {
-                    IsSuccess = true,
-                    VoteStatus = commands.VoteDown()
-                };
-            }
+                IsSuccess = true,
+                VoteStatus = commands.VoteDown()
+            };
         }
     }
 }

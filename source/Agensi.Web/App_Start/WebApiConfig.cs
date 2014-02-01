@@ -11,16 +11,19 @@ namespace Agensi.Web
         {
             config.MapHttpAttributeRoutes();
 
+            #region /api/user
             config.Routes.MapHttpRoute(
                 name: "UserFollow",
                 routeTemplate: "api/user/follow/{toUserId}",
                 defaults: new { controller = "UserApi", action = "Follow"}
             );
+            #endregion
 
+            #region /api/board
             config.Routes.MapHttpRoute(
                 name: "QueryVote",
-                routeTemplate: "api/board/queryvote/{queryId}",
-                defaults: new { controller = "BoardApi", action = "QueryVote" }
+                routeTemplate: "api/board/queryvoteup/{queryId}",
+                defaults: new { controller = "BoardApi", action = "QueryVoteUp" }
             );
 
             config.Routes.MapHttpRoute(
@@ -31,8 +34,8 @@ namespace Agensi.Web
 
             config.Routes.MapHttpRoute(
                 name: "AnswerVote",
-                routeTemplate: "api/board/answervote/{answerId}",
-                defaults: new { controller = "BoardApi", action = "AnswerVote" }
+                routeTemplate: "api/board/answervoteup/{answerId}",
+                defaults: new { controller = "BoardApi", action = "AnswerVoteUp" }
             );
 
             config.Routes.MapHttpRoute(
@@ -40,13 +43,7 @@ namespace Agensi.Web
                 routeTemplate: "api/board/answerotedown/{answerId}",
                 defaults: new { controller = "BoardApi", action = "AnswerVoteDown" }
             );
-
-            config.Routes.MapHttpRoute(
-                name: "DefaultApi",
-                routeTemplate: "api/{controller}/{id}",
-                defaults: new { id = RouteParameter.Optional }
-            );
-
+            #endregion
 
             config.Formatters.Remove(config.Formatters.XmlFormatter);
         }
