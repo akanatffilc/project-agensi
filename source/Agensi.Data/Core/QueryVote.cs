@@ -16,6 +16,7 @@ namespace Agensi.Data.Core
     {
         public long QueryId { get; set; }
         public string UserId { get; set; }
+        public int VoteStatus { get; set; }
         public System.DateTime AddTime { get; set; }
     }
 }

@@ -52,12 +52,14 @@ namespace Agensi.Web.Controllers
         public ActionResult Thread(long queryId)
         {
             var model = new ThreadModel(LoginUser, queryId);
+            if (!model.AgensiQuery.IsExists)
+                return RedirectToAction("Index");
 
             if(User.Identity.IsAuthenticated)
             {
-                //TODO: Refactor suru hituyou ari
-                AgensiQueryCommands.ViewCountUp(queryId, LoginUser.UserId);
-
+                var manager = LoginUser.CreateBoardManager();
+                var commands = manager.CreateQueryCommands(model.AgensiQuery);
+                commands.ViewCountUp();
             }
             
             return View(model);
@@ -76,25 +78,33 @@ namespace Agensi.Web.Controllers
         [HttpPost]
         public ActionResult AnswerVote(long answerId)
         {
-            AgensiAnswerCommands.Vote(answerId, LoginUser.UserId);
             var answer = AgensiAnswer.Create(answerId);
             var model = new ThreadModel(LoginUser,answer.QueryId);
+
+            var manager = LoginUser.CreateBoardManager();
+            var commands = manager.CreateAnswerCommands(answer);
+            commands.VoteUp();
+
             return View("Thread", model);
         }
 
         [HttpPost]
         public ActionResult AnswerVoteCancel(long answerId)
         {
-            AgensiAnswerCommands.VoteCancel(answerId, LoginUser.UserId);
             var answer = AgensiAnswer.Create(answerId);
             var model = new ThreadModel(LoginUser, answer.QueryId);
+
+            var manager = LoginUser.CreateBoardManager();
+            var commands = manager.CreateAnswerCommands(answer);
+            commands.VoteDown();
+
+
             return View("Thread", model);
         }
 
         [HttpPost]
         public ActionResult AnswerVoteDown(long answerId)
         {
-            AgensiAnswerCommands.VoteDown(answerId, LoginUser.UserId);
             var answer = AgensiAnswer.Create(answerId);
             var model = new ThreadModel(LoginUser, answer.QueryId);
             return View("Thread", model);
@@ -103,7 +113,6 @@ namespace Agensi.Web.Controllers
         [HttpPost]
         public ActionResult AnswerVoteDownCancel(long answerId)
         {
-            AgensiAnswerCommands.VoteDownCancel(answerId, LoginUser.UserId);
             var answer = AgensiAnswer.Create(answerId);
             var model = new ThreadModel(LoginUser, answer.QueryId);
             return View("Thread", model);
@@ -112,7 +121,6 @@ namespace Agensi.Web.Controllers
         [HttpPost]
         public ActionResult QueryVote(long queryId)
         {
-            AgensiQueryCommands.Vote(queryId, LoginUser.UserId);
             var model = new ThreadModel(LoginUser, queryId);
             return View("Thread", model);
         }
@@ -120,7 +128,6 @@ namespace Agensi.Web.Controllers
         [HttpPost]
         public ActionResult QueryVoteCancel(long queryId)
         {
-            AgensiQueryCommands.VoteCancel(queryId, LoginUser.UserId);
             var model = new ThreadModel(LoginUser, queryId);
             return View("Thread", model);
         }
@@ -128,7 +135,6 @@ namespace Agensi.Web.Controllers
         [HttpPost]
         public ActionResult QueryVoteDown(long queryId)
         {
-            AgensiQueryCommands.VoteDown(queryId, LoginUser.UserId);
             var model = new ThreadModel(LoginUser, queryId);
             return View("Thread", model);
         }
@@ -136,7 +142,6 @@ namespace Agensi.Web.Controllers
         [HttpPost]
         public ActionResult QueryVoteDownCancel(long queryId)
         {
-            AgensiQueryCommands.VoteDownCancel(queryId, LoginUser.UserId);
             var model = new ThreadModel(LoginUser, queryId);
             return View("Thread", model);
         }

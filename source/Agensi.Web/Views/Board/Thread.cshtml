@@ -14,7 +14,7 @@
 
     <!-- List group -->
     <ul class="list-group">
-        <li class="list-group-item" style="text-align:left">vote:@Model.AgensiQuery.Votes.Count() ---- voteDown:@Model.AgensiQuery.VoteDowns.Count()</li>
+        <li class="list-group-item" style="text-align:left">vote:@Model.AgensiQuery.Votes.Count() ----</li>
         @if (User.Identity.IsAuthenticated)
         {
             <li class="list-group-item" style="text-align:left">
@@ -30,20 +30,6 @@
                     using (@Html.BeginForm("QueryVoteCancel", "Board", FormMethod.Post))
                     {
                         <button class="btn btn-default"><span class="glyphicon glyphicon-thumbs-down"></span>VoteCancel</button><input type="hidden" name="queryId" value="@Model.AgensiQuery.QueryId" />
-                    }
-                }
-                @if (!Model.AgensiQuery.VoteDowns.Any(x => x.UserId == @Model.LoginUser.UserId))
-                {
-                    using (@Html.BeginForm("QueryVoteDown", "Board", FormMethod.Post))
-                    {
-                        <button class="btn btn-default"><span class="glyphicon glyphicon-thumbs-down"></span>VoteDown</button><input type="hidden" name="queryId" value="@Model.AgensiQuery.QueryId" />
-                    }
-                }
-                else
-                {
-                    using (@Html.BeginForm("QueryVoteDownCancel", "Board", FormMethod.Post))
-                    {
-                        <button class="btn btn-default"><span class="glyphicon glyphicon-thumbs-up"></span>VoteDownCancel</button><input type="hidden" name="queryId" value="@Model.AgensiQuery.QueryId" />
                     }
                 }
             </li>
@@ -74,7 +60,6 @@
                     <td>answer:<img style="width:30px;height:30px" src="@ImageUtil.ToImageSrc(@answer.AnswerUser.ProfileImage)" />@answer.AnswerUser.UserName</td>
                     <td>@answer.Text</td>
                     <td>vote:@(answer.Votes.Count())</td>
-                    <td>voteDown:@(answer.VoteDowns.Count())</td>
                     @if (@User.Identity.IsAuthenticated)
                     {
                         if (!answer.Votes.Any(x => x.UserId == @Model.LoginUser.UserId))
@@ -91,21 +76,6 @@
                                 <td><button class="btn btn-default"><span class="glyphicon glyphicon-thumbs-down"></span>VoteCancel</button><input type="hidden" name="answerId" value="@answer.AnswerId"></td>
                             }
                         }
-                        if (!answer.VoteDowns.Any(x => x.UserId == @Model.LoginUser.UserId))
-                        {
-                            using (@Html.BeginForm("AnswerVoteDown", "Board", FormMethod.Post))
-                            {
-                                <td><button class="btn btn-default"><span class="glyphicon glyphicon-thumbs-down"></span>VoteDown</button><input type="hidden" name="answerId" value="@answer.AnswerId"></td>
-                            }
-                        }
-                        else
-                        {
-                            using (@Html.BeginForm("AnswerVoteDownCancel", "Board", FormMethod.Post))
-                            {
-                                <td><button class="btn btn-default"><span class="glyphicon glyphicon-thumbs-up"></span>VoteDownCancel</button><input type="hidden" name="answerId" value="@answer.AnswerId"></td>
-                            }
-                        }
-
                     }
                 </tr>
             }

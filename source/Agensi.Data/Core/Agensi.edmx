@@ -34,6 +34,7 @@
           </Key>
           <Property Name="AnswerId" Type="bigint" Nullable="false" />
           <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="VoteStatus" Type="int" Nullable="false" />
           <Property Name="AddTime" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="AnswerVoteDown">
@@ -136,6 +137,7 @@
           </Key>
           <Property Name="QueryId" Type="bigint" Nullable="false" />
           <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="VoteStatus" Type="int" Nullable="false" />
           <Property Name="AddTime" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="QueryVoteDown">
@@ -314,10 +316,8 @@
           </AssociationSet>
           <EntitySet Name="C__MigrationHistory" EntityType="AgensiDBModel.C__MigrationHistory" />
           <EntitySet Name="Answers" EntityType="AgensiDBModel.Answer" />
-          <EntitySet Name="AnswerVotes" EntityType="AgensiDBModel.AnswerVote" />
           <EntitySet Name="AnswerVoteDowns" EntityType="AgensiDBModel.AnswerVoteDown" />
           <EntitySet Name="LanguageMasters" EntityType="AgensiDBModel.LanguageMaster" />
-          <EntitySet Name="QueryVotes" EntityType="AgensiDBModel.QueryVote" />
           <EntitySet Name="QueryVoteDowns" EntityType="AgensiDBModel.QueryVoteDown" />
           <EntitySet Name="UserStates" EntityType="AgensiDBModel.UserState" />
           <EntitySet Name="UserProfiles" EntityType="AgensiDBModel.UserProfile" />
@@ -327,6 +327,8 @@
           <EntitySet Name="QueryTags" EntityType="AgensiDBModel.QueryTag" />
           <EntitySet Name="Tags" EntityType="AgensiDBModel.Tag" />
           <EntitySet Name="Queries" EntityType="AgensiDBModel.Query" />
+          <EntitySet Name="AnswerVotes" EntityType="AgensiDBModel.AnswerVote" />
+          <EntitySet Name="QueryVotes" EntityType="AgensiDBModel.QueryVote" />
           </EntityContainer>
         <EntityType Name="AspNetRole">
           <Key>
@@ -424,15 +426,6 @@
           <Property Name="AnswerDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="UpdateTime" Type="DateTime" Nullable="false" Precision="3" />
         </EntityType>
-        <EntityType Name="AnswerVote">
-          <Key>
-            <PropertyRef Name="AnswerId" />
-            <PropertyRef Name="UserId" />
-          </Key>
-          <Property Name="AnswerId" Type="Int64" Nullable="false" />
-          <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="AddTime" Type="DateTime" Nullable="false" Precision="3" />
-        </EntityType>
         <EntityType Name="AnswerVoteDown">
           <Key>
             <PropertyRef Name="AnswerId" />
@@ -448,15 +441,6 @@
           </Key>
           <Property Name="LanguageId" Type="Int32" Nullable="false" />
           <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="AddTime" Type="DateTime" Nullable="false" Precision="3" />
-        </EntityType>
-        <EntityType Name="QueryVote">
-          <Key>
-            <PropertyRef Name="QueryId" />
-            <PropertyRef Name="UserId" />
-          </Key>
-          <Property Name="QueryId" Type="Int64" Nullable="false" />
-          <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Name="AddTime" Type="DateTime" Nullable="false" Precision="3" />
         </EntityType>
         <EntityType Name="QueryVoteDown">
@@ -550,6 +534,26 @@
           <Property Name="QueryDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="UpdateTime" Type="DateTime" Nullable="false" Precision="3" />
         </EntityType>
+        <EntityType Name="AnswerVote">
+          <Key>
+            <PropertyRef Name="AnswerId" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="AnswerId" Type="Int64" Nullable="false" />
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="VoteStatus" Type="Int32" Nullable="false" />
+          <Property Name="AddTime" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="QueryVote">
+          <Key>
+            <PropertyRef Name="QueryId" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="QueryId" Type="Int64" Nullable="false" />
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="VoteStatus" Type="Int32" Nullable="false" />
+          <Property Name="AddTime" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -625,15 +629,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="AnswerVotes">
-            <EntityTypeMapping TypeName="AgensiDBModel.AnswerVote">
-              <MappingFragment StoreEntitySet="AnswerVote">
-                <ScalarProperty Name="AddTime" ColumnName="AddTime" />
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
-                <ScalarProperty Name="AnswerId" ColumnName="AnswerId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="AnswerVoteDowns">
             <EntityTypeMapping TypeName="AgensiDBModel.AnswerVoteDown">
               <MappingFragment StoreEntitySet="AnswerVoteDown">
@@ -649,15 +644,6 @@
                 <ScalarProperty Name="AddTime" ColumnName="AddTime" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="LanguageId" ColumnName="LanguageId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="QueryVotes">
-            <EntityTypeMapping TypeName="AgensiDBModel.QueryVote">
-              <MappingFragment StoreEntitySet="QueryVote">
-                <ScalarProperty Name="AddTime" ColumnName="AddTime" />
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
-                <ScalarProperty Name="QueryId" ColumnName="QueryId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -753,6 +739,26 @@
                 <ScalarProperty Name="MediaCategory" ColumnName="MediaCategory" />
                 <ScalarProperty Name="Title" ColumnName="Title" />
                 <ScalarProperty Name="OwnerUserId" ColumnName="OwnerUserId" />
+                <ScalarProperty Name="QueryId" ColumnName="QueryId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AnswerVotes">
+            <EntityTypeMapping TypeName="AgensiDBModel.AnswerVote">
+              <MappingFragment StoreEntitySet="AnswerVote">
+                <ScalarProperty Name="AddTime" ColumnName="AddTime" />
+                <ScalarProperty Name="VoteStatus" ColumnName="VoteStatus" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="AnswerId" ColumnName="AnswerId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="QueryVotes">
+            <EntityTypeMapping TypeName="AgensiDBModel.QueryVote">
+              <MappingFragment StoreEntitySet="QueryVote">
+                <ScalarProperty Name="AddTime" ColumnName="AddTime" />
+                <ScalarProperty Name="VoteStatus" ColumnName="VoteStatus" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="QueryId" ColumnName="QueryId" />
               </MappingFragment>
             </EntityTypeMapping>

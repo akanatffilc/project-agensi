@@ -1,4 +1,6 @@
-﻿using Agensi.Core.DataLogic.Core;
+﻿using Agensi.Core.Core;
+using Agensi.Core.DataLogic.Core;
+using Agensi.Core.User;
 using Agensi.Data.Core;
 using System;
 using System.Collections.Generic;
@@ -13,68 +15,97 @@ namespace Agensi.Core.Board
         private static Lazy<AnswerVoteDataLogic> AnswerVoteDataLogic = new Lazy<AnswerVoteDataLogic>(() => { return new AnswerVoteDataLogic(); });
         private static Lazy<AnswerVoteDownDataLogic> AnswerVoteDownDataLogic = new Lazy<AnswerVoteDownDataLogic>(() => { return new AnswerVoteDownDataLogic(); });
 
-        public static void Vote(long answerId, string voteUid)
+        internal AgensiAnswerCommands(AgensiUser user,AgensiAnswer answer)
         {
-            //AnswerVoteDataLogic.Value.Add(new AnswerVote
-            //{
-            //    AnswerId = answerId,
-            //    UserId = voteUid,
-            //    AddTime = DateTime.Now
-            //});
-            AnswerVoteDataLogic.Value.AddAsync(new AnswerVote
-            {
-                AnswerId = answerId,
-                UserId = voteUid,
-                AddTime = DateTime.Now
-            });
+            _user = user;
+            _answer = answer;
         }
 
-        public static void VoteCancel(long answerId, string voteUid)
+        private readonly AgensiUser _user;
+        public AgensiAnswer _answer { get; private set; }
+
+        private AgensiEnums.VoteStatus? _voteStatus;
+        private AgensiEnums.VoteStatus VoteStatus
         {
-            //AnswerVoteDataLogic.Value.Delete(new AnswerVote
-            //{
-            //    AnswerId = answerId,
-            //    UserId = voteUid,
-            //    AddTime = DateTime.Now
-            //});
-            AnswerVoteDataLogic.Value.DeleteAsync(new AnswerVote
+            get
             {
-                AnswerId = answerId,
-                UserId = voteUid,
-                AddTime = DateTime.Now
-            });
+                if (_voteStatus != null)
+                    return _voteStatus.Value;
+
+                var row = _answer.Votes.FirstOrDefault(x => x.UserId == _user.UserId);
+                if (row != null)
+                    _voteStatus = (AgensiEnums.VoteStatus)row.VoteStatus;
+                else
+                    _voteStatus = AgensiEnums.VoteStatus.None;
+                return _voteStatus.Value;
+            }
+            set { _voteStatus = value; }
         }
 
-        public static void VoteDown(long answerId, string voteDownUid)
+
+        public AgensiEnums.VoteStatus VoteUp()
         {
-            //AnswerVoteDownDataLogic.Value.Add(new AnswerVoteDown
-            //{
-            //    AnswerId = answerId,
-            //    UserId = voteDownUid,
-            //    AddTime = DateTime.Now
-            //});
-            AnswerVoteDownDataLogic.Value.AddAsync(new AnswerVoteDown
+            switch (VoteStatus)
             {
-                AnswerId = answerId,
-                UserId = voteDownUid,
-                AddTime = DateTime.Now
-            });
+                case AgensiEnums.VoteStatus.Down:
+                    {
+                        var row = AnswerVoteDataLogic.Value.Delete(_answer.AnswerId, _user.UserId);
+                        if (row > 0)
+                            VoteStatus = AgensiEnums.VoteStatus.None;
+                        return VoteStatus;
+                    }
+                case AgensiEnums.VoteStatus.None:
+                    {
+                        var row = AnswerVoteDataLogic.Value.Add(new AnswerVote
+                        {
+                            AnswerId = _answer.AnswerId,
+                            UserId = _user.UserId,
+                            VoteStatus = (int)AgensiEnums.VoteStatus.Up,
+                            AddTime = DateTime.Now
+                        });
+                        if (row > 0)
+                            VoteStatus = AgensiEnums.VoteStatus.Up;
+                        return VoteStatus;
+                    }
+                case AgensiEnums.VoteStatus.Up:
+                    return VoteStatus;
+                default:
+                    throw new InvalidOperationException("VoteStatus");
+            }
+
         }
 
-        public static void VoteDownCancel(long answerId, string voteDownUid)
+        public AgensiEnums.VoteStatus VoteDown()
         {
-            //AnswerVoteDownDataLogic.Value.Delete(new AnswerVoteDown
-            //{
-            //    AnswerId = answerId,
-            //    UserId = voteDownUid,
-            //    AddTime = DateTime.Now
-            //});
-            AnswerVoteDownDataLogic.Value.DeleteAsync(new AnswerVoteDown
+            switch (VoteStatus)
             {
-                AnswerId = answerId,
-                UserId = voteDownUid,
-                AddTime = DateTime.Now
-            });
+                case AgensiEnums.VoteStatus.Down:
+                    {
+                        return VoteStatus;
+                    }
+                case AgensiEnums.VoteStatus.None:
+                    {
+                        var row = AnswerVoteDataLogic.Value.Add(new AnswerVote
+                        {
+                            AnswerId = _answer.AnswerId,
+                            UserId = _user.UserId,
+                            VoteStatus = (int)AgensiEnums.VoteStatus.Down,
+                            AddTime = DateTime.Now
+                        });
+                        if (row > 0)
+                            VoteStatus = AgensiEnums.VoteStatus.Down;
+                        return VoteStatus;
+                    }
+                case AgensiEnums.VoteStatus.Up:
+                    {
+                        var row = AnswerVoteDataLogic.Value.Delete(_answer.AnswerId, _user.UserId);
+                        if (row > 0)
+                            VoteStatus = AgensiEnums.VoteStatus.None;
+                        return VoteStatus;
+                    }
+                default:
+                    throw new InvalidOperationException("VoteStatus");
+            }
         }
     }
 }

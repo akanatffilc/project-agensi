@@ -55,11 +55,11 @@ namespace Agensi.Core.DataLogic.Core
             }
         }
 
-        public int Delete(AnswerVote vote)
+        public int Delete(long answerId,string userId)
         {
             try
             {
-                _repository.Delete(vote);
+                _repository.Delete(answerId, userId);
                 return _repository.Save();
             }
             catch

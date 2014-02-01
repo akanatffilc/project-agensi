@@ -38,5 +38,12 @@ namespace Agensi.Core.Core
             NonDisplay = 0,
             Display = 1,
         }
+
+        public enum VoteStatus
+        {
+            None = 0,
+            Up = 1,
+            Down = 2,
+        }
     }
 }

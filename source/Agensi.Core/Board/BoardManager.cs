@@ -17,162 +17,21 @@ namespace Agensi.Core.Board
         private static Lazy<QueryVoteDownDataLogic> QueryVoteDownDataLogic = new Lazy<QueryVoteDownDataLogic>(() => { return new QueryVoteDownDataLogic(); });
         private static Lazy<QueryViewDataLogic> QueryViewDataLogic = new Lazy<QueryViewDataLogic>(() => { return new QueryViewDataLogic(); });
 
-
-
-
         internal BoardManager(AgensiUser user)
         {
-            user = _user;
+            _user = user;
         }
 
         private AgensiUser _user;
 
-        #region Query
-        public int QueryVote(long queryId)
+        public AgensiAnswerCommands CreateAnswerCommands(AgensiAnswer answer)
         {
-            return QueryVoteDataLogic.Value.Add(new QueryVote
-            {
-                QueryId = queryId,
-                UserId = _user.UserId,
-                AddTime = DateTime.Now
-            });
-            //QueryVoteDataLogic.Value.AddAsync(new QueryVote
-            //{
-            //    QueryId = queryId,
-            //    UserId = voteUid,
-            //    AddTime = DateTime.Now
-            //});
+            return new AgensiAnswerCommands(_user, answer);
         }
 
-        public int QueryVoteCancel(long queryId)
+        public AgensiQueryCommands CreateQueryCommands(AgensiQuery query)
         {
-            return QueryVoteDataLogic.Value.Delete(new QueryVote
-            {
-                QueryId = queryId,
-                UserId = _user.UserId,
-                AddTime = DateTime.Now
-            });
-            //QueryVoteDataLogic.Value.DeleteAsync(new QueryVote
-            //{
-            //    QueryId = queryId,
-            //    UserId = voteUid,
-            //    AddTime = DateTime.Now
-            //});
+            return new AgensiQueryCommands(_user, query);
         }
-
-        public int QueryVoteDown(long queryId)
-        {
-            return QueryVoteDownDataLogic.Value.Add(new QueryVoteDown
-            {
-                QueryId = queryId,
-                UserId = _user.UserId,
-                AddTime = DateTime.Now
-            });
-            //QueryVoteDownDataLogic.Value.AddAsync(new QueryVoteDown
-            //{
-            //    QueryId = queryId,
-            //    UserId = voteDownUid,
-            //    AddTime = DateTime.Now
-            //});
-        }
-
-        public int QueryVoteDownCancel(long queryId)
-        {
-            return QueryVoteDownDataLogic.Value.Delete(new QueryVoteDown
-            {
-                QueryId = queryId,
-                UserId = _user.UserId,
-                AddTime = DateTime.Now
-            });
-            //QueryVoteDownDataLogic.Value.DeleteAsync(new QueryVoteDown
-            //{
-            //    QueryId = queryId,
-            //    UserId = voteDownUid,
-            //    AddTime = DateTime.Now
-            //});
-        }
-
-        public void ViewCountUp(long queryId)
-        {
-            QueryViewDataLogic.Value.Add(new QueryView
-            {
-                QueryId = queryId,
-                UserId = _user.UserId,
-                AddTime = DateTime.Now
-            });
-        }
-
-
-        #endregion
-
-
-        #region Answer
-
-        public int AnswerVote(long answerId)
-        {
-            return AnswerVoteDataLogic.Value.Add(new AnswerVote
-            {
-                AnswerId = answerId,
-                UserId = _user.UserId,
-                AddTime = DateTime.Now
-            });
-            //AnswerVoteDataLogic.Value.AddAsync(new AnswerVote
-            //{
-            //    AnswerId = answerId,
-            //    UserId = voteUid,
-            //    AddTime = DateTime.Now
-            //});
-        }
-
-        public int AnswerVoteCancel(long answerId)
-        {
-            return AnswerVoteDataLogic.Value.Delete(new AnswerVote
-            {
-                AnswerId = answerId,
-                UserId = _user.UserId,
-                AddTime = DateTime.Now
-            });
-            //AnswerVoteDataLogic.Value.DeleteAsync(new AnswerVote
-            //{
-            //    AnswerId = answerId,
-            //    UserId = voteUid,
-            //    AddTime = DateTime.Now
-            //});
-        }
-
-        public int AnswerVoteDown(long answerId)
-        {
-            return AnswerVoteDownDataLogic.Value.Add(new AnswerVoteDown
-            {
-                AnswerId = answerId,
-                UserId = _user.UserId,
-                AddTime = DateTime.Now
-            });
-            //AnswerVoteDownDataLogic.Value.AddAsync(new AnswerVoteDown
-            //{
-            //    AnswerId = answerId,
-            //    UserId = voteDownUid,
-            //    AddTime = DateTime.Now
-            //});
-        }
-
-        public int AnswerVoteDownCancel(long answerId)
-        {
-            return AnswerVoteDownDataLogic.Value.Delete(new AnswerVoteDown
-            {
-                AnswerId = answerId,
-                UserId = _user.UserId,
-                AddTime = DateTime.Now
-            });
-            //AnswerVoteDownDataLogic.Value.DeleteAsync(new AnswerVoteDown
-            //{
-            //    AnswerId = answerId,
-            //    UserId = voteDownUid,
-            //    AddTime = DateTime.Now
-            //});
-        }
-
-
-        #endregion
     }
 }

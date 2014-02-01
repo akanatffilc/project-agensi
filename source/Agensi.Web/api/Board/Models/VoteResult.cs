@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Agensi.Core.Core;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -9,13 +10,6 @@ namespace Agensi.Web.api.Board.Models
     {
         public bool IsSuccess { get; set; }
 
-        public bool IsVote { get; set; }
-    }
-
-    public class VoteDownResult
-    {
-        public bool IsSuccess { get; set; }
-
-        public bool IsVoteDown { get; set; }
+        public AgensiEnums.VoteStatus VoteStatus { get; set; }
     }
 }

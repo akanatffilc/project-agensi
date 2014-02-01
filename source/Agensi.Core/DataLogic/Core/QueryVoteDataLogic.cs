@@ -38,13 +38,12 @@ namespace Agensi.Core.DataLogic.Core
             }
         }
 
-        public int Delete(QueryVote vote)
+        public int Delete(long queryId,string userId)
         {
             try
             {
-                _repository.Delete(vote);
+                _repository.Delete(queryId, userId);
                 return _repository.Save();
-
             }
             catch
             {

@@ -31,9 +31,9 @@ namespace Agensi.Data.Core.Repositories
             context.QueryVotes.Add(vote);
         }
 
-        public void Delete(QueryVote vote)
+        public void Delete(long queryId,string userId)
         {
-            var row = context.QueryVotes.Single(x => x.QueryId == vote.QueryId && x.UserId == vote.UserId);
+            var row = context.QueryVotes.Single(x => x.QueryId == queryId && x.UserId == userId);
             context.QueryVotes.Remove(row);
         }
 

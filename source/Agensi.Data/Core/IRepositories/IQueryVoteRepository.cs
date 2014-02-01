@@ -14,7 +14,7 @@ namespace Agensi.Data.Core.IRepositories
 
         void Add(QueryVote vote);
 
-        void Delete(QueryVote vote);
+        void Delete(long queryId,string userId);
 
         Task AddAsync(QueryVote vote);
 

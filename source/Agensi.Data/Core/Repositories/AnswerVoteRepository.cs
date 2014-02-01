@@ -32,9 +32,9 @@ namespace Agensi.Data.Core.Repositories
             context.AnswerVotes.Add(vote);
         }
 
-        public void Delete(AnswerVote vote)
+        public void Delete(long answerId,string userId)
         {
-            var row = context.AnswerVotes.Single(x => x.AnswerId == vote.AnswerId && x.UserId == vote.UserId);
+            var row = context.AnswerVotes.Single(x => x.AnswerId == answerId && x.UserId == userId);
             context.AnswerVotes.Remove(row);
         }
 

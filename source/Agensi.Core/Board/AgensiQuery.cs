@@ -78,9 +78,6 @@ namespace Agensi.Core.Board
         private QueryVote[] _votes;
         public QueryVote[] Votes { get { return _votes ?? (_votes = QueryVoteDataLogic.Value.FindByQueryId(_query.QueryId)); } }
 
-        private QueryVoteDown[] _voteDowns;
-        public QueryVoteDown[] VoteDowns { get { return _voteDowns ?? (_voteDowns = QueryVoteDownDataLogic.Value.FindByQueryId(_query.QueryId)); } }
-
         private QueryView[] _queryViews;
         private QueryView[] QueryViews
         {
@@ -113,11 +110,6 @@ namespace Agensi.Core.Board
         public bool IsVoted(string userId)
         {
             return Votes.Any(x => x.UserId == userId);
-        }
-
-        public bool IsVoteDowned(string userId)
-        {
-            return VoteDowns.Any(x => x.UserId == userId);
         }
 
         #endregion

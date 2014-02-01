@@ -51,21 +51,12 @@ namespace Agensi.Core.Board
         private AnswerVote[] _votes;
         public AnswerVote[] Votes { get { return _votes ?? (_votes = AnswerVoteDataLogic.Value.FindByAnswerId(_answer.AnswerId)); } }
 
-        private AnswerVoteDown[] _voteDowns;
-        public AnswerVoteDown[] VoteDowns { get { return _voteDowns ?? (_voteDowns = AnswerVoteDownDataLogic.Value.FindByAnswerId(_answer.AnswerId)); } }
-
         #region Methods
 
         public bool IsVoted(string userId)
         {
             return Votes.Any(x => x.UserId == userId);
         }
-
-        public bool IsVoteDowns(string userId)
-        {
-            return VoteDowns.Any(x => x.UserId == userId);
-        }
-
 
         #endregion
 

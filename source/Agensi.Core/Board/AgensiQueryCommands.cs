@@ -1,4 +1,6 @@
-﻿using Agensi.Core.DataLogic.Core;
+﻿using Agensi.Core.Core;
+using Agensi.Core.DataLogic.Core;
+using Agensi.Core.User;
 using Agensi.Data.Core;
 using System;
 using System.Collections.Generic;
@@ -10,81 +12,110 @@ namespace Agensi.Core.Board
 {
     public class AgensiQueryCommands
     {
-        private static Lazy<QueryVoteDataLogic> QueryVoteDataLogic = new Lazy<QueryVoteDataLogic>(() => { return new QueryVoteDataLogic(); });
-        private static Lazy<QueryVoteDownDataLogic> QueryVoteDownDataLogic = new Lazy<QueryVoteDownDataLogic>(() => { return new QueryVoteDownDataLogic(); });
-        private static Lazy<QueryViewDataLogic> QueryViewDataLogic = new Lazy<QueryViewDataLogic>(() => { return new QueryViewDataLogic(); });
+        private Lazy<QueryVoteDataLogic> QueryVoteDataLogic = new Lazy<QueryVoteDataLogic>(() => { return new QueryVoteDataLogic(); });
+        private Lazy<QueryVoteDownDataLogic> QueryVoteDownDataLogic = new Lazy<QueryVoteDownDataLogic>(() => { return new QueryVoteDownDataLogic(); });
+        private Lazy<QueryViewDataLogic> QueryViewDataLogic = new Lazy<QueryViewDataLogic>(() => { return new QueryViewDataLogic(); });
 
-        public static void Vote(long queryId, string voteUid)
+        internal AgensiQueryCommands(AgensiUser user, AgensiQuery query)
         {
-            //QueryVoteDataLogic.Value.Add(new QueryVote
-            //{
-            //    QueryId = queryId,
-            //    UserId = voteUid,
-            //    AddTime = DateTime.Now
-            //});
-            QueryVoteDataLogic.Value.AddAsync(new QueryVote
-            {
-                QueryId = queryId,
-                UserId = voteUid,
-                AddTime = DateTime.Now
-            });
+            _user = user;
+            _query = query;
         }
 
-        public static void VoteCancel(long queryId, string voteUid)
-        {
-            //QueryVoteDataLogic.Value.Delete(new QueryVote
-            //{
-            //    QueryId = queryId,
-            //    UserId = voteUid,
-            //    AddTime = DateTime.Now
-            //});
-            QueryVoteDataLogic.Value.DeleteAsync(new QueryVote
+        public AgensiQuery _query { get; private set; }
+
+        private AgensiEnums.VoteStatus? _voteStatus;
+        private AgensiEnums.VoteStatus VoteStatus {
+            get
             {
-                QueryId = queryId,
-                UserId = voteUid,
-                AddTime = DateTime.Now
-            });
+                if (_voteStatus != null)
+                    return _voteStatus.Value;
+
+                var row = _query.Votes.FirstOrDefault(x => x.UserId == _user.UserId);
+                if (row != null)
+                    _voteStatus = (AgensiEnums.VoteStatus)row.VoteStatus;
+                else
+                    _voteStatus = AgensiEnums.VoteStatus.None;
+                return _voteStatus.Value;
+            }
+            set { _voteStatus = value; }
         }
 
-        public static void VoteDown(long queryId, string voteDownUid)
+        private readonly AgensiUser _user;
+
+        public AgensiEnums.VoteStatus VoteUp()
         {
-            //QueryVoteDownDataLogic.Value.Add(new QueryVoteDown
-            //{
-            //    QueryId = queryId,
-            //    UserId = voteDownUid,
-            //    AddTime = DateTime.Now
-            //});
-            QueryVoteDownDataLogic.Value.AddAsync(new QueryVoteDown
+            switch(VoteStatus)
             {
-                QueryId = queryId,
-                UserId = voteDownUid,
-                AddTime = DateTime.Now
-            });
+                case AgensiEnums.VoteStatus.Down:
+                    {
+                        var row = QueryVoteDataLogic.Value.Delete(_query.QueryId, _user.UserId);
+                        if (row > 0)
+                            VoteStatus = AgensiEnums.VoteStatus.None;
+                        return VoteStatus;
+                    }
+                case AgensiEnums.VoteStatus.None:
+                    {
+                        var row = QueryVoteDataLogic.Value.Add(new QueryVote
+                        {
+                            QueryId = _query.QueryId,
+                            UserId = _user.UserId,
+                            VoteStatus = (int)AgensiEnums.VoteStatus.Up,
+                            AddTime = DateTime.Now
+                        });
+                        if (row > 0)
+                            VoteStatus = AgensiEnums.VoteStatus.Up;
+                        return VoteStatus;
+                    }
+                case AgensiEnums.VoteStatus.Up:
+                    return VoteStatus;
+                default:
+                    throw new InvalidOperationException("VoteStatus");
+            }
+            
         }
 
-        public static void VoteDownCancel(long queryId, string voteDownUid)
+        public AgensiEnums.VoteStatus VoteDown()
         {
-            //QueryVoteDownDataLogic.Value.Delete(new QueryVoteDown
-            //{
-            //    QueryId = queryId,
-            //    UserId = voteDownUid,
-            //    AddTime = DateTime.Now
-            //});
-            QueryVoteDownDataLogic.Value.DeleteAsync(new QueryVoteDown
+            switch (VoteStatus)
             {
-                QueryId = queryId,
-                UserId = voteDownUid,
-                AddTime = DateTime.Now
-            });
+                case AgensiEnums.VoteStatus.Down:
+                    {
+                        return VoteStatus;
+                    }
+                case AgensiEnums.VoteStatus.None:
+                    {
+                        var row = QueryVoteDataLogic.Value.Add(new QueryVote
+                        {
+                            QueryId = _query.QueryId,
+                            UserId = _user.UserId,
+                            VoteStatus = (int)AgensiEnums.VoteStatus.Down,
+                            AddTime = DateTime.Now
+                        });
+                        if (row > 0)
+                            VoteStatus = AgensiEnums.VoteStatus.Down;
+                        return VoteStatus;
+                    }
+                case AgensiEnums.VoteStatus.Up:
+                    {
+                        var row = QueryVoteDataLogic.Value.Delete(_query.QueryId, _user.UserId);
+                        if (row > 0)
+                            VoteStatus = AgensiEnums.VoteStatus.None;
+                        return VoteStatus;
+                    }
+                default:
+                    throw new InvalidOperationException("VoteStatus");
+            }
         }
 
-        public static void ViewCountUp(long queryId,string loginUserId)
+        public void ViewCountUp()
         {
-            QueryViewDataLogic.Value.Add(new QueryView{
-                QueryId = queryId,
-                UserId = loginUserId,
+            QueryViewDataLogic.Value.Add(new QueryView
+            {
+                QueryId = _query.QueryId,
+                UserId = _user.UserId,
                 AddTime = DateTime.Now
-            }); 
+            });
         }
     }
 
