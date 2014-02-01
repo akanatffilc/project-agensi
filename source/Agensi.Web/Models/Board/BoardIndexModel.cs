@@ -18,7 +18,7 @@ namespace Agensi.Web.Models.Board
             AgensiQueries = new QueryDataLogic().FindAll()
                 .Select(x => new AgensiQuery(x)).ToArray();
         }
-
+        //TEST
 
         public AgensiQuery[] AgensiQueries { get; private set; }
     }
