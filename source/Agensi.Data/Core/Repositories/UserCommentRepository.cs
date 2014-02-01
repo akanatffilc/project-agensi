@@ -48,9 +48,9 @@ namespace Agensi.Data.Core.Repositories
                 context.UserComments.Remove(row);
         }
 
-        public void Save()
+        public int Save()
         {
-            context.SaveChanges();
+            return context.SaveChanges();
         }
 
     }

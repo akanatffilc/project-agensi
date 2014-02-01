@@ -18,6 +18,6 @@ namespace Agensi.Data.Core.IRepositories
 
         void Update(Query query);
 
-        void Save();
+        int Save();
     }
 }

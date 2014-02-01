@@ -45,9 +45,9 @@ namespace Agensi.Data.Core.Repositories
             context.Entry<Answer>(answer).State = EntityState.Modified;
         }
 
-        public void Save()
+        public int Save()
         {
-            context.SaveChanges();
+            return context.SaveChanges();
         }
     }
 }

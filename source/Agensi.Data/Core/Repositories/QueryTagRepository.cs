@@ -40,9 +40,9 @@ namespace Agensi.Data.Core.Repositories
                 context.QueryTags.Remove(row);
         }
 
-        public void Save()
+        public int Save()
         {
-            context.SaveChanges();
+            return context.SaveChanges();
         }
 
     }

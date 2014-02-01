@@ -29,13 +29,32 @@ namespace Agensi.Core.User
             UserId = userId;
         }
 
+
+        private AspNetUser _agensiUserBase;
+        private AspNetUser AgensiUserBase
+        {
+            get
+            {
+                return _agensiUserBase ??
+                    (_agensiUserBase = AspNetUserDataLogic.Value.Find(UserId));
+            }
+        }
+
+        public bool IsRegistered
+        {
+            get
+            {
+                return AgensiUserBase != null;
+            }
+        }
+
+        private string UserName;
         //TODO:絶対キャッシュにした方がいい
         public string UserName
         {
             get
             {
-                var result = AspNetUserDataLogic.Value.Find(UserId);
-                return result.UserName;
+                return AgensiUserBase.UserName;
             }
         }
 
@@ -106,5 +125,6 @@ namespace Agensi.Core.User
         {
             return FollowUsers.Any(x => x.UserId == followUserId);
         }
+
     }
 }

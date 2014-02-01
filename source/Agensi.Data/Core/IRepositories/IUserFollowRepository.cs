@@ -20,8 +20,8 @@ namespace Agensi.Data.Core.IRepositories
 
         Task DeleteAsync(UserFollow follow);
 
-        void Save();
+        int Save();
 
-        Task SaveAsync();
+        Task<int> SaveAsync();
     }
 }

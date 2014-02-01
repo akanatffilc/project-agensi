@@ -56,12 +56,12 @@ namespace Agensi.Data.Core.Repositories
                 });
         }
 
-        public void Save()
+        public int Save()
         {
-            context.SaveChanges();
+            return context.SaveChanges();
         }
 
-        public Task SaveAsync()
+        public Task<int> SaveAsync()
         {
             return context.SaveChangesAsync();
         }

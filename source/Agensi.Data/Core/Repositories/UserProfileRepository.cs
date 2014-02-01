@@ -53,9 +53,9 @@ namespace Agensi.Data.Core.Repositories
             context.UserProfiles.Remove(row);
         }
 
-        public void Save()
+        public int Save()
         {
-            context.SaveChanges();
+            return context.SaveChanges();
         }
 
     }

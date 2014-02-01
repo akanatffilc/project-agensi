@@ -12,6 +12,6 @@ namespace Agensi.Data.Core.IRepositories
 
         void UpdateName(string userId,string name);
 
-        void Save();
+        int Save();
     }
 }

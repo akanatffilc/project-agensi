@@ -16,6 +16,6 @@ namespace Agensi.Data.Core.IRepositories
 
         void Delete(string userId);
 
-        void Save();
+        int Save();
     }
 }

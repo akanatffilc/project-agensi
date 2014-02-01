@@ -12,6 +12,6 @@ namespace Agensi.Data.Core.IRepositories
 
         void Add(QueryView queryView);
 
-        void Save();    
+        int Save();    
     }
 }

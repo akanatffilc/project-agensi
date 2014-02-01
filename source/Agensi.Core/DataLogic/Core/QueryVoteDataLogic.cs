@@ -15,7 +15,7 @@ namespace Agensi.Core.DataLogic.Core
 
         public QueryVoteDataLogic() : this(new QueryVoteRepository()) { }
 
-        public QueryVoteDataLogic(IQueryVoteRepository repository) 
+        public QueryVoteDataLogic(IQueryVoteRepository repository)
         {
             _repository = repository;
         }
@@ -25,16 +25,31 @@ namespace Agensi.Core.DataLogic.Core
             return _repository.FindByQueryId(queryId);
         }
 
-        public void Add(QueryVote vote)
+        public int Add(QueryVote vote)
         {
-            _repository.Add(vote);
-            _repository.Save();
+            try
+            {
+                _repository.Add(vote);
+                return _repository.Save();
+            }
+            catch
+            {
+                return 0;
+            }
         }
 
-        public void Delete(QueryVote vote)
+        public int Delete(QueryVote vote)
         {
-            _repository.Delete(vote);
-            _repository.Save();
+            try
+            {
+                _repository.Delete(vote);
+                return _repository.Save();
+
+            }
+            catch
+            {
+                return 0;
+            }
         }
 
         public Task AddAsync(QueryVote vote)
@@ -42,7 +57,7 @@ namespace Agensi.Core.DataLogic.Core
             return _repository.AddAsync(vote)
                 .ContinueWith((prevTask) =>
                 {
-                    _repository.Save();
+                    _repository.SaveAsync();
                 });
         }
 

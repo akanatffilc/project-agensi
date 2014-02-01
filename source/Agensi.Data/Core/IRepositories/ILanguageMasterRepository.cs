@@ -12,6 +12,6 @@ namespace Agensi.Data.Core.IRepositories
 
         LanguageMaster[] FindAll();
 
-        void Save();
+        int Save();
     }
 }

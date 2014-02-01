@@ -18,6 +18,6 @@ namespace Agensi.Data.Core.IRepositories
 
         void Delete(long commentId);
 
-        void Save();
+        int Save();
     }
 }

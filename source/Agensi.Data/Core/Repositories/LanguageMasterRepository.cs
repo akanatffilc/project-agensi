@@ -44,9 +44,9 @@ namespace Agensi.Data.Core.Repositories
             context.LanguageMasters.Remove(user);
         }
 
-        public void Save()
+        public int Save()
         {
-            context.SaveChanges();
+            return context.SaveChanges();
         }
 
     }

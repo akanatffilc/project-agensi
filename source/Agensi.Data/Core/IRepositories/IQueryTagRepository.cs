@@ -16,6 +16,6 @@ namespace Agensi.Data.Core.IRepositories
 
         void Delete(long queryId,string tagName);
 
-        void Save();
+        int Save();
     }
 }

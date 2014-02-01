@@ -3,6 +3,7 @@ using Agensi.Data.Core.IRepositories;
 using Agensi.Data.Core.Repositories;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.Validation;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -30,16 +31,30 @@ namespace Agensi.Core.DataLogic.Core
             return _repository.FindByFollowUserId(userId);
         }
 
-        public void Add(UserFollow follow)
+        public int Add(UserFollow follow)
         {
-            _repository.Add(follow);
-            _repository.Save();
+            try
+            {
+                _repository.Add(follow);
+                return _repository.Save();
+            }
+            catch
+            {
+                return 0;
+            }
         }
 
-        public void Delete(string userId, string followUserId)
+        public int Delete(string userId, string followUserId)
         {
-            _repository.Delete(userId, followUserId);
-            _repository.Save();
+            try
+            {
+                _repository.Delete(userId, followUserId);
+                return _repository.Save();
+            }
+            catch
+            {
+                return 0;
+            }
         }
     }
 }

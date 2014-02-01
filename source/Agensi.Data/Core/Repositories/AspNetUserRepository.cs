@@ -28,9 +28,9 @@ namespace Agensi.Data.Core.Repositories
             row.UserName = name;
         }
 
-        public void Save()
+        public int Save()
         {
-            context.SaveChanges();
+            return context.SaveChanges();
         }
     }
 }

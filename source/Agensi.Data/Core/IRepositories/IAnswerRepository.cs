@@ -18,6 +18,6 @@ namespace Agensi.Data.Core.IRepositories
 
         void Update(Answer answer);
 
-        void Save();
+        int Save();
     }
 }

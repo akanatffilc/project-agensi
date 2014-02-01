@@ -42,16 +42,30 @@ namespace Agensi.Core.DataLogic.Core
                 });
         }
 
-        public void Add(AnswerVote vote)
+        public int Add(AnswerVote vote)
         {
-            _repository.Add(vote);
-            _repository.Save();
+            try
+            {
+                _repository.Add(vote);
+                return _repository.Save();
+            }
+            catch
+            {
+                return 0;
+            }
         }
 
-        public void Delete(AnswerVote vote)
+        public int Delete(AnswerVote vote)
         {
-            _repository.Delete(vote);
-            _repository.Save();
+            try
+            {
+                _repository.Delete(vote);
+                return _repository.Save();
+            }
+            catch
+            {
+                return 0;
+            }
         }
     }
 }

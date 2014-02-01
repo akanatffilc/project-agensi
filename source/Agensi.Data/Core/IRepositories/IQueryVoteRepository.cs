@@ -20,9 +20,9 @@ namespace Agensi.Data.Core.IRepositories
 
         Task DeleteAsync(QueryVote vote);
 
-        void Save();
+        int Save();
 
-        Task SaveAsync();
+        Task<int> SaveAsync();
 
     }
 }

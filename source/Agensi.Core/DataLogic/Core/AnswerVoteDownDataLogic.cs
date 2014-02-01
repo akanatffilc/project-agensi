@@ -15,7 +15,7 @@ namespace Agensi.Core.DataLogic.Core
 
         public AnswerVoteDownDataLogic() : this(new AnswerVoteDownRepository()) { }
 
-        public AnswerVoteDownDataLogic(IAnswerVoteDownRepository repository) 
+        public AnswerVoteDownDataLogic(IAnswerVoteDownRepository repository)
         {
             _repository = repository;
         }
@@ -43,16 +43,28 @@ namespace Agensi.Core.DataLogic.Core
                 });
         }
 
-        public void Add(AnswerVoteDown voteDown)
+        public int Add(AnswerVoteDown voteDown)
         {
-            _repository.Add(voteDown);
-            _repository.Save();
+            try
+            {
+                _repository.Add(voteDown);
+                return _repository.Save();
+
+            }
+            catch
+            {
+                return 0;
+            }
         }
 
-        public void Delete(AnswerVoteDown voteDown)
+        public int Delete(AnswerVoteDown voteDown)
         {
-            _repository.Delete(voteDown);
-            _repository.Save();
+            try
+            {
+                _repository.Delete(voteDown);
+                return _repository.Save();
+            }
+            catch { return 0; }
         }
     }
 }

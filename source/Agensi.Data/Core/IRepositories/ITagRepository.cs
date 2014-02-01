@@ -14,6 +14,6 @@ namespace Agensi.Data.Core.IRepositories
 
         void UpdateCountDown(string tagName);
 
-        void Save();
+        int Save();
     }
 }

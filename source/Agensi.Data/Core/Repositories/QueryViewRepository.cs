@@ -27,9 +27,9 @@ namespace Agensi.Data.Core.Repositories
             context.QueryViews.Add(queryView);
         }
 
-        public void Save()
+        public int Save()
         {
-            context.SaveChanges();
+            return context.SaveChanges();
         }
     }
 }

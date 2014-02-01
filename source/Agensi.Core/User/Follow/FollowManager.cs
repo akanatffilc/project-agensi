@@ -21,9 +21,9 @@ namespace Agensi.Core.User.Follow
         }
         private readonly AgensiUser _user;
 
-        public void AddFollowUser(string followUserId)
+        public int AddFollowUser(string followUserId)
         {
-            UserFollowDataLogic.Value.Add(new UserFollow
+            return UserFollowDataLogic.Value.Add(new UserFollow
             {
                 UserId = _user.UserId,
                 FollowUserId = followUserId,
@@ -31,9 +31,9 @@ namespace Agensi.Core.User.Follow
             });
         }
 
-        public void DeleteFollowUser(string followUserId)
+        public int DeleteFollowUser(string followUserId)
         {
-            UserFollowDataLogic.Value.Delete(_user.UserId, followUserId);
+            return UserFollowDataLogic.Value.Delete(_user.UserId, followUserId);
         }
     }
 }
