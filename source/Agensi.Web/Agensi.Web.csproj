@@ -177,6 +177,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="api\Board\BoardController.cs" />
+    <Compile Include="api\Board\Models\VoteResult.cs" />
     <Compile Include="api\User\Models\FollowResult.cs" />
     <Compile Include="api\User\UserController.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />

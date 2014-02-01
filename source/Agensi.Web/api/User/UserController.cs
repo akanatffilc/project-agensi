@@ -10,13 +10,14 @@ using System.Web.Http;
 
 namespace Agensi.Web.api.User
 {
+    [Authorize]
     public class UserController : AgensiApiController
     {
         [HttpPost]
         public FollowResult Follow(string toUserId)
         {
             var toUser = AgensiUser.Create(toUserId);
-            if (!LoginUser.IsRegistered || !toUser.IsRegistered)
+            if (!toUser.IsExists)
                 return new FollowResult { IsSuccess = false};
             var manager = LoginUser.CreateFollowManager();
 

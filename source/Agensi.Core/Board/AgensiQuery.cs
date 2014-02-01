@@ -23,12 +23,12 @@ namespace Agensi.Core.Board
         #region Constructor
         public AgensiQuery(long queryId)
         {
-            Query = QueryDataLogic.Value.Find(queryId);
+            _query = QueryDataLogic.Value.Find(queryId);
         }
 
         public AgensiQuery(Query query)
         {
-            Query = query;
+            _query = query;
         }
         #endregion 
 
@@ -39,41 +39,47 @@ namespace Agensi.Core.Board
         private Lazy<QueryViewDataLogic> QueryViewDataLogic = new Lazy<QueryViewDataLogic>(() => { return new QueryViewDataLogic(); });
         private Lazy<QueryTagDataLogic> QueryTagDataLogic = new Lazy<QueryTagDataLogic>(() => { return new QueryTagDataLogic(); });
 
+        private readonly Query _query;
 
-
-        private readonly Query Query;
+        public bool IsExists
+        {
+            get
+            {
+                return _query != null;
+            }
+        }
 
         private AgensiAnswer[] _answers;
         public AgensiAnswer[] Answers {
             get
             {
                 return _answers ??
-                    (_answers = AnswerDataLogic.Value.FindByQueryId(Query.QueryId).ToArray()
+                    (_answers = AnswerDataLogic.Value.FindByQueryId(_query.QueryId).ToArray()
                 .Select(x => AgensiAnswer.Create(x.AnswerId)).ToArray());
             }
         }
 
-        public long QueryId { get { return Query.QueryId; } }
+        public long QueryId { get { return _query.QueryId; } }
 
         private AgensiUser _ownerUser;
-        public AgensiUser OwnerUser { get { return _ownerUser ?? (_ownerUser = AgensiUser.Create(Query.OwnerUserId)); } }
+        public AgensiUser OwnerUser { get { return _ownerUser ?? (_ownerUser = AgensiUser.Create(_query.OwnerUserId)); } }
 
-        public string Title { get { return Query.Title; } }
+        public string Title { get { return _query.Title; } }
 
         private MediaCategory _mediaCategory;
-        public MediaCategory MediaCategory { get { return _mediaCategory ?? (_mediaCategory = new MediaCategory(Query.MediaCategory)); } }
+        public MediaCategory MediaCategory { get { return _mediaCategory ?? (_mediaCategory = new MediaCategory(_query.MediaCategory)); } }
         private AgensiLanguage _agensiLanguage;
-        public AgensiLanguage Language { get { return _agensiLanguage ?? (_agensiLanguage = new AgensiLanguage(Query.LanguageId)); } }
+        public AgensiLanguage Language { get { return _agensiLanguage ?? (_agensiLanguage = new AgensiLanguage(_query.LanguageId)); } }
         private AgensiLanguage _toAgensiLanguage;
-        public AgensiLanguage ToLanguage { get { return _toAgensiLanguage ?? (_toAgensiLanguage = new AgensiLanguage(Query.ToLanguage)); } }
-        public string Text { get { return Query.Text; } }
-        public DateTime QueryDate { get { return Query.QueryDate; } }
+        public AgensiLanguage ToLanguage { get { return _toAgensiLanguage ?? (_toAgensiLanguage = new AgensiLanguage(_query.ToLanguage)); } }
+        public string Text { get { return _query.Text; } }
+        public DateTime QueryDate { get { return _query.QueryDate; } }
 
         private QueryVote[] _votes;
-        public QueryVote[] Votes { get { return _votes ?? (_votes = QueryVoteDataLogic.Value.FindByQueryId(Query.QueryId)); } }
+        public QueryVote[] Votes { get { return _votes ?? (_votes = QueryVoteDataLogic.Value.FindByQueryId(_query.QueryId)); } }
 
         private QueryVoteDown[] _voteDowns;
-        public QueryVoteDown[] VoteDowns { get { return _voteDowns ?? (_voteDowns = QueryVoteDownDataLogic.Value.FindByQueryId(Query.QueryId)); } }
+        public QueryVoteDown[] VoteDowns { get { return _voteDowns ?? (_voteDowns = QueryVoteDownDataLogic.Value.FindByQueryId(_query.QueryId)); } }
 
         private QueryView[] _queryViews;
         private QueryView[] QueryViews
@@ -100,5 +106,20 @@ namespace Agensi.Core.Board
                     (_queryTags = QueryTagDataLogic.Value.FindByQueryId(QueryId));
             }
         }
+
+
+        #region Methods
+
+        public bool IsVoted(string userId)
+        {
+            return Votes.Any(x => x.UserId == userId);
+        }
+
+        public bool IsVoteDowned(string userId)
+        {
+            return VoteDowns.Any(x => x.UserId == userId);
+        }
+
+        #endregion
     }
 }

@@ -51,8 +51,10 @@
     <Compile Include="Board\AgensiAnswerCommands.cs" />
     <Compile Include="Board\AgensiQueryCommands.cs" />
     <Compile Include="Board\AgensiQueryTag\AgensiQueryTagManager.cs" />
+    <Compile Include="Board\BoardManager.cs" />
     <Compile Include="Category\MediaCategory.cs" />
     <Compile Include="Category\MediaCategoryManager.cs" />
+    <Compile Include="Core\AgensiConsts.cs" />
     <Compile Include="Core\AgensiEnums.cs" />
     <Compile Include="DataLogic\Core\AnswerDataLogic.cs" />
     <Compile Include="DataLogic\Core\AnswerVoteDownDataLogic.cs" />

@@ -1,4 +1,5 @@
-﻿using Agensi.Core.User.Comment;
+﻿using Agensi.Core.Board;
+using Agensi.Core.User.Comment;
 using Agensi.Core.User.Follow;
 using Agensi.Core.User.Profile;
 using System;
@@ -30,6 +31,13 @@ namespace Agensi.Core.User
         {
             return _commentManager ??
                 (_commentManager = new CommentManager(this));
+        }
+
+        private BoardManager _boardManager;
+        public BoardManager CreateBoardManager()
+        {
+            return _boardManager ??
+                (_boardManager = new BoardManager(this));
         }
     }
 }

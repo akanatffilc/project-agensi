@@ -40,7 +40,7 @@ namespace Agensi.Core.User
             }
         }
 
-        public bool IsRegistered
+        public bool IsExists
         {
             get
             {

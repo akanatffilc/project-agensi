@@ -21,32 +21,53 @@ namespace Agensi.Core.Board
         #region Constructor
         protected AgensiAnswer(Answer answer)
         {
-            Answer = answer;
+            _answer = answer;
         }
         protected AgensiAnswer(long answerId)
         {
-            Answer = AnswerDataLogic.Value.Find(answerId);
+            _answer = AnswerDataLogic.Value.Find(answerId);
         }
         #endregion
 
         private Lazy<AnswerDataLogic> AnswerDataLogic = new Lazy<AnswerDataLogic>(() => { return new AnswerDataLogic(); });
         private Lazy<AnswerVoteDataLogic> AnswerVoteDataLogic = new Lazy<AnswerVoteDataLogic>(() => { return new AnswerVoteDataLogic(); });
         private Lazy<AnswerVoteDownDataLogic> AnswerVoteDownDataLogic = new Lazy<AnswerVoteDownDataLogic>(() => { return new AnswerVoteDownDataLogic(); });
-        private readonly Answer Answer;
+        private readonly Answer _answer;
+
+        public bool IsExists
+        {
+            get { return _answer != null; }
+        }
 
         private AgensiUser _answerUser;
-        public AgensiUser AnswerUser { get { return _answerUser ?? (_answerUser = AgensiUser.Create(Answer.AnswerUserId)); } }
-        public long QueryId { get { return Answer.QueryId; } }
-        public long AnswerId { get { return Answer.AnswerId; } }
+        public AgensiUser AnswerUser { get { return _answerUser ?? (_answerUser = AgensiUser.Create(_answer.AnswerUserId)); } }
+        public long QueryId { get { return _answer.QueryId; } }
+        public long AnswerId { get { return _answer.AnswerId; } }
         private AgensiLanguage _agensiLanguage;
-        public AgensiLanguage Language { get { return _agensiLanguage ?? (_agensiLanguage = new AgensiLanguage(Answer.LanguageId)); } }
-        public string Text { get { return Answer.Text; } }
-        public DateTime AnswerDate { get { return Answer.AnswerDate; } }
+        public AgensiLanguage Language { get { return _agensiLanguage ?? (_agensiLanguage = new AgensiLanguage(_answer.LanguageId)); } }
+        public string Text { get { return _answer.Text; } }
+        public DateTime AnswerDate { get { return _answer.AnswerDate; } }
 
         private AnswerVote[] _votes;
-        public AnswerVote[] Votes { get { return _votes ?? (_votes = AnswerVoteDataLogic.Value.FindByAnswerId(Answer.AnswerId)); } }
+        public AnswerVote[] Votes { get { return _votes ?? (_votes = AnswerVoteDataLogic.Value.FindByAnswerId(_answer.AnswerId)); } }
 
         private AnswerVoteDown[] _voteDowns;
-        public AnswerVoteDown[] VoteDowns { get { return _voteDowns ?? (_voteDowns = AnswerVoteDownDataLogic.Value.FindByAnswerId(Answer.AnswerId)); } }
+        public AnswerVoteDown[] VoteDowns { get { return _voteDowns ?? (_voteDowns = AnswerVoteDownDataLogic.Value.FindByAnswerId(_answer.AnswerId)); } }
+
+        #region Methods
+
+        public bool IsVoted(string userId)
+        {
+            return Votes.Any(x => x.UserId == userId);
+        }
+
+        public bool IsVoteDowns(string userId)
+        {
+            return VoteDowns.Any(x => x.UserId == userId);
+        }
+
+
+        #endregion
+
     }
 }

@@ -48,6 +48,15 @@ namespace Agensi.Core.User
 
         public string Comment { get { return Profile != null ? Profile.Comment : ""; } }
 
-        public byte[] ProfileImage { get { return Profile != null && Profile.ProfileImage != null ? Profile.ProfileImage : null; } }
+        public byte[] ProfileImage
+        {
+            get
+            {
+                if(Profile != null && Profile.ProfileImage != null)
+                     return Profile.ProfileImage;
+
+                return Convert.FromBase64String(AgensiConsts.DefaultImage);
+            }
+        }
     }
 }
