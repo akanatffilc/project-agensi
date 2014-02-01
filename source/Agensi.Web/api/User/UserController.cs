@@ -24,7 +24,8 @@ namespace Agensi.Web.api.User
             var follow = manager.AddFollowUser(toUserId);
 
             var result = new FollowResult{
-                Result =  follow > 0
+                Result =  true,
+                Followed = follow >0
             };
 
             return result;
@@ -34,6 +35,7 @@ namespace Agensi.Web.api.User
         [HttpPost]
         public FollowResult UnFollow(string fromUserId,string toUserId)
         {
+            //TEST
             var user = AgensiUser.Create(fromUserId);
             var toUser = AgensiUser.Create(toUserId);
             if (!user.IsRegistered || !toUser.IsRegistered)
@@ -46,7 +48,7 @@ namespace Agensi.Web.api.User
             var result = new FollowResult
             {
                 Result = true,
-                FollowResult = unFollow > 0
+                Followed = unFollow > 0
             };
 
             return result;

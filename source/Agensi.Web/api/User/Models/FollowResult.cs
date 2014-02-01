@@ -14,6 +14,6 @@ namespace Agensi.Web.api.User.Models
 
         public bool Result { get; set; }
 
-        public bool FollowResult { get; set; }
+        public bool Followed { get; set; }
     }
 }

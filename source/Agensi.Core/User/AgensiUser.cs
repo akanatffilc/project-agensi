@@ -48,7 +48,6 @@ namespace Agensi.Core.User
             }
         }
 
-        private string UserName;
         //TODO:絶対キャッシュにした方がいい
         public string UserName
         {
