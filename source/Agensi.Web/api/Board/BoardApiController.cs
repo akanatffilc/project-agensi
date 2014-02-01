@@ -10,7 +10,8 @@ using System.Web.Http;
 
 namespace Agensi.Web.api.Board
 {
-    public class BoardController : AgensiApiController
+    [Authorize]
+    public class BoardApiController : AgensiApiController
     {
         [HttpPost]
         public VoteResult QueryVote(long queryId)

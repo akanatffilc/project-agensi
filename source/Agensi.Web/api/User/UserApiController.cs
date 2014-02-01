@@ -11,7 +11,7 @@ using System.Web.Http;
 namespace Agensi.Web.api.User
 {
     [Authorize]
-    public class UserController : AgensiApiController
+    public class UserApiController : AgensiApiController
     {
         [HttpPost]
         public FollowResult Follow(string toUserId)

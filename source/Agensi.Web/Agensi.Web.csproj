@@ -177,16 +177,15 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="api\Board\BoardController.cs" />
+    <Compile Include="api\Board\BoardApiController.cs" />
     <Compile Include="api\Board\Models\VoteResult.cs" />
     <Compile Include="api\User\Models\FollowResult.cs" />
-    <Compile Include="api\User\UserController.cs" />
+    <Compile Include="api\User\UserApiController.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="Areas\Board\BoardAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\BoardController.cs" />
@@ -234,7 +233,6 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <Content Include="Areas\Board\Views\web.config" />
     <None Include="Properties\PublishProfiles\agensi-dev - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\agensi-dev - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\agensi-dev.pubxml" />
@@ -286,9 +284,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\Board\Controllers\" />
-    <Folder Include="Areas\Board\Models\" />
-    <Folder Include="Areas\Board\Views\Shared\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
