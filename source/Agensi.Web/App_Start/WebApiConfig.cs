@@ -9,13 +9,22 @@ namespace Agensi.Web
     {
         public static void Register(HttpConfiguration config)
         {
-			config.MapHttpAttributeRoutes();
+            config.MapHttpAttributeRoutes();
+
+            config.Routes.MapHttpRoute(
+                name: "follow",
+                routeTemplate: "api/user/follow/{toUserId}",
+                defaults: new { controller = "User", action = "Follow"}
+            );
 
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
+
+
+            config.Formatters.Remove(config.Formatters.XmlFormatter);
         }
     }
 }

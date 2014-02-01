@@ -7,13 +7,8 @@ namespace Agensi.Web.api.User.Models
 {
     public class FollowResult
     {
-        public FollowResult()
-        {
-            Result = false;
-        }
+        public bool IsSuccess { get; set; }
 
-        public bool Result { get; set; }
-
-        public bool Followed { get; set; }
+        public bool IsFollow { get; set; }
     }
 }

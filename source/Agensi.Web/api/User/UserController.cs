@@ -1,5 +1,6 @@
 ﻿using Agensi.Core.User;
 using Agensi.Web.api.User.Models;
+using Agensi.Web.Core.Controllers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,49 +10,34 @@ using System.Web.Http;
 
 namespace Agensi.Web.api.User
 {
-    public class UserController : ApiController
+    public class UserController : AgensiApiController
     {
-
         [HttpPost]
-        public FollowResult Follow(string fromUserId,string toUserId)
+        public FollowResult Follow(string toUserId)
         {
-            var user = AgensiUser.Create(fromUserId);
             var toUser = AgensiUser.Create(toUserId);
-            if (!user.IsRegistered || !toUser.IsRegistered)
-                return new FollowResult();
-            var manager = user.CreateFollowManager();
+            if (!LoginUser.IsRegistered || !toUser.IsRegistered)
+                return new FollowResult { IsSuccess = false};
+            var manager = LoginUser.CreateFollowManager();
 
-            var follow = manager.AddFollowUser(toUserId);
-
-            var result = new FollowResult{
-                Result =  true,
-                Followed = follow >0
-            };
-
-            return result;
-        }
-
-
-        [HttpPost]
-        public FollowResult UnFollow(string fromUserId,string toUserId)
-        {
-            //TEST
-            var user = AgensiUser.Create(fromUserId);
-            var toUser = AgensiUser.Create(toUserId);
-            if (!user.IsRegistered || !toUser.IsRegistered)
-                return new FollowResult();
-
-            var manager = user.CreateFollowManager();
-
-            var unFollow = manager.DeleteFollowUser(toUserId);
-
-            var result = new FollowResult
+            if (!LoginUser.IsFollowUser(toUserId))
             {
-                Result = true,
-                Followed = unFollow > 0
-            };
-
-            return result;
+                var resultNum = manager.AddFollowUser(toUserId);
+                return new FollowResult
+                {
+                    IsSuccess = true,
+                    IsFollow = resultNum > 0
+                };
+            }
+            else
+            {
+                var resultNum = manager.DeleteFollowUser(toUserId);
+                return new FollowResult
+                {
+                    IsSuccess = true,
+                    IsFollow = resultNum <= 0
+                };
+            }
         }
     }
 }
