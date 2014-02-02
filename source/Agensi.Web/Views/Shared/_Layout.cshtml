@@ -4,11 +4,14 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - マイ ASP.NET アプリケーション</title>
+    <title>agensi - @ViewBag.Title</title>
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300' rel='stylesheet' type='text/css'>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     @Scripts.Render("~/bundles/googleanalytics")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
 </head>
 <body>
     <div class="navbar navbar-fixed-top">
@@ -17,22 +20,53 @@
                 @Html.ActionLink("agensi"
                 , "Index", "Board", null, new { @class = "navbar-brand" })
             </div>
-            <div class="navbar-collapse collapse">
+            <div class="navbar-right">
                 @Html.Partial("_LoginPartial")
+            </div>
+            <div class="navbar-right">
+            @if (User.Identity.IsAuthenticated)
+            {
+                <button type="button" class="btn btn-primary ask-button ask-popover" data-toggle="modal" data-target=".bs-modal-lg">Ask</button>
+            }
+            else
+            {
+                <button type="button" class="btn btn-primary ask-button ask-popover" data-container="body" data-toggle="popover" data-placement="bottom" data-content="Sign up or login in Ask">Ask</button>
+                <script type="text/javascript">
+                $(function () {
+                    $('.ask-popover').popover();
+                });
+                </script>
+            }
             </div>
         </div>
     </div>
-    <div class="container body-content">
+    <div class="body-content">
         @RenderBody()
-        <hr />
+        <hr />  
+        <div id="askModal" class="modal fade bs-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="askModalLabel">Ask</h4>
+                    </div>
+                    <div class="modal-body">
+                        @Html.Partial("_AskPartial")
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">はーい</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script type="text/javascript">
+            $(function () {
+                $('#askModal').modal();
+            });
+        </script>     
         <footer>
             <div>@Html.ActionLink("About", "About", "Home")&nbsp;&nbsp;@Html.ActionLink("Contact", "Contact", "Home")</div>
             <p>&copy; @DateTime.Now.Year - agensi alpha 1.0</p>
         </footer>
     </div>
-
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
 </body>
 </html>
