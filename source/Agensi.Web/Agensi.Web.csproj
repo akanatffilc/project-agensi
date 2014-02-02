@@ -209,6 +209,7 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Board\AskModel.cs" />
+    <Compile Include="Models\Board\AskPartialModel.cs" />
     <Compile Include="Models\Board\QueryModel.cs" />
     <Compile Include="Models\Home\HomeModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -281,6 +282,7 @@
     <Content Include="Views\Board\Thread.cshtml" />
     <Content Include="Views\User\Index.cshtml" />
     <Content Include="Views\User\Edit.cshtml" />
+    <Content Include="Views\Board\_AskPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
