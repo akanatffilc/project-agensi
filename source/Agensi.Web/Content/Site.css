@@ -60,7 +60,11 @@ input[type="checkbox"].input-validation-error {
 .navbar a {
     color:white;
 }
-.navbar a:hover {
+.navbar a:hover,
+.nav .open > a, 
+.nav .open > a:hover, 
+.nav .open > a:focus,
+.navbar-nav > li > .dropdown-menu {
     background: #ca3200; /* Old browsers */
     background: -moz-linear-gradient(top,  #ca3200 0%, #c02d00 100%); /* FF3.6+ */
     background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ca3200), color-stop(100%,#c02d00)); /* Chrome,Safari4+ */
@@ -73,14 +77,30 @@ input[type="checkbox"].input-validation-error {
 .navbar-brand,
 .navbar-nav > li > a {
     padding:10px 15px;
+    display:inline-block;
 }
 .navbar-brand {
     font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
+.dropdown-menu {
+    min-width:135px;
+}
+.dropdown-menu > li > a {
+    color: white;
+}
+.dropdown-menu > li > a:hover {
+    color: silver;
+}
+.ask-button {
+    margin: 4px 30px;
+    padding: 5px 30px;
+}
 /* query-table css*/
 .query-table {
-    max-width:760px;
-    font-size:12px;
+    max-width: 760px;
+    font-size: 12px;
+    min-width: 760px;
+    margin: auto;
 }
 .query-row {
     padding: 10px 0px;
@@ -182,22 +202,19 @@ footer div {
 #loginForm label{
     padding-top:0px;
 }
-#loginForm .form-group{
-    margin-bottom: 5px;
-}
-#loginForm .form-control {
-    padding: 0px 4px;
-    width: 240px;
-    margin: auto;
-}
 #loginForm p {
     margin-top: 20px;
     font-size:12px;
 }
+#loginForm .checkbox {
+
+}
+#loginForm .login {
+    margin-top:7px;
+}
 #loginForm input[type="submit"] {
     width: 100px;
 }
-
 /* profile */
 #profile {
     width:940px;
@@ -223,7 +240,7 @@ footer div {
     
 }
 #profile-top-follow {
-    max-width: 150px;
+    max-width: 145px;
 }
 #profile-top-follow button {
     max-width: 150px;
@@ -237,11 +254,17 @@ footer div {
     width: 160px;
     margin-right: 10px;
 }
-#profile-image {
-    margin-bottom: 10px;
+#profile-image,
+#profile-image img{
+    width: 140px;
+    height: 160px;
+}
+#profile-left > div {
+    margin-bottom: 5px;
 }
 #profile-left label {
     color: #006699;
+    margin: 0px;
 }
 #profile-left span {
     color: grey;
@@ -250,6 +273,9 @@ footer div {
 #profile-like-genre {
     line-height: 1em;
 }
+#profile-edit {
+    margin-top: 10px;
+}
 #profile-right {
-
+    width: 770px;
 }

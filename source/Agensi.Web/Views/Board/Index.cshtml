@@ -3,11 +3,12 @@
 }
 @model Agensi.Web.Models.Board.BoardIndexModel
 
+<!--
 @if(@User.Identity.IsAuthenticated)
 {
     @Html.ActionLink("質問する", "Ask", null, new { @class = "btn btn-default" })
 }
-
+-->
 @if (Model.AgensiQueries.Any())
 {
     <div class="query-table">
@@ -48,7 +49,8 @@
                         {
                             timeDiffString = timeDiff.ToString();
                         }
-                    } @timeDiffString
+                    } 
+                    @timeDiffString
                     </div>
 
                 </div>
