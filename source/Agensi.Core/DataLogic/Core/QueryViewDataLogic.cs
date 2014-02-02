@@ -13,9 +13,9 @@ namespace Agensi.Core.DataLogic.Core
     {
         private IQueryViewRepository _repository;
 
-        public QueryViewDataLogic() : this(new QueryViewRepository()) { }
+        internal QueryViewDataLogic() : this(new QueryViewRepository()) { }
 
-        public QueryViewDataLogic(IQueryViewRepository repository)
+        internal QueryViewDataLogic(IQueryViewRepository repository)
         {
             _repository = repository;
         }

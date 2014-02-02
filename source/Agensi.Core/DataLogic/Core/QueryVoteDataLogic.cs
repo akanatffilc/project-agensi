@@ -13,9 +13,9 @@ namespace Agensi.Core.DataLogic.Core
     {
         private IQueryVoteRepository _repository;
 
-        public QueryVoteDataLogic() : this(new QueryVoteRepository()) { }
+        internal QueryVoteDataLogic() : this(new QueryVoteRepository()) { }
 
-        public QueryVoteDataLogic(IQueryVoteRepository repository)
+        internal QueryVoteDataLogic(IQueryVoteRepository repository)
         {
             _repository = repository;
         }

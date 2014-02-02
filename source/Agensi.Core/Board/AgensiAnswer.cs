@@ -51,6 +51,8 @@ namespace Agensi.Core.Board
         private AnswerVote[] _votes;
         public AnswerVote[] Votes { get { return _votes ?? (_votes = AnswerVoteDataLogic.Value.FindByAnswerId(_answer.AnswerId)); } }
 
+        public long? PallentAnswerId { get { return _answer.ParentAnswerId; } }
+
         #region Methods
 
         public bool IsVoted(string userId)

@@ -30,7 +30,6 @@ namespace Agensi.Data.Core
         public virtual DbSet<AspNetUserLogin> AspNetUserLogins { get; set; }
         public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
         public virtual DbSet<C__MigrationHistory> C__MigrationHistory { get; set; }
-        public virtual DbSet<Answer> Answers { get; set; }
         public virtual DbSet<AnswerVoteDown> AnswerVoteDowns { get; set; }
         public virtual DbSet<LanguageMaster> LanguageMasters { get; set; }
         public virtual DbSet<QueryVoteDown> QueryVoteDowns { get; set; }
@@ -44,5 +43,6 @@ namespace Agensi.Data.Core
         public virtual DbSet<Query> Queries { get; set; }
         public virtual DbSet<AnswerVote> AnswerVotes { get; set; }
         public virtual DbSet<QueryVote> QueryVotes { get; set; }
+        public virtual DbSet<Answer> Answers { get; set; }
     }
 }

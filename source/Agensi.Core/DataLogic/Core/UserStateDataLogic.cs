@@ -13,9 +13,9 @@ namespace Agensi.Core.DataLogic.Core
     {
         private IUserStateRepository _repository;
 
-        public UserStateDataLogic() : this(new UserStateRepository()) { }
+        internal UserStateDataLogic() : this(new UserStateRepository()) { }
 
-        public UserStateDataLogic(IUserStateRepository repository)
+        internal UserStateDataLogic(IUserStateRepository repository)
         {
             _repository = repository;
         }

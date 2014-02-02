@@ -26,6 +26,7 @@
           <Property Name="Text" Type="nvarchar(max)" Nullable="false" />
           <Property Name="AnswerDate" Type="datetime" Nullable="false" />
           <Property Name="UpdateTime" Type="datetime" Nullable="false" />
+          <Property Name="ParentAnswerId" Type="bigint" />
         </EntityType>
         <EntityType Name="AnswerVote">
           <Key>
@@ -315,7 +316,6 @@
             <End Role="AspNetUser" EntitySet="AspNetUsers" />
           </AssociationSet>
           <EntitySet Name="C__MigrationHistory" EntityType="AgensiDBModel.C__MigrationHistory" />
-          <EntitySet Name="Answers" EntityType="AgensiDBModel.Answer" />
           <EntitySet Name="AnswerVoteDowns" EntityType="AgensiDBModel.AnswerVoteDown" />
           <EntitySet Name="LanguageMasters" EntityType="AgensiDBModel.LanguageMaster" />
           <EntitySet Name="QueryVoteDowns" EntityType="AgensiDBModel.QueryVoteDown" />
@@ -329,6 +329,7 @@
           <EntitySet Name="Queries" EntityType="AgensiDBModel.Query" />
           <EntitySet Name="AnswerVotes" EntityType="AgensiDBModel.AnswerVote" />
           <EntitySet Name="QueryVotes" EntityType="AgensiDBModel.QueryVote" />
+          <EntitySet Name="Answers" EntityType="AgensiDBModel.Answer" />
           </EntityContainer>
         <EntityType Name="AspNetRole">
           <Key>
@@ -413,18 +414,6 @@
           <Property Name="ContextKey" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="true" />
           <Property Name="Model" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
           <Property Name="ProductVersion" Type="String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="Answer">
-          <Key>
-            <PropertyRef Name="AnswerId" />
-          </Key>
-          <Property Name="AnswerId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="QueryId" Type="Int64" Nullable="false" />
-          <Property Name="AnswerUserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="LanguageId" Type="Int64" Nullable="false" />
-          <Property Name="Text" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="AnswerDate" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="UpdateTime" Type="DateTime" Nullable="false" Precision="3" />
         </EntityType>
         <EntityType Name="AnswerVoteDown">
           <Key>
@@ -554,6 +543,19 @@
           <Property Name="VoteStatus" Type="Int32" Nullable="false" />
           <Property Name="AddTime" Type="DateTime" Nullable="false" Precision="3" />
         </EntityType>
+        <EntityType Name="Answer">
+          <Key>
+            <PropertyRef Name="AnswerId" />
+          </Key>
+          <Property Name="AnswerId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="QueryId" Type="Int64" Nullable="false" />
+          <Property Name="AnswerUserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="LanguageId" Type="Int64" Nullable="false" />
+          <Property Name="Text" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="AnswerDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UpdateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ParentAnswerId" Type="Int64" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -613,19 +615,6 @@
                 <ScalarProperty Name="Model" ColumnName="Model" />
                 <ScalarProperty Name="ContextKey" ColumnName="ContextKey" />
                 <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Answers">
-            <EntityTypeMapping TypeName="AgensiDBModel.Answer">
-              <MappingFragment StoreEntitySet="Answer">
-                <ScalarProperty Name="UpdateTime" ColumnName="UpdateTime" />
-                <ScalarProperty Name="AnswerDate" ColumnName="AnswerDate" />
-                <ScalarProperty Name="Text" ColumnName="Text" />
-                <ScalarProperty Name="LanguageId" ColumnName="LanguageId" />
-                <ScalarProperty Name="AnswerUserId" ColumnName="AnswerUserId" />
-                <ScalarProperty Name="QueryId" ColumnName="QueryId" />
-                <ScalarProperty Name="AnswerId" ColumnName="AnswerId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -760,6 +749,20 @@
                 <ScalarProperty Name="VoteStatus" ColumnName="VoteStatus" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="QueryId" ColumnName="QueryId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Answers">
+            <EntityTypeMapping TypeName="AgensiDBModel.Answer">
+              <MappingFragment StoreEntitySet="Answer">
+                <ScalarProperty Name="ParentAnswerId" ColumnName="ParentAnswerId" />
+                <ScalarProperty Name="UpdateTime" ColumnName="UpdateTime" />
+                <ScalarProperty Name="AnswerDate" ColumnName="AnswerDate" />
+                <ScalarProperty Name="Text" ColumnName="Text" />
+                <ScalarProperty Name="LanguageId" ColumnName="LanguageId" />
+                <ScalarProperty Name="AnswerUserId" ColumnName="AnswerUserId" />
+                <ScalarProperty Name="QueryId" ColumnName="QueryId" />
+                <ScalarProperty Name="AnswerId" ColumnName="AnswerId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

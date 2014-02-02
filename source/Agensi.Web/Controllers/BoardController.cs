@@ -42,7 +42,9 @@ namespace Agensi.Web.Controllers
             query.QueryDate = DateTime.Now;
             query.UpdateTime = DateTime.Now;
 
-            new QueryDataLogic().Add(query);
+            var manager = LoginUser.CreateBoardManager();
+            manager.AddQuery(query);
+
             if (Tag != string.Empty)
                 AgensiQueryTagManager.AddQueryTag(query.QueryId, Tag);
 
@@ -65,13 +67,30 @@ namespace Agensi.Web.Controllers
             return View(model);
         }
 
+        [HttpPost]
         public ActionResult AnswerExecute(Answer answer)
         {
             answer.AnswerUserId = LoginUser.UserId;
             answer.AnswerDate = DateTime.Now;
             answer.UpdateTime = DateTime.Now;
 
-            new AnswerDataLogic().Add(answer);
+            var manager = LoginUser.CreateBoardManager();
+            manager.AddAnswer(answer);
+
+            return RedirectToAction("Thread", new { queryId = answer.QueryId });
+        }
+
+        public ActionResult AnswerModify(long answerId,string text)
+        {
+            var answer = AgensiAnswer.Create(answerId);
+            if (!answer.IsExists)
+                return RedirectToAction("Index");
+
+            var manager = LoginUser.CreateBoardManager();
+            var commands = manager.CreateAnswerCommands(answer);
+
+            commands.AddChildAnswer(text);
+
             return RedirectToAction("Thread", new { queryId = answer.QueryId });
         }
 

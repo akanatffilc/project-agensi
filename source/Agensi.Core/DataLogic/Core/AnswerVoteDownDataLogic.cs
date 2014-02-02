@@ -13,9 +13,9 @@ namespace Agensi.Core.DataLogic.Core
     {
         private IAnswerVoteDownRepository _repository;
 
-        public AnswerVoteDownDataLogic() : this(new AnswerVoteDownRepository()) { }
+        internal AnswerVoteDownDataLogic() : this(new AnswerVoteDownRepository()) { }
 
-        public AnswerVoteDownDataLogic(IAnswerVoteDownRepository repository)
+        internal AnswerVoteDownDataLogic(IAnswerVoteDownRepository repository)
         {
             _repository = repository;
         }

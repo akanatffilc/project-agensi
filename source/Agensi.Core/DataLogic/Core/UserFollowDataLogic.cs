@@ -14,9 +14,9 @@ namespace Agensi.Core.DataLogic.Core
     {
         private IUserFollowRepository _repository;
 
-        public UserFollowDataLogic() : this(new UserFollowRepository()) { }
+        internal UserFollowDataLogic() : this(new UserFollowRepository()) { }
 
-        public UserFollowDataLogic(IUserFollowRepository repository)
+        internal UserFollowDataLogic(IUserFollowRepository repository)
         {
             _repository = repository;
         }

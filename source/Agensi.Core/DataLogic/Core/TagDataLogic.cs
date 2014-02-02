@@ -13,9 +13,9 @@ namespace Agensi.Core.DataLogic.Core
     {
         private ITagRepository _repository;
 
-        public TagDataLogic() : this(new TagRepository()) { }
+        internal TagDataLogic() : this(new TagRepository()) { }
 
-        public TagDataLogic(ITagRepository repository) 
+        internal TagDataLogic(ITagRepository repository) 
         {
             _repository = repository;
         }

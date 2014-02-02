@@ -21,5 +21,6 @@ namespace Agensi.Data.Core
         public string Text { get; set; }
         public System.DateTime AnswerDate { get; set; }
         public System.DateTime UpdateTime { get; set; }
+        public Nullable<long> ParentAnswerId { get; set; }
     }
 }

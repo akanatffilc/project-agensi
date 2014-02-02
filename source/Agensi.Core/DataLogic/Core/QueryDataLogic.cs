@@ -13,9 +13,9 @@ namespace Agensi.Core.DataLogic.Core
     {
         private IQueryRepository _repository;
 
-        public QueryDataLogic() : this(new QueryRepository()) { }
+        internal QueryDataLogic() : this(new QueryRepository()) { }
 
-        public QueryDataLogic(IQueryRepository repository) 
+        internal QueryDataLogic(IQueryRepository repository) 
         {
             _repository = repository;
         }
@@ -36,10 +36,17 @@ namespace Agensi.Core.DataLogic.Core
         }
 
 
-        public void Add(Query query)
+        public int Add(Query query)
         {
-            _repository.Add(query);
-            _repository.Save();
+            try
+            {
+                _repository.Add(query);
+                return _repository.Save();
+            }
+            catch
+            {
+                return 0;
+            }
         }
     }
 }

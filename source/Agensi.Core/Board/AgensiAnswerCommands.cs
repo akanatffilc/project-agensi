@@ -14,6 +14,8 @@ namespace Agensi.Core.Board
     {
         private static Lazy<AnswerVoteDataLogic> AnswerVoteDataLogic = new Lazy<AnswerVoteDataLogic>(() => { return new AnswerVoteDataLogic(); });
         private static Lazy<AnswerVoteDownDataLogic> AnswerVoteDownDataLogic = new Lazy<AnswerVoteDownDataLogic>(() => { return new AnswerVoteDownDataLogic(); });
+        private static Lazy<AnswerDataLogic> AnswerDataLogic = new Lazy<AnswerDataLogic>(() => { return new AnswerDataLogic(); });
+
 
         internal AgensiAnswerCommands(AgensiUser user,AgensiAnswer answer)
         {
@@ -41,7 +43,6 @@ namespace Agensi.Core.Board
             }
             set { _voteStatus = value; }
         }
-
 
         public AgensiEnums.VoteStatus VoteUp()
         {
@@ -106,6 +107,20 @@ namespace Agensi.Core.Board
                 default:
                     throw new InvalidOperationException("VoteStatus");
             }
+        }
+
+        public void AddChildAnswer(string text)
+        {
+            var childAnswer = new Answer{
+                AnswerUserId = _user.UserId,
+                ParentAnswerId = _answer.AnswerId,
+                QueryId = _answer.QueryId,
+                Text = text,
+                LanguageId = _answer.Language.LanguageId,
+                AnswerDate = DateTime.Now,
+                UpdateTime = DateTime.Now
+            };
+            AnswerDataLogic.Value.Add(childAnswer);   
         }
     }
 }

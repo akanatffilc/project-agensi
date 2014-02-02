@@ -13,9 +13,9 @@ namespace Agensi.Core.DataLogic.Core
     {
         private IQueryTagRepository _repository;
 
-        public QueryTagDataLogic() : this(new QueryTagRepository()) { }
+        internal QueryTagDataLogic() : this(new QueryTagRepository()) { }
 
-        public QueryTagDataLogic(IQueryTagRepository repository)
+        internal QueryTagDataLogic(IQueryTagRepository repository)
         {
             _repository = repository;
         }

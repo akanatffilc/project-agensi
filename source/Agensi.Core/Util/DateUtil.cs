@@ -8,5 +8,18 @@ namespace Agensi.Core.Util
 {
     public class DateUtil
     {
+        public static string FormatDate(DateTime now, DateTime fromToDate)
+        {
+            if(now > fromToDate)
+            {
+                var timeSpan = now - fromToDate;
+                return string.Format("{0}前", timeSpan);
+            }
+            else
+            {
+                var timeSpan = fromToDate - now;
+                return string.Format("{0}後", timeSpan);
+            }
+        }
     }
 }

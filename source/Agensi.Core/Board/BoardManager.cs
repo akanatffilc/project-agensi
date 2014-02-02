@@ -16,6 +16,8 @@ namespace Agensi.Core.Board
         private static Lazy<QueryVoteDataLogic> QueryVoteDataLogic = new Lazy<QueryVoteDataLogic>(() => { return new QueryVoteDataLogic(); });
         private static Lazy<QueryVoteDownDataLogic> QueryVoteDownDataLogic = new Lazy<QueryVoteDownDataLogic>(() => { return new QueryVoteDownDataLogic(); });
         private static Lazy<QueryViewDataLogic> QueryViewDataLogic = new Lazy<QueryViewDataLogic>(() => { return new QueryViewDataLogic(); });
+        private static Lazy<QueryDataLogic> QueryDataLogic = new Lazy<QueryDataLogic>(() => { return new QueryDataLogic(); });
+        private static Lazy<AnswerDataLogic> AnswerDataLogic = new Lazy<AnswerDataLogic>(() => { return new AnswerDataLogic(); });
 
         internal BoardManager(AgensiUser user)
         {
@@ -32,6 +34,21 @@ namespace Agensi.Core.Board
         public AgensiQueryCommands CreateQueryCommands(AgensiQuery query)
         {
             return new AgensiQueryCommands(_user, query);
+        }
+
+        public AgensiQuery[] FindQueryAll()
+        {
+            return QueryDataLogic.Value.FindAll().Select(x => AgensiQuery.Create(x.QueryId)).ToArray();
+        }
+
+        public void AddQuery(Query query)
+        {
+            QueryDataLogic.Value.Add(query);
+        }
+
+        public void AddAnswer(Answer answer)
+        {
+            AnswerDataLogic.Value.Add(answer);
         }
     }
 }

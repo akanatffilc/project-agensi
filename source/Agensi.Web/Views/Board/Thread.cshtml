@@ -35,7 +35,7 @@
             </li>
         }
         <li class="list-group-item" style="text-align:left"><span class="glyphicon glyphicon-font"></span>&nbsp;ToLanguage:@Model.AgensiQuery.ToLanguage.Name</li>
-        <li class="list-group-item" style="text-align:left">Tags:&nbsp;@string.Join(",",@Model.AgensiQuery.QueryTags.Select(_ => _.TagName).ToArray())</li>
+        <li class="list-group-item" style="text-align:left">Tags:&nbsp;@string.Join(",", @Model.AgensiQuery.QueryTags.Select(_ => _.TagName).ToArray())</li>
         <li class="list-group-item" style="text-align:right"><img style="width:50px;height:50px" src="@ImageUtil.ToImageSrc(@Model.AgensiQuery.OwnerUser.ProfileImage)" />QueryOwner:@Model.AgensiQuery.OwnerUser.UserName</li>
     </ul>
 </div>
@@ -58,7 +58,12 @@
             {
                 <tr>
                     <td>answer:<img style="width:30px;height:30px" src="@ImageUtil.ToImageSrc(@answer.AnswerUser.ProfileImage)" />@answer.AnswerUser.UserName</td>
-                    <td>@answer.Text</td>
+                    @using (Html.BeginForm("AnswerModify", "Board", FormMethod.Post))
+                    {
+                        <td><input type="text" name="text" value="@answer.Text"/><input type="hidden" name="answerId" value="@answer.AnswerId"/></td>
+                        <td><button type="submit">修正する</button></td>
+                    }
+                    <td>ParentAnswerId:@StringUtil.ValueOrStringEmpty(@answer.PallentAnswerId)</td>
                     <td>vote:@(answer.Votes.Count())</td>
                     @if (@User.Identity.IsAuthenticated)
                     {
@@ -87,7 +92,6 @@ else
     <div style="color:red;font-size:15px">※Answer is nothing...</div>
 }
 <br />
-
 @if (@User.Identity.IsAuthenticated)
 {
     <div class="panel panel-primary">

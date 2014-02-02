@@ -13,9 +13,9 @@ namespace Agensi.Core.DataLogic.Core
     {
         private IAspNetUserRepository _repository;
 
-        public AspNetUserDataLogic() : this(new AspNetUserRepository()) { }
+        internal AspNetUserDataLogic() : this(new AspNetUserRepository()) { }
 
-        public AspNetUserDataLogic(IAspNetUserRepository repository)
+        internal AspNetUserDataLogic(IAspNetUserRepository repository)
         {
             _repository = repository;
         }

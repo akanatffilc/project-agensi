@@ -13,9 +13,9 @@ namespace Agensi.Core.DataLogic.Core
     {
         private IAnswerRepository _repository;
 
-        public AnswerDataLogic() : this(new AnswerRepository()) { }
+        internal AnswerDataLogic() : this(new AnswerRepository()) { }
 
-        public AnswerDataLogic(IAnswerRepository repository) 
+        internal AnswerDataLogic(IAnswerRepository repository) 
         {
             _repository = repository;
         }
@@ -35,10 +35,17 @@ namespace Agensi.Core.DataLogic.Core
             return _repository.FindByAnswerUserId(uid);
         }
 
-        public void Add(Answer answer)
+        public int Add(Answer answer)
         {
-            _repository.Add(answer);
-            _repository.Save();
+            try
+            {
+                _repository.Add(answer);
+                return _repository.Save();
+            }
+            catch
+            {
+                return 0;
+            }
         }
     }
 }

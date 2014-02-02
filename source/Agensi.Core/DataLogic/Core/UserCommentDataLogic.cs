@@ -13,9 +13,9 @@ namespace Agensi.Core.DataLogic.Core
     {
         private IUserCommentRepository _repository;
 
-        public UserCommentDataLogic() : this(new UserCommentRepository()) { }
+        internal UserCommentDataLogic() : this(new UserCommentRepository()) { }
 
-        public UserCommentDataLogic(IUserCommentRepository repository) 
+        internal UserCommentDataLogic(IUserCommentRepository repository) 
         {
             _repository = repository;
         }
