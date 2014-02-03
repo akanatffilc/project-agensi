@@ -21,4 +21,29 @@ public static class AgensiCompareEx
         return value.CompareTo(min) >= 0 && value.CompareTo(max) <= 0;
     }
 
+
+    /// <summary>
+    /// デフォルト値 or nullであればString.Emptyを、値が入っていればToStringにして返す
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// <param name="source"></param>
+    /// <returns></returns>
+    public static string ToStringOrEmpty<T>(this T source)
+            where T : struct, IConvertible
+    {
+        // ReSharper disable once CompareNonConstrainedGenericWithNull
+        if (!source.Equals(default(T)))
+            return source.ToString();
+        return string.Empty;
+    }
+
+    public static string ToStringOrEmpty<T>(this T? source)
+            where T : struct, IConvertible
+    {
+        // ReSharper disable once CompareNonConstrainedGenericWithNull
+        if (source != null && !source.Equals(default(T)))
+            return source.ToString();
+        return string.Empty;
+    }
+
 }

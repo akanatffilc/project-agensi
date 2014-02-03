@@ -15,5 +15,15 @@ namespace Agensi.Core.Test
 
             var result = StringUtil.Compare(3, str2, str1);
         }
+
+        [TestMethod]
+        public void TestMethod2()
+        {
+            long test = 1;
+            long? test2 = null;
+
+            var t1 = test.ToStringOrEmpty();
+            var t2 = test2.ToStringOrEmpty();
+        }
     }
 }

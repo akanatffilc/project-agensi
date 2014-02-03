@@ -46,6 +46,7 @@
     <Compile Include="System\AgensiDateTimeEx.cs" />
     <Compile Include="System\AgensiEnumEx.cs" />
     <Compile Include="System\AgensiIntEx.cs" />
+    <Compile Include="System\AgensiStringEx.cs" />
     <Compile Include="System\Linq\AgensiLinqEx.cs" />
     <Compile Include="System\Threading\Tasks\AgensiTaskEx.cs" />
   </ItemGroup>
