@@ -95,6 +95,10 @@
       <Project>{19a9deaf-397d-4cfb-9e3b-8dc2338fe206}</Project>
       <Name>Agensi.Data</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Agensi.Extensions\Agensi.Extensions.csproj">
+      <Project>{cbb11873-6d3a-46ab-9383-8b19c0ec60af}</Project>
+      <Name>Agensi.Extensions</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

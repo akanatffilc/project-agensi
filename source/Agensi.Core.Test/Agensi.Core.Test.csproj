@@ -58,6 +58,10 @@
       <Project>{8a4c14ad-d846-4caa-970f-c6a3783139c0}</Project>
       <Name>Agensi.Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Agensi.Extensions\Agensi.Extensions.csproj">
+      <Project>{cbb11873-6d3a-46ab-9383-8b19c0ec60af}</Project>
+      <Name>Agensi.Extensions</Name>
+    </ProjectReference>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

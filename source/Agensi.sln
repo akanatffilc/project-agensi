@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Agensi.API", "Agensi.API\Ag
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Agensi.Core.Test", "Agensi.Core.Test\Agensi.Core.Test.csproj", "{58AE4F65-F1A9-4BD4-84CE-184A5591B2E3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Agensi.Extensions", "Agensi.Extensions\Agensi.Extensions.csproj", "{CBB11873-6D3A-46AB-9383-8B19C0EC60AF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{58AE4F65-F1A9-4BD4-84CE-184A5591B2E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{58AE4F65-F1A9-4BD4-84CE-184A5591B2E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{58AE4F65-F1A9-4BD4-84CE-184A5591B2E3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CBB11873-6D3A-46AB-9383-8B19C0EC60AF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CBB11873-6D3A-46AB-9383-8B19C0EC60AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CBB11873-6D3A-46AB-9383-8B19C0EC60AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CBB11873-6D3A-46AB-9383-8B19C0EC60AF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
