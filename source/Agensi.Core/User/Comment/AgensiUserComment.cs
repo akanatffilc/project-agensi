@@ -19,9 +19,7 @@ namespace Agensi.Core.User.Comment
 
         private readonly UserComment _userComment;
 
-        public long CommentId { get { return _userComment.CommentId; } }
-
-        public string Comment { get { return _userComment.Comment; } }
+        public UserComment UserComment { get { return _userComment; } }
 
         private AgensiUser _fromUser;
         public AgensiUser FromUser
