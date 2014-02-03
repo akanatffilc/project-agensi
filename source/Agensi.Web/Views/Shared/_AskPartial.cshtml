@@ -1,0 +1,73 @@
+﻿@model Agensi.Web.Models.Board.AskPartialModel
+@using Agensi.Core.Util;
+@using (@Html.BeginForm("AskExecute", "Board", FormMethod.Post))
+{
+    <h3>Ask</h3>
+    <section id="form-title">
+        <h4>Title</h4>
+        <div>
+            <input type="text" class="form-control" name="@ClassUtil.GetName(() => Model.AskQuery.Title)" value="" />
+        </div>
+    </section>
+    <section id="form-category">
+        <h4>Media Category</h4>
+        <div>
+            <select name="@ClassUtil.GetName(() => Model.AskQuery.MediaCategory)">
+                @foreach (var mediaCategory in @Model.MediaCategories)
+                {
+                    <option value="@mediaCategory.MediaCategoryId">@mediaCategory.Name</option>
+                }
+            </select>
+        </div>
+    </section>
+    <section id="form-language">
+        <h4>Languages</h4>
+        <div>
+            <select name="@ClassUtil.GetName(() => Model.AskQuery.LanguageId)">
+                @foreach (var lanuguage in @Model.AllLanguage)
+                {
+                    <option value="@lanuguage.LanguageId">@lanuguage.Name</option>
+                }
+            </select>
+        </div>
+    </section>
+    <section id="form-dest-language">
+        <h4>Target Language</h4>
+        <div>
+            @foreach (var lanuguage in @Model.AllLanguage)
+            {
+                <div class="checkbox"><label><input type="checkbox" name="@ClassUtil.GetName(() => Model.AskQuery.ToLanguage)" value="@lanuguage.LanguageId">@lanuguage.Name</label></div>
+            }
+        </div>
+    </section>
+    <section id="form-tags">
+        <h4>Tags</h4>
+        <div><input type="text" class="form-control" name="@ClassUtil.GetName(() => Model.Tag)" value="" /></div>
+    </section>
+    <section id="form-text">
+        <h4>Text</h4>
+        <textarea class="form-control" name="@ClassUtil.GetName(() => Model.AskQuery.Text)" rows="3"></textarea>
+    </section>
+    <section id="form-submit"><button type="submit" class="btn btn-primary">Ask!</button></section>
+}
+<style>
+    h3 {
+        margin-top: 0px;
+    }
+    #form-category > *,
+    #form-language > *,
+    #form-dest-language > * {
+        display: inline-block;
+        vertical-align: middle;
+    }
+    #form-dest-language > * .checkbox {
+        display: inline-block;
+        vertical-align: bottom;
+    } 
+    #form-submit {
+        margin-top: 10px;
+    }
+    textarea, input {
+        max-width: none;
+    }
+</style>

@@ -57,10 +57,16 @@
             <div>
             @if (@Model.UserComments.Any())
             { 
-                foreach (var comment in @Model.UserComments)
+                var now = DateTime.Now;
+                foreach (var comment in @Model.UserComments.OrderByDescending(x => x.UpdateTime))
                 {
-                    <div>From @comment.FromUserId</div>
-                    <div>@comment.Comment</div>
+                    <div class="comment">
+                        <div class="comment-img"><img src="" /></div>
+                        <div class="comment-detail">
+                            <div class="comment-header"><h5></h5><em>@DateUtil.FormatDate(now, comment.UpdateTime)</em></div>
+                            <div class="comment-comment">@comment.Comment</div>
+                        </div>
+                    </div>
                 }
             }
             else
@@ -102,13 +108,16 @@
             </div>
             <div class="modal-body">
                 おろ、なんかうまくいかなかったみたいだよ。再読み込みしてみて。
-            </div>
+                <p id="modal-error" class="bg-danger"></p>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">はーい</button>
             </div>
         </div>
     </div>
 </div>
+<style type="text/css">
+
+</style>
 <script type="text/javascript">
     var isWaiting = false;
     var isFirstClick = true;
@@ -150,6 +159,8 @@
     //function to follow post
     function followPost(following)
     {
+        //clear error message
+        $('#modal-error').html('');
         //post with userId info
         //if theres a discrepensy in display and result, recurse method
         //else set flag for waiting to false
@@ -166,9 +177,8 @@
                 console.log("完了 ", isFollowing);
                 isWaiting = false;
             }
-        }).error(function () {
-            $('#myModal').modal('show');
-        }).fail(function () {
+        }).error(function (e) {
+            $('#modal-error').html(e.status + ": " + e.statusText);
             $('#myModal').modal('show');
         });
     }

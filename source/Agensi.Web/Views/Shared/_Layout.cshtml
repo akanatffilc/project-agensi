@@ -32,38 +32,76 @@
             else
             {
                 <button type="button" class="btn btn-primary ask-button ask-popover" data-container="body" data-toggle="popover" data-placement="bottom" data-content="Sign up or login in Ask">Ask</button>
-                <script type="text/javascript">
-                $(function () {
-                    $('.ask-popover').popover();
-                });
-                </script>
             }
             </div>
         </div>
     </div>
+    <style type="text/css">
+    /* nav-bar */
+    .navbar {
+    text-shadow: -1px -1px 0px grey;
+    border-bottom: 2px solid #DB623D;
+    min-height:30px;
+    background: #dd3700; /* Old browsers */
+    background: -moz-linear-gradient(top,  #dd3700 0%, #d13000 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#dd3700), color-stop(100%,#d13000)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,  #dd3700 0%,#d13000 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,  #dd3700 0%,#d13000 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top,  #dd3700 0%,#d13000 100%); /* IE10+ */
+    background: linear-gradient(to bottom,  #dd3700 0%,#d13000 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#dd3700', endColorstr='#d13000',GradientType=0 ); /* IE6-9 */
+    }
+    .navbar a {
+    color:white;
+    }
+    .navbar a:hover,
+    .nav .open > a,
+    .nav .open > a:hover,
+    .nav .open > a:focus,
+    .navbar-nav > li > .dropdown-menu {
+    background: #ca3200; /* Old browsers */
+    background: -moz-linear-gradient(top,  #ca3200 0%, #c02d00 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ca3200), color-stop(100%,#c02d00)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,  #ca3200 0%,#c02d00 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,  #ca3200 0%,#c02d00 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top,  #ca3200 0%,#c02d00 100%); /* IE10+ */
+    background: linear-gradient(to bottom,  #ca3200 0%,#c02d00 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ca3200', endColorstr='#c02d00',GradientType=0 ); /* IE6-9 */
+    }
+    .navbar-brand,
+    .navbar-nav > li > a {
+    padding:10px 15px;
+    display:inline-block;
+    }
+    .navbar-brand {
+    font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    }
+    .dropdown-menu {
+    min-width:135px;
+    }
+    .dropdown-menu > li > a {
+    color: white;
+    }
+    .dropdown-menu > li > a:hover {
+    color: silver;
+    }
+    .ask-button {
+    margin: 4px 30px;
+    padding: 5px 30px;
+    }
+    </style>
     <div class="body-content">    
         @RenderBody()
         <hr />  
         <div id="askModal" class="modal fade bs-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
-                    <div class="modal-header">
-                        <h4 class="modal-title" id="askModalLabel">Ask</h4>
-                    </div>
                     <div class="modal-body">
-                        @Html.Partial("_AskPartial", @Model.AskPartialModel);
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">はーい</button>
+                        @Html.Partial("_AskPartial", @Model.AskPartialModel)
                     </div>
                 </div>
             </div>
-        </div>
-        <script type="text/javascript">
-            $(function () {
-                $('#askModal').modal();
-            });
-        </script>     
+        </div>   
         <footer>
             <div>@Html.ActionLink("About", "About", "Home")&nbsp;&nbsp;@Html.ActionLink("Contact", "Contact", "Home")</div>
             <p>&copy; @DateTime.Now.Year - agensi alpha 1.0</p>
