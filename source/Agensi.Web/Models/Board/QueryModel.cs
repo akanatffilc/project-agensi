@@ -16,7 +16,7 @@ namespace Agensi.Web.Models.Board
         public ThreadModel(AgensiUser loginUser,long queryId)
             : base(loginUser)
         {
-            AgensiQuery = new AgensiQuery(queryId);
+            AgensiQuery = AgensiQuery.Create(queryId);
         }
 
         public AgensiLanguage[] Languages { get { return AgensiLanguageManager.AllLanguage; } }

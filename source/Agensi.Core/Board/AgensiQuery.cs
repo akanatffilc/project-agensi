@@ -20,13 +20,18 @@ namespace Agensi.Core.Board
             return new AgensiQuery(queryId);
         }
 
+        public static AgensiQuery Create(Query query)
+        {
+            return new AgensiQuery(query);
+        }
+
         #region Constructor
-        public AgensiQuery(long queryId)
+        internal AgensiQuery(long queryId)
         {
             _query = QueryDataLogic.Value.Find(queryId);
         }
 
-        public AgensiQuery(Query query)
+        internal AgensiQuery(Query query)
         {
             _query = query;
         }
@@ -103,7 +108,6 @@ namespace Agensi.Core.Board
                     (_queryTags = QueryTagDataLogic.Value.FindByQueryId(QueryId));
             }
         }
-
 
         #region Methods
 
