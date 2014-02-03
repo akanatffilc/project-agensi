@@ -109,11 +109,6 @@ input[type="checkbox"].input-validation-error {
     float:right;
 }
 
-/* footer */
-footer div {
-    text-align:center;
-}
-
 /* Login */
 .login {
     color:#7C7C7C;

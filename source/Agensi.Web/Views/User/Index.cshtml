@@ -37,13 +37,13 @@
         <div id="profile-following"><label>Following</label>&nbsp;<span>@Model.ViewUser.FollowUsers.Count()</span></div>
         <div id="profile-query-num"><label>Questions</label>&nbsp;<span>@Model.ViewUser.QueryNum</span></div>
         <div id="profile-answer-num"><label>Answers</label>&nbsp;<span>@Model.ViewUser.AnswerNum</span></div>
-        <div id="profile-like-language"><label>Prefered Languages</label><br /><span>@string.Join(",", Model.ViewUser.LikeLanguage.Select(x => x.Name))</span></div>
-        <div id="profile-edit">
+        <div id="profile-like-language"><label>Prefered Languages</label><br /><span>@string.Join(",", Model.ViewUser.LikeLanguage.Select(x => x.Name))</span></div>        
         @if (@Model.IsMypage)
         {
-            @Html.ActionLink("Edit Profile", "Edit", "User", new { @class = "btn btn-default" });
-        }
-        </div>
+            <div id="profile-edit">
+                @Html.ActionLink("Edit Profile", "Edit", "User", new { @class = "btn btn-default" });
+            </div>
+        }       
     </div>
     <div id="profile-right">
         <section id="">
@@ -98,7 +98,6 @@
             </section>
         }
         </div>
-    </div>
 </div>
 <div id="myModal" class="modal fade bs-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-sm">
@@ -109,6 +108,7 @@
             <div class="modal-body">
                 おろ、なんかうまくいかなかったみたいだよ。再読み込みしてみて。
                 <p id="modal-error" class="bg-danger"></p>
+            </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">はーい</button>
             </div>
@@ -149,6 +149,62 @@
     }
     .comment-detail .comment-comment {
 
+    }
+    /* profile */
+    #profile {
+        width: 940px;
+        margin: auto;
+        min-height: 500px;
+    }
+    #profile-top {
+    }
+    #profile-top-catch,
+    #profile-top-follow {
+    }
+    #profile-top-name {
+        font-size: 20px;
+        font-weight: bold;
+    }
+    #profile-top-comment {
+    }
+    #profile-top-follow {
+        float: right;
+    }
+    #profile-top-follow button {
+        width: 80px;
+    }
+    #profile-left,
+    #profile-right {
+        float: left;
+    }
+    #profile-left {
+        width: 160px;
+        margin-right: 10px;
+    }
+    #profile-image,
+    #profile-image img {
+        width: 140px;
+        height: 160px;
+    }
+    #profile-left > div {
+        margin-bottom: 5px;
+    }
+    #profile-left label {
+        color: #006699;
+        margin: 0px;
+    }
+    #profile-left span {
+        color: grey;
+    }
+    #profile-like-language,
+    #profile-like-genre {
+        line-height: 1em;
+    }
+    #profile-edit {
+        margin-top: 10px;
+    }
+    #profile-right {
+        width: 770px;
     }
 </style>
 <script type="text/javascript">
