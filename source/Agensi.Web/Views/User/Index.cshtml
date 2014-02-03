@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ﻿@using Agensi.Core.Util;
 @model Agensi.Web.Models.User.UserIndexModel
 
@@ -184,3 +185,181 @@
     }
 </script>
 
+=======
+﻿@using Agensi.Core.Util;
+@model Agensi.Web.Models.User.UserIndexModel
+
+<div id="profile">
+    <div id="profile-top">
+        <div id="profile-top-catch">
+            <p id="profile-top-name">@Model.ViewUser.UserName - @Model.ViewUser.UserId</p>
+            <p id="profile-top-comment">@Model.ViewUser.Comment</p>
+        </div>        
+        <div id="profile-top-follow">
+            @if (!@Model.IsMypage)
+            { 
+                if (User.Identity.IsAuthenticated)
+                {
+                    <input type="hidden" id="followUserId" name="followUserId" value="@Model.ViewUser.UserId" />               
+                    if (!Model.LoginUser.IsFollowUser(Model.ViewUser.UserId))
+                    {
+                        <button type="submit" class="btn btn-success authenticated">Follow</button>
+                    }
+                    else
+                    {
+                        <button type="submit" class="btn btn-success authenticated active">Unfollow</button>
+                    }
+                }
+                else
+                {
+                    <button type="submit" class="btn btn-success element-popover" data-container="body" data-toggle="popover" data-placement="bottom" data-content="Sign up or login to Follow">
+                        Follow
+                    </button>
+                }
+            }
+        </div>
+    </div>
+    <div id="profile-left">
+        <div id="profile-image"><img class="img-thumbnail" src="@ImageUtil.ToImageSrc(Model.ViewUser.ProfileImage)" /></div>       
+        <div id="profile-followers"><label>Follower</label>&nbsp;<span>@Model.ViewUser.FollowerUsers.Count()</span></div>
+        <div id="profile-following"><label>Following</label>&nbsp;<span>@Model.ViewUser.FollowUsers.Count()</span></div>
+        <div id="profile-query-num"><label>Questions</label>&nbsp;<span>@Model.ViewUser.QueryNum</span></div>
+        <div id="profile-answer-num"><label>Answers</label>&nbsp;<span>@Model.ViewUser.AnswerNum</span></div>
+        <div id="profile-like-language"><label>Prefered Languages</label><br /><span>@string.Join(",", Model.ViewUser.LikeLanguage.Select(x => x.Name))</span></div>
+        <div id="profile-edit">
+        @if (@Model.IsMypage)
+        {
+            @Html.ActionLink("Edit Profile", "Edit", "User", new { @class = "btn btn-default" });
+        }
+        </div>
+    </div>
+    <div id="profile-right">
+        <section id="">
+            <h4>Recent Activity</h4>
+            <div>
+                No recent activity
+            </div>
+        </section>
+        <section id="">
+            <h4>Comments</h4>
+            <div>
+            @if (@Model.UserComments.Any())
+            { 
+                foreach (var comment in @Model.UserComments)
+                {
+                    <div>From @comment.FromUserId</div>
+                    <div>@comment.Comment</div>
+                }
+            }
+            else
+            {
+                <div>No comments :(</div>
+            }
+            </div>
+        </section>       
+        @if (!@Model.IsMypage)
+        { 
+            <section>
+                <h4>SendComment</h4>
+                @if (@User.Identity.IsAuthenticated)
+                {
+                    <div>
+                    @using (@Html.BeginForm("AddComment", "User", FormMethod.Post, new { @class = "", role = "form" }))
+                    {
+                        <textarea name="comment" class="form-control" rows="3"></textarea>
+                        <input type="hidden" name="toUserId" value="@Model.ViewUser.UserId" />
+                        <br/>
+                        <button type="submit" class="btn btn-default">Send</button>
+                    }
+                    </div>
+                }
+                else
+                {
+                    <div>Sign in to send this user a comment!</div>
+                }
+            </section>
+        }
+        </div>
+    </div>
+</div>
+<div id="myModal" class="modal fade bs-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel">通信エラー</h4>
+            </div>
+            <div class="modal-body">
+                おろ、なんかうまくいかなかったみたいだよ。再読み込みしてみて。
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">はーい</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    var isWaiting = false;
+    var isFirstClick = true;
+    var isFollowing = false;
+    var isFollowingDisplay = false;
+    $(function () {
+        var followButton = $("#profile-top-follow button");
+        $(".element-popover").popover();
+        //check for status at document ready
+        if (followButton.hasClass("authenticated")) {
+            isFollowing = !(followButton.text() == "Follow");
+        }
+        //bind click function
+        followButton.click(function () {
+            //check if user is authenticated on view level
+            //if true, change button display and text
+            if ($(this).hasClass("authenticated"))
+            {
+                if (($(this).text() == "Follow"))
+                {
+                    isFollowingDisplay = false;
+                    $(this).text("Unfollow").addClass("active");
+                }
+                else
+                {
+                    isFollowingDisplay = true;
+                    $(this).text("Follow").removeClass("active");
+                }
+            }
+            //Check if waiting for callback
+            //If false, change flag and call method
+            if (!isWaiting)
+            {
+                isWaiting = true;
+                followPost(isFollowing);
+            }
+        });
+    });
+    //function to follow post
+    function followPost(following)
+    {
+        //post with userId info
+        //if theres a discrepensy in display and result, recurse method
+        //else set flag for waiting to false
+        //in case of failed execution, show modal display
+        $.post("/api/user/follow/@(Model.ViewUser.UserId)", function (data) {
+            isFollowing = data.IsFollow;
+            if (isFollowing == isFollowingDisplay)
+            {
+                console.log("再度 ", isFollowing);
+                followPost(isFollowing);
+            }
+            else
+            {
+                console.log("完了 ", isFollowing);
+                isWaiting = false;
+            }
+        }).error(function () {
+            $('#myModal').modal('show');
+        }).fail(function () {
+            $('#myModal').modal('show');
+        });
+    }
+</script>
+
+>>>>>>> a86672edb65f6a558c8cb5509124eb7e09e57277

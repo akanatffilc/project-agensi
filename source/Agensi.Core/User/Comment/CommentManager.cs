@@ -40,29 +40,31 @@ namespace Agensi.Core.User.Comment
             UserCommentDataLogic.Value.UpdateViewFlag(commentId, (int)viewFlag);
         }
 
-        private UserComment[] _fromComments;
+        private AgensiUserComment[] _fromComments;
         /// <summary>
         /// 対象ユーザが送ったコメント
         /// </summary>
-        public UserComment[] FromComments
+        public AgensiUserComment[] FromComments
         {
             get
             {
                 return _fromComments ??
-                    (_fromComments = UserCommentDataLogic.Value.FindByFromUserId(_user.UserId));
+                    (_fromComments = UserCommentDataLogic.Value.FindByFromUserId(_user.UserId)
+                    .Select(x => new AgensiUserComment(x)).ToArray());
             }
         }
 
-        private UserComment[] _toComments;
+        private AgensiUserComment[] _toComments;
         /// <summary>
         /// 対象ユーザへ送られたコメント
         /// </summary>
-        public UserComment[] ToComments
+        public AgensiUserComment[] ToComments
         {
             get
             {
                 return _toComments ??
-                    (_toComments = UserCommentDataLogic.Value.FindByToUserId(_user.UserId));
+                    (_toComments = UserCommentDataLogic.Value.FindByToUserId(_user.UserId)
+                    .Select(x => new AgensiUserComment(x)).ToArray());
             }
         }
     }

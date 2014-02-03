@@ -1,4 +1,5 @@
 ﻿using Agensi.Core.User;
+using Agensi.Core.User.Comment;
 using Agensi.Data.Core;
 using Agensi.Web.Core.Models;
 using System;
@@ -20,8 +21,8 @@ namespace Agensi.Web.Models.User
 
         public bool IsMypage { get { return LoginUser.UserId == ViewUser.UserId; } }
 
-        private UserComment[] _userComments;
-        public UserComment[] UserComments
+        private AgensiUserComment[] _userComments;
+        public AgensiUserComment[] UserComments
         {
             get
             {
