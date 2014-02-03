@@ -78,6 +78,7 @@
     <Compile Include="User\AgensiUser.cs" />
     <Compile Include="User\AgensiUser_Manager.cs" />
     <Compile Include="User\AgensiUser_Profile.cs" />
+    <Compile Include="User\Comment\AgensiUserComment.cs" />
     <Compile Include="User\Comment\CommentManager.cs" />
     <Compile Include="User\Follow\FollowManager.cs" />
     <Compile Include="User\Profile\ProfileManager.cs" />

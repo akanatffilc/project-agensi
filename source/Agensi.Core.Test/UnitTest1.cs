@@ -19,6 +19,7 @@ namespace Agensi.Core.Test
         [TestMethod]
         public void TestMethod2()
         {
+
             long test = 1;
             long? test2 = null;
 
