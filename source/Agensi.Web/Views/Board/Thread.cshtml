@@ -63,7 +63,7 @@
                         <td><input type="text" name="text" value="@answer.Text"/><input type="hidden" name="answerId" value="@answer.AnswerId"/></td>
                         <td><button type="submit">修正する</button></td>
                     }
-                    <td>ParentAnswerId:@StringUtil.ValueOrStringEmpty(@answer.PallentAnswerId)</td>
+                    <td>ParentAnswerId:@answer.PallentAnswerId.ValueOrEmpty()</td>
                     <td>vote:@(answer.Votes.Count())</td>
                     @if (@User.Identity.IsAuthenticated)
                     {

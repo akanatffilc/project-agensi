@@ -13,21 +13,6 @@ namespace Agensi.Core.Util
     public static class StringUtil
     {
         /// <summary>
-        /// nullかdefault値ならstring.Emptyを返す。それ以外ならToString()で返す。
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="source"></param>
-        /// <returns></returns>
-        public static string ValueOrStringEmpty<T>(T source)
-        {
-            // ReSharper disable once CompareNonConstrainedGenericWithNull
-            if (source != null && !source.Equals(default(T)))
-                return source.ToString();
-            return string.Empty;
-        }
-
-
-        /// <summary>
         /// 文字列のハッシュ(SHA1)を計算して16進数文字列にする
         /// </summary>
         public static string ComputeSHA1(string inputString, Encoding enc)

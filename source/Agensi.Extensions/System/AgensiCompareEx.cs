@@ -28,7 +28,7 @@ public static class AgensiCompareEx
     /// <typeparam name="T"></typeparam>
     /// <param name="source"></param>
     /// <returns></returns>
-    public static string ToStringOrEmpty<T>(this T source)
+    public static string ValueOrEmpty<T>(this T source)
             where T : struct, IConvertible
     {
         // ReSharper disable once CompareNonConstrainedGenericWithNull
@@ -37,7 +37,7 @@ public static class AgensiCompareEx
         return string.Empty;
     }
 
-    public static string ToStringOrEmpty<T>(this T? source)
+    public static string ValueOrEmpty<T>(this T? source)
             where T : struct, IConvertible
     {
         // ReSharper disable once CompareNonConstrainedGenericWithNull

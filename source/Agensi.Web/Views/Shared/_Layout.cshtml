@@ -48,7 +48,10 @@
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-body">
-                    @Html.Partial("_AskPartial", @Model.AskPartialModel)
+                    @if(User.Identity.IsAuthenticated)
+                    {
+                        @Html.Partial("_AskPartial", @Model.AskPartialModel)   
+                    }
                 </div>
             </div>
         </div>

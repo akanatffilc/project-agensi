@@ -48,11 +48,14 @@ namespace Agensi.Web.Controllers
             if (Tag != string.Empty)
                 AgensiQueryTagManager.AddQueryTag(query.QueryId, Tag);
 
-            return RedirectToAction("Index");
+            return RedirectToAction("Thread", "Board", new { queryId = query.QueryId });
         }
 
-        public ActionResult Thread(long queryId)
+        public ActionResult Thread(long queryId = 0)
         {
+            if (queryId == 0)
+                return RedirectToAction("Index", "Board");
+
             var model = new ThreadModel(LoginUser, queryId);
             if (!model.AgensiQuery.IsExists)
                 return RedirectToAction("Index");
@@ -80,6 +83,7 @@ namespace Agensi.Web.Controllers
             return RedirectToAction("Thread", new { queryId = answer.QueryId });
         }
 
+        [HttpPost]
         public ActionResult AnswerModify(long answerId,string text)
         {
             var answer = AgensiAnswer.Create(answerId);
